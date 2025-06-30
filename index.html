@@ -562,7 +562,7 @@ html, body, main {
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#"></a>
+        <a href="#"><img src="https://smpn9sinjai.sch.id/foto/logo.png" style="width:86%"/></a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -571,7 +571,12 @@ html, body, main {
       <!-- sidebar-header  -->
       <div class="sidebar-menu">
         <ul>
-         
+          <li>
+            <a href="#" >
+               
+              <span > </span>            
+            </a>
+          </li>
              
           </li>
           <li>
@@ -644,9 +649,10 @@ html, body, main {
        top: 50%;
        transform: translateY(-50%);
      ">
-    <i class="fas fa-bars"></i>
-  </a>
-     <span id='mjd'>Beranda</span>
+    <i class="fas fa-bars"></i>  
+  </a> 
+  
+     <span id='mjd'><i class="fa fa-book" ></i>  Beranda</span>
   </div>
 
   <div style="heigth:100%;margin:0px;padding:0px; margin:0px;padding-bottom:20px">
@@ -783,7 +789,7 @@ const jd = el.querySelector('span').innerText;
   const span = el.querySelector("span") 
          span.id="spil"
 	 hpil=span;	 
- jud.innerText=jd;
+ jud.innerHTML='<i class="fa fa-book" ></i>     '+jd;
 pil2.innerHTML="";
 lod.style.display='block'
 if(n==1){link2='guru'}
