@@ -541,6 +541,10 @@ html, body, main {
   100% { transform: rotate(360deg); }
 }
 #main{display:block;}
+ 
+ 
+#spil{color:orange}
+
 </style>
 
   <script>
@@ -553,7 +557,7 @@ html, body, main {
 
 <body translate="no">
   <div class="page-wrapper chiller-theme toggled">
- 
+  
   
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
@@ -617,7 +621,8 @@ html, body, main {
   </nav>
   <!-- sidebar-wrapper  -->
   
-   <main class="page-content" style="overflow:hidden">
+   <main class="page-content" style="overflow:hidden" >
+  
   <div id='jud' style="
     position: sticky;
     top: 0;
@@ -630,7 +635,7 @@ html, body, main {
     z-index: 3;
     text-align: center;
   ">
-	 <a id="show-sidebar" 
+   <a id="show-sidebar" 
      class="btn btn-sm btn-dark" 
      href="#" 
      style="
@@ -641,16 +646,18 @@ html, body, main {
      ">
     <i class="fas fa-bars"></i>
   </a>
-     Beranda
+     <span id='mjd'>Beranda</span>
   </div>
 
-  <div style="height: 100%;heigth:100%;margin:0px;padding:0px; margin:0px;padding-bottom:0px">
+  <div style="heigth:100%;margin:0px;padding:0px; margin:0px;padding-bottom:20px">
     <center> <div id="loader"></div></center>
-	   <div id="main">
+	   <div id="main" style="height:93%;">
 	   <div style="margin-top:200px;text-align: center;font-weight:bold">
     <img src="https://smpn9.github.io/smp.jpg" style="width:70px"/><br>
 	Selamat Datang di <br>
     UPTD SMP Negeri 9 SINJAI
+	 
+	
   </div>
 	   </div>
 	 
@@ -693,9 +700,14 @@ $(".sidebar-dropdown > a").click(function () {
 
 $("#close-sidebar").click(function () {
   $(".page-wrapper").removeClass("toggled");
+   $('#show-sidebar').show();
+   
 });
 $("#show-sidebar").click(function () {
   $(".page-wrapper").addClass("toggled");
+   setTimeout(()=>{ $('#show-sidebar').hide();},50)
+
+   
 });
 //# sourceURL=pen.js
 
@@ -704,11 +716,21 @@ $("#show-sidebar").click(function () {
 function togglePageWrapper() {
     if (window.innerWidth <= 768) { // Ukuran layar HP (<=768px)
         $(".page-wrapper").removeClass("toggled");
+		$('#show-sidebar').show();
+		   
     } else { // Ukuran layar desktop (>768px)
         $(".page-wrapper").addClass("toggled");
+		$('#show-sidebar').hide();
     }
 	$(".page-wrapper").show()
+	 
 }
+
+ 
+
+
+
+ 
 
 // Panggil fungsi saat halaman dimuat
 $(document).ready(function () {
@@ -746,14 +768,21 @@ function ulang(){
 }
 
 let pil2=document.getElementById('main')
-let jud=document.getElementById('jud')
+let jud=document.getElementById('mjd')
 let lod=document.getElementById('loader')
 let link='https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec?register='
 let link2='';
+let hpil='';
 function gom(n,el)
 {
  togglePageWrapper();
+   
+		 if(hpil){hpil.removeAttribute("id")}
 const jd = el.querySelector('span').innerText;
+ 
+  const span = el.querySelector("span") 
+         span.id="spil"
+	 hpil=span;	 
  jud.innerText=jd;
 pil2.innerHTML="";
 lod.style.display='block'
