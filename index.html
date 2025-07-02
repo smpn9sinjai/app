@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -46,6 +47,7 @@
     .offcanvas-body .nav-link:hover {
       background-color: #495057 !important;
       color: white !important;
+	  border-radius:10px;
     }
     .sidebar-collapsed {
       width: 0 !important;
@@ -81,6 +83,7 @@
       color: #FFA500 !important;
       font-weight: bold;
       background-color: #495057 !important;
+	  border-radius:10px;
     }
     .fade-in {
       animation: fadeIn 1s ease-in;
@@ -157,7 +160,7 @@ border-top-left-radius: 20px;
           </a>
           <div class="collapse ps-4" id="submenuMobileAkademik">
            
-            <a class="nav-link text-white" href="#" data-id="Nilai Semester"><i class="fas fa-list me-2 icon-spacing"></i>Nilai Semester</a>
+            <a class="nav-link text-white" href="#" data-id="Nilai Semester"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Nilai Semester</a>
             
           </div>
         </li>
@@ -170,8 +173,8 @@ border-top-left-radius: 20px;
             <i class="fas fa-chevron-right transition" id="arrowMobilePenilaian"></i>
           </a>
           <div class="collapse ps-4" id="submenuMobilePenilaian">
-            <a class="nav-link text-white" href="#" data-id="Link Pengetikan Soal"><i class="fas fa-link me-2 icon-spacing"></i>Link Pengetikan Soal</a>
-            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap"><i class="fas fa-chart-column me-2 icon-spacing"></i>Cek Nilai SAS Genap</a>
+            <a class="nav-link text-white" href="#" data-id="Link Pengetikan Soal" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Link Peng. Soal</a>
+            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Cek Nilai SAS Genap</a>
           </div>
         </li>
       
@@ -217,29 +220,29 @@ border-top-left-radius: 20px;
         </li>
         <!-- Akademik -->
         <li class="nav-item">
-          <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuMobileAkademik">
+          <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuAkademik">
             <span class="d-flex align-items-center">
               <i class="fas fa-book me-2 icon-spacing"></i><span>Akademik</span>
             </span>
-            <i class="fas fa-chevron-right transition" id="arrowMobileAkademik"></i>
+            <i class="fas fa-chevron-right transition" id="arrowAkademik"></i>
           </a>
-          <div class="collapse ps-4" id="submenuMobileAkademik">
+          <div class="collapse ps-4" id="submenuAkademik">
            
-            <a class="nav-link text-white" href="#" data-id="Nilai Semester"><i class="fas fa-list me-2 icon-spacing"></i>Nilai Semester</a>
+            <a class="nav-link text-white" href="#" data-id="Nilai Semester"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Nilai Semester</a>
             
           </div>
         </li>
         <!-- Penilaian -->
         <li class="nav-item">
-          <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuMobilePenilaian">
+          <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#submenuPenilaian">
             <span class="d-flex align-items-center">
               <i class="fas fa-clipboard-check me-2 icon-spacing"></i><span>Penilaian</span>
             </span>
-            <i class="fas fa-chevron-right transition" id="arrowMobilePenilaian"></i>
+            <i class="fas fa-chevron-right transition" id="arrowPenilaian"></i>
           </a>
-          <div class="collapse ps-4" id="submenuMobilePenilaian">
-            <a class="nav-link text-white" href="#" data-id="Link Pengetikan Soal"><i class="fas fa-link me-2 icon-spacing"></i>Link Pengetikan Soal</a>
-            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap"><i class="fas fa-chart-column me-2 icon-spacing"></i>Cek Nilai SAS Genap</a>
+          <div class="collapse ps-4" id="submenuPenilaian">
+            <a class="nav-link text-white" href="#" data-id="Link Pengetikan Soal"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Link Peng. Soal</a>
+            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Cek Nilai SAS Genap</a>
           </div>
         </li>
       </ul>
@@ -273,18 +276,23 @@ border-top-left-radius: 20px;
     });
 
     function setupCollapseArrow(id, arrowId) {
+	 
       const submenu = document.getElementById(id);
+	   
       const arrow = document.getElementById(arrowId);
       submenu?.addEventListener('show.bs.collapse', () => arrow?.classList.add('rotate-90'));
       submenu?.addEventListener('hide.bs.collapse', () => arrow?.classList.remove('rotate-90'));
     }
 
-    setupCollapseArrow('submenuAkademik', 'arrowAkademik');
+  
     setupCollapseArrow('submenuMobileAkademik', 'arrowMobileAkademik');
-    setupCollapseArrow('submenuPenilaian', 'arrowPenilaian');
-    setupCollapseArrow('submenuMobilePenilaian', 'arrowMobilePenilaian');
+	 setupCollapseArrow('submenuMobilePenilaian', 'arrowMobilePenilaian');
+	  setupCollapseArrow('submenuAkademik', 'arrowAkademik');
+   setupCollapseArrow('submenuPenilaian', 'arrowPenilaian');
+   
 
     function setActiveMenu(id) {
+	
       allLinks.forEach(l => l.classList.remove('active'));
       const matchingLinks = Array.from(allLinks).filter(l => l.dataset.id === id);
       matchingLinks.forEach(link => {
