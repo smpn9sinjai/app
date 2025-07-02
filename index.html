@@ -173,8 +173,9 @@ border-top-left-radius: 20px;
             <i class="fas fa-chevron-right transition" id="arrowMobilePenilaian"></i>
           </a>
           <div class="collapse ps-4" id="submenuMobilePenilaian">
+		     <a class="nav-link text-white" href="#" data-id="Disdik US 2025" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Disdik US 2025</a>
             <a class="nav-link text-white" href="#" data-id="Link Pengetikan Soal" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Link Peng. Soal</a>
-            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Cek Nilai SAS</a>
+            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Nilai SAS Genap</a>
           </div>
         </li>
       
@@ -241,8 +242,9 @@ border-top-left-radius: 20px;
             <i class="fas fa-chevron-right transition" id="arrowPenilaian"></i>
           </a>
           <div class="collapse ps-4" id="submenuPenilaian">
+		  <a class="nav-link text-white" href="#" data-id="Disdik US 2025" ><i class="fas fa-arrow-right me-2 icon-spacing"></i>Disdik US 2025</a>
             <a class="nav-link text-white" href="#" data-id="Link Pengetikan Soal"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Link Peng. Soal</a>
-            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Cek Nilai SAS</a>
+            <a class="nav-link text-white" href="#" data-id="Cek Nilai SAS Genap"><i class="fas fa-arrow-right me-2 icon-spacing"></i>Nilai SAS Genap</a>
           </div>
         </li>
       </ul>
@@ -330,11 +332,13 @@ let icon="";
           </div>
         `;
 		let code=""
+		let blink="https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec?register="
 		if(id=='Data Guru'){code='guru'}
 		if(id=='Data Siswa'){code='siswa'}
 		if(id=='Nilai Semester'){code='nilai'}
 		if(id=='Link Pengetikan Soal'){code='soal'}
 		if(id=='Cek Nilai SAS Genap'){code='ceknilai'}
+		if(id=='Disdik US 2025'){code='us2025'}
 		if(id=='Dashboard'){code='nom'}
 		 
 		if (code=='nom'){
@@ -347,7 +351,7 @@ let icon="";
 	     }
 		 else
 		 {
-            mdata.innerHTML="<iframe  style='width: 100%; height: 100%; border: none;' onload='gos()' src='"+"https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec?register="+code+"'></iframe>"		
+            mdata.innerHTML="<iframe  style='width: 100%; height: 100%; border: none;' onload='gos()' src='"+blink+code+"'></iframe>"		
 		}
 		 
          
