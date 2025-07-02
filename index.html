@@ -290,7 +290,7 @@ border-top-left-radius: 20px;
 	  setupCollapseArrow('submenuAkademik', 'arrowAkademik');
    setupCollapseArrow('submenuPenilaian', 'arrowPenilaian');
    
-
+let icon="";
     function setActiveMenu(id) {
 	
       allLinks.forEach(l => l.classList.remove('active'));
@@ -301,8 +301,9 @@ border-top-left-radius: 20px;
         if (collapse && !collapse.classList.contains('show')) {
           new bootstrap.Collapse(collapse, { toggle: false }).show();
         }
+		icon=(link.querySelector('i').getAttribute('class'));
       });
-      judulNavbar.textContent = id;
+      judulNavbar.innerHTML ="<i class='"+icon+"'></i>"+ id;
     }
 
     const activeId = localStorage.getItem('menuAktif');
@@ -370,7 +371,7 @@ mload.innerHTML="";
 mload.style.display="none"
 mdata.style.display="block"
 }
-judulNavbar.textContent = "Dashboard";
+judulNavbar.innerHTML ='<i class="fas fa-home me-2 icon-spacing"></i><span>Dashboard</span>'
   </script>
 </body>
 </html>
