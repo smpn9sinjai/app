@@ -43,14 +43,14 @@ let icon="";
       judulNavbar.innerHTML ="<i class='"+icon+"'></i>"+ id;
     }
 
-    const activeId = localStorage.getItem('menuAktif2');
+    const activeId = localStorage.getItem('menuAktif');
     if (activeId) setActiveMenu(activeId);
 
     allLinks.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
         const id = link.dataset.id;
-       // localStorage.setItem('menuAktif', id);
+        localStorage.setItem('menuAktif', id);
 	 //  localStorage.removeItem('menuAktif');
    
         setActiveMenu(id);
