@@ -50,7 +50,9 @@ let icon="";
       link.addEventListener('click', e => {
         e.preventDefault();
         const id = link.dataset.id;
-        localStorage.setItem('menuAktif', id);
+       // localStorage.setItem('menuAktif', id);
+	   localStorage.removeItem('menuAktif');
+   
         setActiveMenu(id);
 
         if (window.innerWidth < 768) {
