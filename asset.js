@@ -109,21 +109,6 @@ let icon="";
       });
     });
 
-mload.style.display="block";
-        mload.innerHTML = `
-          <div class="container text-center py-5 fade-in">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-3">Memuat data <strong>${id}</strong>...</p>
-          </div>
-        `;
-	
-setTimeout(() => {
-		 mdata.innerHTML="";
-        mload.style.display="none";
-		mdata.style.display="block";
-		 mdata.innerHTML=' <div style="margin-top:160px"><center><div class="welcome-container"><img  src="smp.jpg"/></div><div class="welcome-text">Selamat Datang di <br>UPTD SMP Negeri 9 SINJAI</div> <div class="copyright">&copy;2025 By Admin</div><br><br></p><p id="motivasi"></p></center></div>';tampilkanMotivasi()
-	 },1000)
-	     }
 
 function gos(){
 mload.innerHTML="";
