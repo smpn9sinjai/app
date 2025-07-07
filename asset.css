@@ -1,4 +1,4 @@
- body { margin: 0; background-color: #18416b}
+ body { margin: 0; background-color: #18416b;overflow:hidden}
     .sidebar-desktop {
       width: 250px;
       height: 100vh;
