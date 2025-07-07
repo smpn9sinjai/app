@@ -122,7 +122,7 @@ setTimeout(() => {
         mload.style.display="none";
 		mdata.style.display="block";
 		 mdata.innerHTML=' <div style="margin-top:160px"><center><div class="welcome-container"><img  src="smp.jpg"/></div><div class="welcome-text">Selamat Datang di <br>UPTD SMP Negeri 9 SINJAI</div> <div class="copyright">&copy;2025 By Admin</div><br><br></p><p id="motivasi"></p></center></div>';tampilkanMotivasi()
-	 },100)
+	 },1000)
 	     }
 
 function gos(){
