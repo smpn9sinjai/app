@@ -109,7 +109,14 @@ let icon="";
       });
     });
 
-
+mload.style.display="block";
+        mload.innerHTML = `
+          <div class="container text-center py-5 fade-in">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-3">Memuat data <strong>${id}</strong>...</p>
+          </div>
+        `;
+	
 setTimeout(() => {
 		 mdata.innerHTML="";
         mload.style.display="none";
