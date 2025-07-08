@@ -84,7 +84,7 @@ let icon="";
 		if(id=='Dashboard'){code='nom'}
 	        if(id=='Terdaftar DTKS'){code='dtks'}
 	         if(id=='Tidak Terdaftar DTKS'){code='nondtks'}
-		 alert(code)
+		 
 		if (code=='nom'){
 		setTimeout(() => {
 		 mdata.innerHTML="";
