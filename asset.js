@@ -26,6 +26,10 @@
 	 setupCollapseArrow('submenuMobilePenilaian', 'arrowMobilePenilaian');
 	  setupCollapseArrow('submenuAkademik', 'arrowAkademik');
    setupCollapseArrow('submenuPenilaian', 'arrowPenilaian');
+    setupCollapseArrow('submenuMobilePenilaian2', 'arrowMobilePenilaian2');
+ setupCollapseArrow('submenuPenilaian2', 'arrowPenilaian2');
+
+
    
 let icon="";
     function setActiveMenu(id) {
