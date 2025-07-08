@@ -82,6 +82,8 @@ let icon="";
 		if(id=='Disdik US 2025'){code='us2025'}
 		if(id=='pengumuman'){code='info'}
 		if(id=='Dashboard'){code='nom'}
+	        if(id=='dtks'){code='dtks'}
+	         if(id=='nondtks'){code='nondtks'}
 		 
 		if (code=='nom'){
 		setTimeout(() => {
