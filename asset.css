@@ -1,4 +1,17 @@
- body { margin: 0; background-color: #18416b}
+ ::-webkit-scrollbar {
+      width: 14px;
+      background-color: #18416b;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: #18416b;
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: orange;
+    }
+body { margin: 0; background-color: #18416b}
     .sidebar-desktop {
       width: 250px;
       height: 100vh;
