@@ -32,11 +32,14 @@
       padding: 10px 20px;
     }
     .sidebar-desktop .nav-link:hover,
-    .offcanvas-body .nav-link:hover {
+    .offcanvas .nav-link:hover {
       background-color: #495057 !important;
-      color: white !important;
+      color:orange !important;
 	  border-radius:10px;
     }
+    
+
+
     .sidebar-collapsed {
       width: 0 !important;
       padding: 0 !important;
