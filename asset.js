@@ -84,6 +84,7 @@ let icon="";
 		if(id=='Dashboard'){code='nom'}
 	        if(id=='Terdaftar DTKS'){code='dtks'}
 	         if(id=='Tidak Terdaftar DTKS'){code='nondtks'}
+	          if(id=='ch'){code='chrome'}
 		 
 		if (code=='nom'){
 		setTimeout(() => {
