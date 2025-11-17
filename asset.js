@@ -78,7 +78,7 @@ let icon="";
 		if(id=='Data Siswa'){code='siswa'}
 		if(id=='Nilai Semester'){code='nilai'}
 		if(id=='Link Pengetikan Soal'){code='soal'}
-		if(id=='Cek Nilai SAS'){code='ceknilai'}
+		if(id=='Nilai SAS'){code='ceknilai'}
 		if(id=='Disdik US 2025'){code='us2025'}
 		if(id=='pengumuman'){code='info'}
 		if(id=='Dashboard'){code='nom'}
