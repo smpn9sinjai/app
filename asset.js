@@ -73,7 +73,7 @@ let icon="";
           </div>
         `;
 		let code=""
-		   alert(id)
+		   
 		let blink="https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec?register="
 		if(id=='Data Guru'){code='guru'}
 		if(id=='Data Siswa'){code='siswa'}
