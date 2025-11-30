@@ -73,14 +73,14 @@ let icon="";
           </div>
         `;
 		let code=""
-		   
+		   alert(id)
 		let blink="https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec?register="
 		if(id=='Data Guru'){code='guru'}
 		if(id=='Data Siswa'){code='siswa'}
 		if(id=='Nilai Semester'){code='nilai'}
 		if(id=='Link Pengetikan Soal'){code='soal'}
 		if(id=='Cek Nilai SAS'){code='ceknilai'}
-		if(id=='aktifmapel'){code='aktifmapel'}  
+		if(id=='Aktifkan Mapel ujian'){code='aktifmapel'}  
 		if(id=='Disdik US 2025'){code='us2025'}
 		if(id=='pengumuman'){code='info'}
 		if(id=='Dashboard'){code='nom'}
