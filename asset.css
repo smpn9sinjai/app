@@ -18,9 +18,8 @@ body { margin: 0; background-color: #18416b}
       background-color: #18416b;
       color: white;
       position: fixed;
-      top: 0;
+      top: 56px;
       left: 0;
-      padding-top: 56px;
       overflow-y: auto;
       transition: all 0.3s ease;
 	  
