@@ -87,6 +87,8 @@ let icon="";
 	        if(id=='Terdaftar DTKS'){code='dtks'}
 	         if(id=='Tidak Terdaftar DTKS'){code='nondtks'}
 	          if(id=='chromebook'){code='chrome'}
+		    if(id=='Laporan'){code='Laporan.html';link='laporan.html'}
+		    
 		 
 		if (code=='nom'){
 		setTimeout(() => {
