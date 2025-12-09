@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Laporan</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .category {
+            background: #ffffff;
+            border-left: 6px solid #3498db;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .category-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .report-card {
+            background: #e0e7f7;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .report-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .btn-open {
+            background: #3498db;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-open:hover {
+            background: #217dbb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Kategori 1 -->
+        <div class="category">
+            <div class="category-title">LAPORAN SEKOLAH</div>
+
+            <div class="report-card">
+                <div class="title">G7KAIH</div>
+                <a class="btn-open" href="laporan/LapKegiatan.pdf" target="_blank">Buka PDF</a>
+            </div>
+        </div>
+
+        
+
+    </div>
+</body>
+</html>
