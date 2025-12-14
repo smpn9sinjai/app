@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+ 
+<title>Aktifkan Mapel</title>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'/>
+<style id='page-skin-1' type='text/css'><!--
+
+--></style>
+<style>
+  body {background-color:white}
+ #myTable th{background-color:#808080;color:white}
+#myTable {
+  border-collapse: collapse;
+  
+  
+  font-size: 17px;
+ 
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding:4px;
+}
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #ddd;cursor:pointer;
+}
+  
+  
+ #myTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+ 
+  * { margin:0px;padding:0px;font-family: Arial, Helvetica, sans-serif;color:rgba(0,0,0,0.7);}
+@media all and (min-width: 768px) {
+   img{width:30% !important;}
+ 
+    
+  }
+  
+  
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  border-radius:5px;
+}
+
+/* Modal Content */
+.modal-content {
+     
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #fff;
+  width: 80%; border-radius:5px;font-size:17px;font-family:Arial;
+  max-width:400px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+   cursor: pointer;
+}
+
+  
+  
+ #tabel{margin:4px 0px} 
+   button{padding:10px 10px;border:none;background:green;color:white;border-radius:5px;cursor: pointer;}
+  button:hover,#btn1:hover{ background:orange;color:black}
+ #btn1{padding:10px 50px;border:none;background:green;color:white;border-radius:5px;font-size:15px;display:none} 
+  
+</style>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body onload='bload()'>
+<div class='no-items section' id='contoh'></div>
+<center>
+<br/>
+<br/>
+<input id='cari2'  type="password" placeholder='Masukkan Pasword' style='font-size:20px;padding:5px;border-radius:5px;border: 2px solid #4CAF50' title='Type in a name' type='text'/><button id="btnok" onclick="cek()" style='font-size:20px;padding:5px;border-radius:5px;border: 2px solid #4CAF50'>OK</button>
+<input id='cari' onkeyup='cari()' placeholder='cari nama matapelajaran' style='display:none;font-size:22px;padding:5px;border-radius:5px;border: 2px solid #4CAF50' title='Type in a name' type='text'/>
+<div id='tabel'></div><p></p>
+<!--<button id='btn1' onclick='gokelas(1,0,0)'>Refresh</button><p></p><br>-->
+</center>
+<div class='modal' id='myModal'>
+<!-- Modal content -->
+<div class='modal-content' id='isimodal'>
+<span class='close' onclick='gotp()'>&times;</span>
+<p><span id='apa'>Yakin mau di Reset ?,</span></p>
+<p><button id='mbt' onclick='go()' style='margin-right:30px;margin-top:15px;padding:10px 30px'>Ya</button><button id='mbt2' onclick='gotp()' style='padding:10px 20px'>Tidak</button></p>
+</div>
+</div>
+<script> 
+   
+     
+ 
+   var data;
+  
+  
+ 
+  var idetel=0
+   
+  
+     
+ function bload(){
+ 
+ 
+   
+    
+   
+  let namateleg1='nama'
+   
+   let namateleg2='ss'
+    let gabnama=''
+     gabnama=namateleg1;
+      
+ // gokelas(1,0,'0');
+  
+  
+   
+   
+  } 
+   
+   
+   let tbl=document.getElementById('tabel')
+  // let btn1=document.getElementById('btn1')
+    let modal=document.getElementById('myModal')
+   let cbtn=document.getElementById('mbt')
+   let cbtn2=document.getElementById('mbt2')
+    let napa=document.getElementById('apa')
+	let cek2=document.getElementById('cari2')
+   
+   function gotp(){
+   modal.style.display='none'
+   
+   
+   }
+   
+    document.getElementById("cari2").addEventListener("keydown", function(e){
+  if (e.key === "Enter") {
+    cek()
+  } 
+  })
+  function cek() {
+  if (cek2.value != "") {
+    gokelas(1, 0, '0');
+}
+}   
+   
+   
+   
+   function gokelas(cek,nom,tok,kemb){
+    idetel=cek2.value;
+    //document.getElementById('cari').style.display="none"
+    var xhr = new XMLHttpRequest();
+   let ab=''
+    if (cek==1){ 
+	//btn1.style.display='none'
+    tbl.innerHTML="<span><i class='fa fa-spinner fa-spin' style='font-size:20px;color:black'></i> Mohon Tunggu ...</span>"
+     ab='https://script.google.com/macros/s/AKfycbwsuhq8sg-H4UNGgi1cgLptOvzxP4mAjQ89NfMRcG2xrtRq3MVo_eDUXARvYNoHf1xx/exec?cek='+cek+'&nores='+nom+'&token='+tok+'&idetel='+idetel
+   }
+   if (cek==2){
+   sukses(3,nom,tok,kemb);
+   return; 
+   }
+     if (cek==3){
+    modal.style.display='none'
+    sukses(1,nom,'0',10);
+     ab='https://script.google.com/macros/s/AKfycbwsuhq8sg-H4UNGgi1cgLptOvzxP4mAjQ89NfMRcG2xrtRq3MVo_eDUXARvYNoHf1xx/exec?cek='+cek+'&nores='+nom+'&token='+tok+'&idetel='+idetel
+   
+   }
+     
+    xhr.open('POST', ab, true);
+    xhr.onerror = function() {
+   
+   }
+    xhr.onload = function () {  
+	
+    var hh=xhr.responseText; 
+    
+  let mm=(JSON.parse(hh));
+   
+  if(mm.kode==20){ 
+  //btn1.style.display='block'
+  document.getElementById('cari').style.display="none"
+  tbl.innerHTML=mm.data 
+   }
+  if(mm.kode==7){ 
+  //btn1.style.display='block'
+  tbl.innerHTML=mm.data
+  document.getElementById('cari').style.display="block"
+  cek2.style.display="none"
+  document.getElementById('btnok').style.display="none"
+  
+  //cek2.value="";
+ //  urut();
+  // klik();
+   }
+  
+    if(mm.kode==1){sukses(2,mm.nor,'0',mm.bkod)}
+   
+   }
+     
+    xhr.onprogress = function(evt) { }
+    xhr.send();
+    
+   
+   
+   }
+   
+   
+   
+   function urut() { 
+  var table2, rows, switching, i, x, y, shouldSwitch;
+  table2 =document.getElementById('myTable')
+   
+   switching = true;
+  while (switching) {
+    switching = false;
+    rows = table2.rows;
+   
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[2];
+    
+      y = rows[i + 1].getElementsByTagName("TD")[2];
+    
+    //  if (Number(x.innerHTML) > Number(y.innerHTML)) 
+   if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase())
+   {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+   
+   
+ function klik(){
+   let table = document.getElementById("myTable");
+    var rows = table.getElementsByTagName("tr");
+   
+	for (var i=0;i	<rows.length;i++)
+	{ 
+	
+	rows[i].onclick=function(e){ 
+	let  ntb=this.rowIndex;
+   let  link=this.cells[3].innerHTML
+       this.cells[3].innerHTML="<i class='fa fa-spinner fa-spin' style='font-size:15px;color:black'></i>"
+   
+  
+	}
+   }}
+ function sukses(gb,res,tok,kem){
+   
+   let  table = document.getElementById('myTable');
+    for(var i = 1; i < table.rows.length; i++)
+   
+         {   
+        if(res== table.rows[i].cells[0].innerHTML)
+        {  
+   
+   if(gb==3){ 
+     let bc='Aktifkan'
+    
+    if(tok==0){bc='Non Aktifkan'}
+   let tbn="<table><tr><td style='vertical-align:top'><b>Mapel</b></td><td style='vertical-align:top'><b>:</b></td><td>"+table.rows[i].cells[2].innerHTML+"</td></tr></table>"
+   napa.innerHTML='<b>Yakin akan di '+bc+' ...?</b>'+'<br/><br/>'+tbn+'<br/><br/>'
+   cbtn.setAttribute("onclick","gokelas(3,'"+res+"',"+tok+")"); modal.style.display='block'     }
+   
+   
+   if(gb==1){
+   table.rows[i].cells[3].innerHTML="<i class='fa fa-spinner fa-spin' style='font-size:20px;color:black'></i>"
+   }
+    if(gb==2){
+   let bc='Aktifkan'
+    
+    if(kem==0){bc='Non Aktifkan'}
+    var bbk=table.rows[i].cells[4];
+   
+  
+            if(kem==0){table.rows[i].cells[3].innerHTML="<span><i class='fa fa-check-square-o' style='font-size:20px;color:black'></i></span>"
+                         bbk.childNodes[0].setAttribute("onclick","gokelas(2,'"+res+"',"+kem+",10)");
+                         bbk.childNodes[0].innerHTML=bc
+ 
+                      }
+             else {table.rows[i].cells[3].innerHTML=''
+                     bbk.childNodes[0].setAttribute("onclick","gokelas(2,'"+res+"',"+kem+",10)");
+                         bbk.childNodes[0].innerHTML=bc
+ 
+                  }
+   
+   
+   }
+   }  
+   
+   }
+     
+   }
+   
+   
+   
+function cari() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("cari");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+  // alert(td.innerText)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}   
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+
+</html>
+<head>
+ <base target="_top">  
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<title>Data Nilai Siswa</title>
+  
+  
+<style>
+ 
+* {font-size:17;font-family:Arial;font-size:15px}
+body{margin:0px;padding:0px;background:linear-gradient(to right, #e0e7ff, #f9fafb);overflow:hidden}
+ #myTable {
+    border-collapse: collapse;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+  
+#myTable th {
+  margin-top:5px;
+	position:sticky;
+        top:0px;
+    background-color: #7464f9;
+    color: white;
+    text-align: left;
+    padding: 8px;
+}
+
+#myTable td {
+    text-align: left;
+    padding: 8px;
+}
+
+#myTable tr {
+     
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+#myTable tr:hover {
+    background-color: #c4d4dd;
+}
+ 
+
+#loader {
+display:block;
+ 
+  
+  border: 8px solid white;//#f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid lightblue;
+  border-bottom: 8px solid orange;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  body{font-family:Arial;Tahoma;font-size:17px;}
+  input{font-family:Arial;Tahoma;font-size:17px;margin-left:10px; outline: none; /* Hilangkan border bawaan saat fokus */}
+  button{font-family:Arial;Tahoma;font-size:17px;color:white;background:#7464f9}
+  input,button{padding:10px;border-radius:5px;border:1px solid #8b84ff;}
+   input:focus {
+            border:3px solid #8b84ff;
+        }
+  
+
+img {
+    width: 3cm;
+    height: auto; /* Menjaga rasio gambar */
+    border-radius:5px;
+}
+
+@media screen and (max-width: 768px) {
+    img {
+        width: 2cm;
+        height: auto; /* Menjaga rasio gambar */
+    }
+}
+
+
+#hasil {
+    overflow-y:scroll;
+     
+  }
+
+  /* Saat layar ukuran HP (max-width 768px) */
+  @media (max-width: 768px) {
+    #hasil {
+      overflow: auto; /* scroll otomatis kalau isi melebihi ukuran */
+      
+    }
+    #hasil2{ max-width: 100%;
+      margin: 0;}
+  }
+ @media screen and (min-width: 1024px) {
+#hasil2{ max-width: 90%;
+      margin: auto;}
+  }
+ }
+
+
+
+</style>
+ 
+</head>
+<body>
+	<p></p>
+<center>
+
+ <div id='jd'><b>NILAI UJIAN SEKOLAH BERBASIS CHROMEBOOK<br>TAHUN PELAJARAN 2024/2025</b> <br></div>
+<div id="hasil2" style="background:white;display:block;margin:10px;padding:10px;box-shadow:0 8px 20px rgba(0,0,0,0.1);background:white;border-radius:5px"><div id="hasil" style=" height:86vh;margin:0px;padding:0px;background:white;border-radius:5px"></div></div>
+</center>
+	<p></p>
+<script>
+go()
+function go(){
+    document.getElementById('hasil').innerHTML='<div id="loader"></div>'
+    
+     var xhr = new XMLHttpRequest();
+     xhr.open("get", "https://script.google.com/macros/s/AKfycbwy3anQV0AopDIYc-otVlZORfhTHnZS7P87N6b7USKCgcGis9u4M97JHqYL_wve0k40/exec", true);
+     xhr.onload = function () {
+	  
+	  document.getElementById('hasil').innerHTML=xhr.responseText+'<br><br><br><br>';
+          };
+      xhr.onerror=function(){ alert('tidak ada jaringan');document.getElementById('hasil').innerHTML=''}
+       
+      xhr.send();
+            
+
+
+}
+
+</script>
+
+
+</body>
+</html>

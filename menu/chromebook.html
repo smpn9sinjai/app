@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f9f9f9;
+        padding: 3px;
+        overflow:hidden;
+      }
+
+      h3 {
+        text-align: center;
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+
+      th {
+        position:sticky;
+        top:0;
+        background-color: #f0f0f0;
+        padding: 10px;
+        font-weight: 600;
+        border-bottom: 2px solid #ddd;
+      }
+
+      td {
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+      }
+
+      input[type="text"], input[type="password"] {
+        padding: 6px 10px;
+        width: 95%;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .status {
+        font-weight: bold;
+        padding: 3px 7px;
+        border-radius: 20px;
+        font-size: 10px;
+        display: inline-block;
+      }
+
+      .dipinjam { color: white; background-color: #e74c3c; }
+      .tersedia { color: white; background-color: #2ecc71; }
+
+      button {
+        margin-top: 15px;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 18px;
+        font-size: 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      button:hover { background-color: #0056b3; }
+
+      .modal {
+        display: none; 
+        position: fixed;
+        z-index: 9999;
+        padding-top: 100px;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+      }
+
+
+      
+
+      .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+ @media (max-width: 768px) {
+  .modal-content {     
+           width: 80%;
+          max-width: 320px;
+}
+       }
+
+
+
+      .modal input {
+        width: 80%;
+        margin-bottom: 10px;
+      }
+
+      .modal-close {
+        background: #aaa;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 12px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      .modal-close:hover {
+        background: #888;
+      }
+
+      /* Loading Spinner */
+      .spinner {
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+@media screen and (min-width: 1024px) {
+#hasil2{ max-width: 70%;
+      margin: auto;}
+  }
+ }
+
+    </style>
+  </head>
+  <body>
+     <h3>Form Peminjaman Chromebook</h3>
+    <div id="hasil2" style="height:90vh;overflow-y:scroll;">
+    <form id="formData">
+      <table>
+        <thead>
+          <tr>
+            <th style>No</th>
+            <th>Nama Peminjam</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="dataTable"></tbody>
+      </table>
+      <button type="submit">💾 Simpan Perubahan</button>
+    </form> <br> <br> <br> <br>
+    <br>
+</div>
+    <!-- MODAL PASSWORD -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h4 id="modal-title">Masukkan Password</h4>
+        <input type="password" id="adminPass" placeholder="Password Admin">
+        <br>
+        <button onclick="konfirmasiPassword()">Konfirmasi & Simpan</button>
+        <br>
+        <button class="modal-close" onclick="tutupModal()">Tutup</button>
+      </div>
+    </div>
+
+    <!-- MODAL NOTIFIKASI -->
+    <div id="notif" class="modal">
+      <div class="modal-content">
+        <h4 id="notif-message">Notifikasi</h4>
+        <button class="modal-close" onclick="tutupNotif()">Tutup</button>
+      </div>
+    </div>
+
+    <!-- MODAL LOADING -->
+    <div id="loading" class="modal">
+      <div class="modal-content">
+        <div class="spinner"></div>
+        <p> Mohon tunggu...</p>
+      </div>
+    </div>
+<script>
+const google = {
+  script: {
+    run: {
+      _success: function () {},
+      _failure: function () {},
+
+      withSuccessHandler(fn) {
+        this._success = fn;
+        return this;
+      },
+
+      withFailureHandler(fn) {
+        this._failure = fn;
+        return this;
+      },
+
+      getData(pass,cari) {
+        fetch("https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+		   
+            pass: pass,
+            cari: cari
+          }) // ⬅️ KUNCI
+        })
+        .then(res => res.json())          // ⬅️ sesuai GAS Anda
+        .then(text => this._success(text))
+        .catch(err => this._failure(err));
+      }
+	  ,
+	   simpandata(simpan,pass,cari) {
+        fetch("https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+		    simpan : JSON.stringify(simpan),
+            pass: pass,
+            cari: cari
+          }) // ⬅️ KUNCI
+        })
+        .then(res => res.text())          // ⬅️ sesuai GAS Anda
+        .then(text => this._success(text))
+        .catch(err => this._failure(err));
+      }
+	  
+	  
+	  
+    }
+  }
+};
+</script>
+    <script>
+      let originalData = [];
+      let perubahanData = [];
+
+      function loadData() {
+        google.script.run.withSuccessHandler(function (data) {
+		 
+          document.getElementById("loading").style.display = "none";
+          originalData = data;
+          const tbody = document.getElementById("dataTable");
+          tbody.innerHTML = "";
+
+          data.forEach((row, i) => {
+            const [no, nama, waktu, status] = row;
+            const statusClass = (status || "").toLowerCase() === "dipinjam" ? "dipinjam" : "tersedia";
+
+            tbody.innerHTML += `
+              <tr>
+                <td>${no}</td>
+                <td><input type="text" id="nama_${i}" value="${nama || ""}"></td>
+                <td><span class="status ${statusClass}">${status || "Tersedia"}</span></td>
+              </tr>`;
+          });
+        }).getData('12',"getData");
+      }
+
+      document.getElementById("formData").addEventListener("submit", function (e) {
+        e.preventDefault();
+        perubahanData = [];
+
+        for (let i = 0; i < originalData.length; i++) {
+          const inputNama = document.getElementById(`nama_${i}`).value;
+          const originalNama = originalData[i][1];
+          if (inputNama !== originalNama) {
+            perubahanData.push({ no: i + 1, nama: inputNama });
+          }
+        }
+
+        if (perubahanData.length === 0) {
+          tampilNotif("Tidak ada perubahan data.");
+          return;
+        }
+
+        tampilModal("Masukkan Password untuk Menyimpan");
+      });
+
+      function tampilModal(judul) {
+        document.getElementById("modal-title").innerText = judul;
+        document.getElementById("modal").style.display = "block";
+        document.getElementById("adminPass").value = "";
+      }
+
+      function tutupModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+
+      function tampilNotif(pesan) {
+        document.getElementById("notif-message").innerText = pesan;
+        document.getElementById("notif").style.display = "block";
+      }
+
+      function tutupNotif() {
+        document.getElementById("notif").style.display = "none";
+      }
+
+      function showLoading() {
+        document.getElementById("loading").style.display = "block";
+      }
+
+      function hideLoading() {
+        document.getElementById("loading").style.display = "none";
+      }
+
+      function konfirmasiPassword() {
+        const pass = document.getElementById("adminPass").value;
+
+        if (!pass) {
+          tampilNotif("❗ Silakan isi password.");
+          return;
+        }
+
+        showLoading(); // tampilkan loading
+
+        google.script.run.withSuccessHandler(function (res) {
+          hideLoading(); // sembunyikan loading
+
+          if (res !== false) {
+            tampilNotif(res);
+            tutupModal();
+            loadData();
+          } else {
+            tampilNotif("❌ Password salah.");
+          }
+        }).simpandata(perubahanData, pass,"simpandata");
+      }
+
+      loadData();
+      document.getElementById("loading").style.display = "block";
+    </script>
+  </body>
+</html>

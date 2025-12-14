@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pengumuman Kelulusan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: 'Inter', sans-serif;
+      overflow:hidden;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 5px 20px;
+    }
+    h2 {
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+    .table-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .table th {
+      background-color: #e0e7ff;
+      color: #1e3a8a;
+    }
+    .btn-primary {
+      background-color: #2563eb;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+    }
+    .modal-content {
+      border-radius: 12px;
+    }
+    .modal-photo {
+      width: 100px;
+      height: 100px;
+      
+      border-radius: 50%;
+      margin-bottom: 2px;
+      border: 2px solid #2563eb;
+    }
+    .info-table td {
+      padding: 5px 8px;
+    }
+    .card-detail {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+	
+	
+	
+	
+	
+	
+	  body {
+      background: linear-gradient(to right, #e0e7ff, #f9fafb);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .countdown-container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+    }
+    .countdown-container h1 {
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+    .countdown-container p {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .timer-box {
+      background: #1e3a8a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      min-width: 60px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .label {
+      font-size: 12px;
+      color: #1e3a8a;
+      margin-top: 5px;
+    }
+    .finished-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #10b981;
+    }
+	
+	
+	.btn-modern {
+      background: linear-gradient(135deg, #f83600, #fe8c00);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+
+    .btn-modern:hover {
+      background: linear-gradient(135deg, #f83600, #fe8c00);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .btn-modern:active {
+      transform: scale(0.98);
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Untuk tampilan di HP */
+    @media (max-width: 768px) {
+      .btn-modern {
+        width: 100%;
+        font-size: 18px;
+      }
+    
+
+	.fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+	
+	
+	
+  </style>
+  <style>
+/* Pastikan canvas confetti muncul paling atas */
+canvas.confetti-canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999 !important;
+}
+</style>
+
+</head>
+<body>
+
+<button style="display:none" id="startButton">Start Confetti</button>
+  <div id="time" class="countdown-container" style='display:block'>
+    <center> <img src="https://smpn9sinjai.sch.id/smp.jpg" style="width:80px"></center>
+         <h4>Pengumuman Kelulusan</h4>
+         <h4>UPTD SMP NEGERI 9 SINJAI</h4>
+         <h5>Tahun Ajaran 2024/2025</h5>
+    <p>Pengumuman akan tersedia dalam waktu berikut:</p>
+    
+    <div id="countdown" class="timer">
+      <div>
+        <div class="timer-box" id="days">0</div>
+        <div class="label">Hari</div>
+      </div>
+      <div>
+        <div class="timer-box" id="hours">0</div>
+        <div class="label">Jam</div>
+      </div>
+      <div>
+        <div class="timer-box" id="minutes">0</div>
+        <div class="label">Menit</div>
+      </div>
+      <div>
+        <div class="timer-box" id="seconds">0</div>
+        <div class="label">Detik</div>
+      </div>
+    </div>
+
+    <div id="doneMessage" class="mt-4 finished-text d-none">
+      Pengumuman telah dibuka.<br> Silakan klik tombol dibawah<br>
+	   <button onclick="gobuka()" class="btn-modern">Buka</button>
+    </div>
+  </div>
+<script>
+const google = {
+  script: {
+    run: {
+      _success: function () {},
+      _failure: function () {},
+
+      withSuccessHandler(fn) {
+        this._success = fn;
+        return this;
+      },
+
+      withFailureHandler(fn) {
+        this._failure = fn;
+        return this;
+      },
+
+      pengumuman(pass,cari) {
+        fetch("https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+            pass: pass,
+            cari: cari
+          }) // ⬅️ KUNCI
+        })
+        .then(res => res.text())          // ⬅️ sesuai GAS Anda
+        .then(text => this._success(text))
+        .catch(err => this._failure(err));
+      }
+	 
+	  
+	  
+    }
+  }
+};
+</script>
+  <script>
+    const targetDate = new Date("2025-07-02T13:28:00"); // Waktu pengumuman
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
+    const doneMessage = document.getElementById("doneMessage");
+
+    function updateCountdown() {
+      const now = new Date();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        elDays.textContent = elHours.textContent = elMinutes.textContent = elSeconds.textContent = "0";
+        doneMessage.classList.remove("d-none");
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      elDays.textContent = days;
+      elHours.textContent = hours;
+      elMinutes.textContent = minutes;
+      elSeconds.textContent = seconds;
+    }
+
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+
+
+  
+
+   <div id="buka" class="container" style="padding:5px;display:none">
+  <div style="position: sticky; top: 0; z-index: 2; padding: 5px 0;margin">
+    <center><span style="font-size:20px;font-weight:bold"    class="text-center mb-4">Pengumuman Kelulusan Siswa</span></center>
+    <div class="table-box" style="padding:5px;">
+      <div class="table-responsive" style="max-height: 88vh; overflow-y: auto;border-radius:6px">
+        <table class="table table-hover align-middle" >
+          <thead style="position: sticky; top: 0; z-index: 1">
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Kelas</th>
+               
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="siswaTableBody">
+		   
+            <!-- Data siswa akan diisi lewat JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Modal Detail -->
+  <div class="modal fade" id="pengumumanModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content p-1">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="modalLabel">Informasi Kelulusan</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup" onclick="stopAudio()"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="fotoModal" class="modal-photo" src="" alt="Foto Siswa">
+          <h5 id="namaModal" class="mt-2 mb-3 fw-semibold"></h5>
+
+          <div class="card-detail text-start mx-auto mb-3" style="max-width: 400px;font-size:15px">
+            <table class="table table-borderless info-table mb-0">
+              <tbody>
+                <tr><td><strong>NIS</strong></td><td id="nisModal"></td></tr>
+                <tr><td><strong>NISN</strong></td><td id="nisnModal"></td></tr>
+                <tr><td><strong>Kelas</strong></td><td id="kelasModal"></td></tr>
+                <tr>
+                  <td><strong>Status</strong></td>
+                  <td><span id="statusModal" class="fw-bold"></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h6 class="mt-3">Daftar Nilai</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm" style="max-width: 400px; margin: auto;font-size:15px">
+              <thead><tr><th>Mata Pelajaran</th><th>Nilai</th></tr></thead>
+              <tbody id="nilaiModalBody"></tbody>
+            </table>
+          </div>
+          <br>
+           <div style="background:#e7ffe2;color:#74ab68;border-radius:6px;border-left:4px solid #74ab68;padding:3px" id="motivasi">     </div>
+          <a id="sklModalLink" class="btn btn-success mt-3" target="_blank">Download SKL</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div id="load" class="container" style="display:none;z-index:1000" ></div>
+<audio id="musik"  loop >
+  <source src="https://smpn9sinjai.sch.id/musik.mp3" type="audio/mpeg">
+</audio>
+<audio id="tepuk"   >
+  <source src="https://smpn9sinjai.sch.id/tepuk.mp3" type="audio/mpeg">
+</audio>
+  <script>
+     
+    let ddata ='';
+       
+    function renderTable() {
+      const tbody = document.getElementById('siswaTableBody');
+      for (var i=0;i<ddata.length;i++)  {
+        const tr = document.createElement('tr');
+        
+        tr.innerHTML = `
+          <td>${i + 1}</td>
+          <td>${ddata[i][6]}</td>
+          <td>${ddata[i][4]}</td>
+          <td><button class="btn btn-sm btn-primary" onclick="lihatPengumuman(${i})" data-bs-toggle="modal" data-bs-target="#pengumumanModal">Lihat</button></td>
+                `;
+        tbody.appendChild(tr);
+        
+
+         //<td><span class="fw-bold text-${siswa.status === 'LULUS' ? 'success' : 'danger'}">${siswa.status}</span></td>
+         
+ 
+      };
+    }
+
+   
+    function lihatPengumuman(d) {
+      startButton.click()
+      tampilkanMotivasi();
+      setTimeout(()=>{document.getElementById("tepuk").play(); },500)
+        
+      document.getElementById('fotoModal').src = "https://smpn9sinjai.sch.id/fotosiswa/"+ddata[d][3]+'.jpg';
+      document.getElementById('namaModal').textContent = ddata[d][6];
+      document.getElementById('nisModal').textContent = ddata[d][2];
+      document.getElementById('nisnModal').textContent = ddata[d][3];
+      document.getElementById('kelasModal').textContent = ddata[d][4];
+      document.getElementById('statusModal').textContent = ddata[d][22];
+      document.getElementById('statusModal').className = ddata[d][21] === "LULUS" ? "text-success fw-bold" : "text-danger fw-bold";
+      document.getElementById('sklModalLink').href = ddata[d][23];
+
+      const nilaiBody = document.getElementById('nilaiModalBody');
+      nilaiBody.innerHTML = '';
+      let tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Pendidikan Agama Islam</td><td>${ddata[d][9]}</td>`;
+      nilaiBody.appendChild(tr);
+
+      tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Pendidikan Pancasila</td><td>${ddata[d][10]}</td>`;
+      nilaiBody.appendChild(tr);
+
+      tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Bahasa Indonesia</td><td>${ddata[d][11]}</td>`;
+      nilaiBody.appendChild(tr);
+
+      tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Matematika (Umum)</td><td>${ddata[d][12]}</td>`;
+      nilaiBody.appendChild(tr);
+
+      tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Ilmu Pengetahuan Alam (IPA)</td><td>${ddata[d][13]}</td>`;
+      nilaiBody.appendChild(tr);
+      tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Ilmu Pengetahuan Sosial (IPS)</td><td>${ddata[d][14]}</td>`;
+      nilaiBody.appendChild(tr);
+
+  
+       tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Bahasa Inggris</td><td>${ddata[d][15]}</td>`;
+      nilaiBody.appendChild(tr);
+
+       tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Pendidikan Jasmani, Olahraga, dan Kesehatan</td><td>${ddata[d][17]}</td>`;
+      nilaiBody.appendChild(tr);
+
+       tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Informatika </td><td>${ddata[d][18]}</td>`;
+      nilaiBody.appendChild(tr);
+       tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Seni Rupa </td><td>${ddata[d][16]}</td>`;
+      nilaiBody.appendChild(tr);
+        tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left">Muatan Lokal Bahasa Daerah Bugis  </td><td>${ddata[d][19]}</td>`;
+      nilaiBody.appendChild(tr);
+      tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left"><b>Jumlah Total</b> </td><td><b>${ddata[d][20]}</b></td>`;
+      nilaiBody.appendChild(tr);
+tr = document.createElement('tr');
+      tr.innerHTML = `<td style="text-align:left;"><b>Rata-Rata</b>  </td><td><b>${ddata[d][21]}</b></td>`;
+      nilaiBody.appendChild(tr);
+       
+     
+    }
+
+
+let mload=document.getElementById("load")
+function gobuka(){
+document.getElementById("time").style.display="none"
+
+ mload.style.display="block"
+mload.innerHTML= `
+         <div class="container text-center py-5 fade-in">
+  <div class="spinner-border text-primary loading-spinner" role="status"></div>
+  <p class="mt-3 loading-text">Memuat data <strong> </strong>...</p>
+</div>`;
+ 
+go();
+
+}
+
+
+function go(){   
+                google.script.run
+                .withSuccessHandler(fhasil)
+                .withFailureHandler(ferror)
+                .pengumuman("123","pengumuman");					 
+                }
+
+function fhasil(data){
+      document.getElementById("musik").play();
+      document.getElementById("buka").style.display="block"
+      mload.style.display="none"
+      ddata=JSON.parse(data)
+
+
+ 
+   renderTable();
+    
+  
+   
+}
+
+function ferror(data){
+ alert("ERROR: Tidak ada jaringan internet")
+}
+function stopAudio() {
+  const audio = document.getElementById("tepuk");
+  audio.pause();
+  audio.currentTime = 0;
+}
+  
+const motivasiKerja = [
+  "Selamat atas kelulusanmu! Ini adalah awal dari petualangan baru.",
+  "Kerja kerasmu akhirnya membuahkan hasil, selamat dan teruslah berkarya!",
+  "Hari ini kamu lulus, besok kamu menaklukkan dunia!",
+  "Kelulusan ini adalah langkah pertama menuju impian yang lebih besar.",
+  "Jangan berhenti di sini, masa depan menantimu untuk ditaklukkan.",
+  "Ilmu yang kamu bawa hari ini adalah bekal untuk masa depanmu.",
+  "Lulus bukan akhir, tapi awal dari perjalanan yang luar biasa.",
+  "Buktikan bahwa kamu layak untuk terus melangkah dan berkembang.",
+  "Selamat atas pencapaianmu, tetap rendah hati dan terus belajar.",
+  "Jadilah pribadi yang membawa perubahan setelah kelulusan ini.",
+  "Keberhasilan hari ini adalah hasil dari ketekunanmu selama ini.",
+  "Teruslah bermimpi dan berjuang, karena kamu sudah membuktikannya hari ini.",
+  "Kelulusan ini adalah hadiah atas semangat dan kerja kerasmu.",
+  "Kamu bukan hanya lulus, kamu sudah menunjukkan bahwa kamu bisa!",
+  "Tetaplah semangat mengejar cita-cita setelah kelulusan ini.",
+  "Selamat menempuh babak baru, tetap menjadi pribadi yang berprestasi.",
+  "Kelulusanmu adalah awal menuju banyak peluang yang menunggu.",
+  "Jadilah lulusan yang membanggakan orang tua, guru, dan bangsa.",
+  "Teruslah belajar, karena belajar tidak berhenti saat lulus.",
+  "Kelulusan ini membuktikan bahwa usaha tidak pernah mengkhianati hasil.",
+  "Beranilah melangkah ke depan, karena masa depanmu cerah.",
+  "Bawa ilmu dan nilai-nilai baik ke jenjang berikutnya.",
+  "Selamat atas kelulusanmu, teruslah menjadi inspirasi bagi sesama.",
+  "Langkahmu tidak akan berhenti di sini, masa depan menantimu.",
+  "Jangan lupa bersyukur atas pencapaian ini dan teruslah berjuang.",
+  "Hari ini kamu lulus, besok kamu memimpin dunia.",
+  "Jadikan kelulusan ini sebagai pijakan untuk terus tumbuh.",
+  "Lulus adalah bukti bahwa kamu bisa menaklukkan tantangan.",
+  "Semoga kelulusan ini menjadi awal dari kesuksesan yang lebih besar.",
+  "Selamat! Kamu telah menulis satu babak indah dalam hidupmu."
+]
+
+function ambilMotivasiAcak() {
+    const index = Math.floor(Math.random() * motivasiKerja.length);
+    return motivasiKerja[index];
+  }
+
+  function tampilkanMotivasi() {
+    const motivasi = ambilMotivasiAcak();
+    document.getElementById("motivasi").textContent = '"'+motivasi+'"';
+  }
+
+  </script>
+
+
+<script type="module">
+    const startButton = document.getElementById("startButton");
+    const $activityStatusEl = document.getElementById("activityStatus");
+   
+    let oldVisibility;
+    let confetti;
+
+    const getWindowSize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      return { height, width };
+    };
+
+    const placeConfetti = (x, y, angle = 90, particleCount = 100) => {
+      const { height, width } = getWindowSize();
+      console.log(height, width);
+      const origin = { x: x / width, y: y / height };
+      confetti({ origin, angle, particleCount, spread: 360 });
+    };
+
+    const checkVisibilityState = () => {
+      const isActive = document.visibilityState === "visible";
+
+      if (!oldVisibility) {
+        setTimeout(() => {
+          if (!oldVisibility) {
+            $activityStatusEl.textContent = isActive ? "active" : "inactive";
+            document.getElementsByClassName("info")[0].style.display = isActive ? "none" : "block";
+            if (!isActive) {
+              // inactive - reset confetti (optional but looks nicer)
+              confetti.reset();
+            }
+          }
+        }, 5000);
+      } else {
+        $activityStatusEl.textContent = isActive ? "active" : "inactive";
+        document.getElementsByClassName("info")[0].style.display = isActive ? "none" : "block";
+        if (!isActive) {
+          // inactive - reset confetti (optional but looks nicer)
+          confetti.reset();
+        }
+      }
+
+      oldVisibility = isActive;
+    };
+
+    document.addEventListener("visibilitychange", () => {
+      checkVisibilityState();
+    });
+
+    //document.addEventListener("click", ({ clientX, clientY }) => {
+      //if (confetti) {
+        //console.log(clientX, clientY);
+        //placeConfetti(clientX, clientY);
+     // }
+    //});
+    
+    startButton.addEventListener("click", async () => {
+       if (!confetti) {
+    const module = await import("https://cdn.skypack.dev/canvas-confetti@1.3.2");
+
+    // Buat canvas manual agar bisa kontrol z-index
+    let myConfettiCanvas = document.createElement('canvas');
+    myConfettiCanvas.className = 'confetti-canvas';
+    myConfettiCanvas.style.position = 'fixed';
+    myConfettiCanvas.style.top = '0';
+    myConfettiCanvas.style.left = '0';
+    myConfettiCanvas.style.width = '100%';
+    myConfettiCanvas.style.height = '100%';
+    myConfettiCanvas.style.pointerEvents = 'none';
+    myConfettiCanvas.style.zIndex = '99999';
+    document.body.appendChild(myConfettiCanvas);
+
+    confetti = module.create(myConfettiCanvas, { resize: true, useWorker: true });
+  }
+      
+      // do this for 30 seconds
+      var duration = 1 * 1000;
+      var end = Date.now() + duration;
+
+      (function frame() {
+
+        confetti({
+    particleCount: 5,
+    angle: 90,
+    spread: 120,
+    origin: { x: 0.5, y: 0 },
+    scalar: 1.8,
+    startVelocity: 30
+  });
+        // keep going until we are out of time
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+
+      checkVisibilityState();
+    });
+	
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

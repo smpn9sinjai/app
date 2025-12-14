@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guru</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to right, #e0e7ff, #f9fafb);
+      color: #333;
+      overflow:hidden;
+    }
+
+    input, button {
+      font-size: 17px;
+      padding: 10px 12px;
+     
+      border: 1px solid #8b84ff;
+      margin-left: 8px;
+    }
+
+    input:focus {
+      outline: none;
+      border: 2px solid #7464f9;
+      box-shadow: 0 0 5px rgba(116, 100, 249, 0.5);
+    }
+
+    button {
+      background-color: #7464f9;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin:0px;
+	  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+    }
+
+    button:hover {
+      background-color: #5a4fe6;
+    }
+	
+
+    #mpas {
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 10px;
+      display:none
+       
+    }
+  #temp{overflow-y:scroll}
+@media screen and (min-width: 1024px) {
+ #mpas {max-width:400px;margin-tp:60px auto}
+ #temp2{max-width:400px;margin:auto;}
+  
+}
+     
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #myTable th {
+      position:sticky;
+      top:0;
+      background-color: #7464f9;
+      color: white;
+      text-align: left;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #myTable td {
+      padding: 6px;
+      border-bottom: 1px solid #ddd;
+      font-size: 15px;
+    }
+
+    #myTable tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    #myTable tr:hover {
+      background-color: #f1f1f1;
+      cursor:pointer;
+    }
+
+    #Mytable2 td {
+      padding: 6px 8px;
+      vertical-align: top;
+    }
+
+    #Mytable2 tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    #loader {
+      margin: 20px auto;
+      border: 6px solid #fff;
+      border-radius: 50%;
+      border-top: 6px solid lightblue;
+      border-bottom: 6px solid orange;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: scroll;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 2px auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 95%;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 40px;
+      top: 10px;
+      font-size: 24px;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+
+    #cari {
+      width: 100%;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+    }
+    .input-group {
+  display: flex;
+   
+  gap: 8px;
+  align-items: center;
+  
+}
+#dpas {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  max-width:300px;
+  
+}
+#cari {
+  border-radius: 6px;
+   max-width:300px;
+}
+.input-group input {
+  
+  margin-right:-11px;
+  flex: 1;
+   
+}
+
+  </style>
+</head>
+<body>
+  <center>
+  <div id="mpas">
+  <div id="kpas"></div>
+  <div class="input-group">
+    <input id="dpas" value="sas" type="password" placeholder="Masukkan Password" maxlength="10" />
+    <button onclick="go()">OK</button>
+  </div>
+</div>
+<div id="temp2" style="display:none;overflow:hidden;background:white;margin:10px;padding:10px;box-shadow:0 8px 20px rgba(0,0,0,0.1);background:white;border-radius:5px">
+ <center> 
+  <div style="margin:0px;padding:0px;"><input type='text' id='cari' onkeyup='cari()' placeholder='cari nama ' style='display:none;font-size:18px;padding:5px;margin-bottom:2px'></input></div>
+  <div id="temp" style="max-width: 400px;height:90vh;display:none;margin:0px;padding:0;"></div></center></div></center>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+      <div id="isidata" style="overflow-x: auto; font-size: 15px;">Ini adalah konten modal.</div>
+    </div>
+  </div>
+<script>
+const google = {
+  script: {
+    run: {
+      _success: function () {},
+      _failure: function () {},
+
+      withSuccessHandler(fn) {
+        this._success = fn;
+        return this;
+      },
+
+      withFailureHandler(fn) {
+        this._failure = fn;
+        return this;
+      },
+
+      spmbnondtks(pass,cari) {
+        fetch("https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+            pass: pass,
+            cari: cari
+          }) // ⬅️ KUNCI
+        })
+        .then(res => res.text())          // ⬅️ sesuai GAS Anda
+        .then(text => this._success(text))
+        .catch(err => this._failure(err));
+      }
+	  
+	  
+	  
+    }
+  }
+};
+</script>
+  <script>
+     let cek=0;
+let hsl=document.getElementById('temp');
+let hsl2=document.getElementById('temp2');
+let kpas=document.getElementById('kpas');
+let dpas=document.getElementById('dpas');
+let mpas=document.getElementById('mpas');
+let isidata=document.getElementById('isidata');
+let bdata;
+dpas.focus();
+dpas.addEventListener('keydown', function(event) {
+ if(event.keyCode==13){go()}
+})
+
+function go(){ hsl.innerHTML="<div id='loader'></div>"; hsl.style.display='block';hsl2.style.display='block'
+                google.script.run
+                .withSuccessHandler(fhasil)
+                .withFailureHandler(ferror)
+                .spmbnondtks(dpas.value,"spmbnondtks");					 
+                }
+
+function fhasil(data){
+    if(data=='salah'){cek=0; mpas.style.display='block'; hsl.innerHTML='';hsl.style.display='none';gotime();return;  }
+    
+     hsl.style.display='block'
+		mpas.style.display='none'
+		bdata=JSON.parse(data);
+	//	hsl.innerHTML= bdata;
+    let bt='';   
+     let nl=0;
+    let np=0;
+     let nl2=0;
+    let np2=0;
+    for (var i=0;i<bdata.length;i++){
+       if(bdata[i][4]=='Laki - Laki'){nl++;}
+        else {np++}
+
+         if(bdata[i][32] == 1 || bdata[i][32] == 2){
+         
+           if(bdata[i][4]=='Laki - Laki'){nl2++;}
+        else {np2++}
+
+
+         }
+let warna='';
+       if(bdata[i][32] == 1){
+       warna = (bdata[i][32] == 1) ? " style='background-color: #ffd28e;'" : "";}
+ if(bdata[i][32] == 2){
+      warna = (bdata[i][32] == 2) ? " style='background-color: orange;'" : "";
+ }
+      bt+='<tr '+warna+'><td>'+(i+1)+'</td><td>'+bdata[i][2]+'</td><td>'+bdata[i][3]+'</td></tr>'
+      }
+     document.getElementById("cari").style.display="block" 
+      
+     hsl.innerHTML="<table id='myTable'><tr><th>No</th><th>Nama</th><th>TGL.Lahir</th></tr>"+bt+"</table> <div style='text-align:left'> <br><b>Catatan:<br> </b>Warna Orange berarti Sudah Upload Surat Keterangan Tidak Mampu <b>  P= "+np2+"     L= "+nl2+"</b><br>Yang belum <b> P= "+(np-np2)+"     L= "+(nl-nl2)+"</b></div";
+
+
+
+     
+      klik();
+ }
+
+function ferror(data){
+ hsl.innerHTML="ERROR: Tidak ada jaringan internet";hsl.style.display='block'
+}
+function gotime(){
+hsl2.style.display='none'
+kpas.innerHTML='Pasword Salah<p>';
+setTimeout(()=>{kpas.innerHTML=''},2000)
+
+}
+
+
+ const modal = document.getElementById("myModal");
+  const openModalBtn = document.getElementById("openModalBtn");
+  const closeModalBtn = document.getElementById("closeModalBtn");
+
+  // Fungsi untuk membuka modal
+  
+
+  // Fungsi untuk menutup modal
+  closeModalBtn.onclick = function() {
+   modal.style.display = "none";
+    document.body.style.overflow = "auto"
+  }
+
+  // Menutup modal ketika klik di luar konten modal
+  window.onclick = function(event) {
+    if (event.target === modal) {
+       modal.style.display = "none";
+      document.body.style.overflow = "auto"
+    }
+  }
+
+function cari() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("cari");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+  // alert(td.innerText);return
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display ="";
+      } else {
+        tr[i].style.display = "none"
+      }
+    }       
+  }
+}   
+
+
+function klik(){
+   let table = document.getElementById("myTable");
+    var rows = table.getElementsByTagName("tr");
+   
+	for (var i=0;i	<rows.length;i++)
+	{ 
+	
+	rows[i].onclick=function(e){ 
+	let  ntb=this.rowIndex;
+   let  link=this.cells[0].innerHTML
+      godata(link);
+  
+	}
+   }}
+
+function godata(dlink){
+document.body.style.overflow = "hidden"
+modal.style.display = "block";
+ for (var i=0;i<bdata.length;i++){
+  if(bdata[i][0]==dlink){
+       var tanggalArray = bdata[i][29].substring(0,10).split('-');
+                              var tahun = tanggalArray[0];
+                              var bulan = tanggalArray[1];
+                              var tanggal = tanggalArray[2];
+                              var tgllahir = tanggal + '-' + bulan + '-' + tahun;
+
+        var tanggalArray2 = bdata[i][30].substring(0,10).split('-');
+                              var tahun2 = tanggalArray[0];
+                              var bulan2 = tanggalArray[1];
+                              var tanggal2 = tanggalArray[2];
+                              var tgllahir2 = tanggal2 + '-' + bulan2 + '-' + tahun2;
+     let mm='<tr><td colspan="3"><b>Detail Data  Tidak Terdaftar DTKS</b></td>'+
+     '<tr><td colspan="3"><img src="'+bdata[i][21]+'" style="width:90px"></img></td>'+
+      '<tr><td>Nama  </td><td>:</td><td>'+bdata[i][2]+'</td>'+
+      '<tr><td>NIK </td><td>:</td><td>'+bdata[i][1]+'</td>'+
+       '<tr><td>Tgl. Lahir </td><td>:</td><td>'+bdata[i][3]+'</td>'+
+       '<tr><td>JK </td><td>:</td><td>'+bdata[i][4]+'</td>'+
+        '<tr><td>Alamat </td><td>:</td><td>'+bdata[i][6]+'</td>'+
+         '<tr><td>Kecamatan</td><td>:</td><td>'+bdata[i][9]+'</td>'+
+         '<tr><td>Desa</td><td>:</td><td>'+bdata[i][10]+'</td>'+
+         '<tr><td>Asal Sekolah</td><td>:</td><td>'+bdata[i][11]+'</td>'+
+          '<tr><td>Nam Ayah</td><td>:</td><td>'+bdata[i][12]+'</td>'+
+        '<tr><td>Peker. Ayah </td><td>:</td><td>'+bdata[i][13]+'</td>'+ 
+          
+          '<tr><td>Nama Ibu </td><td>:</td><td>'+bdata[i][14]+'</td>'+
+            '<tr><td>Peker Ibu</td><td>:</td><td>'+bdata[i][15]+'</td>'+
+
+             '<tr><td>Nama Wali </td><td>:</td><td>'+bdata[i][16]+'</td>'+
+            '<tr><td>Peker Wali</td><td>:</td><td>'+bdata[i][17]+'</td>'+
+
+             '<tr><td>No. HP</td><td>:</td><td>'+bdata[i][18]+" / "+bdata[i][12]+'</td>'+
+             '<tr><td>No. KK</td><td>:</td><td>'+bdata[i][19]+'</td>'+ 
+              '<tr><td>Ukuran Baju</td><td>:</td><td>'+bdata[i][20]+'</td>'+
+               '<tr><td>Tgl daftar</td><td>:</td><td>'+tgllahir+'</td>'+
+                '<tr><td>Tgl Buat Akun </td><td>:</td><td>'+tgllahir2+'</td>'+
+                 '<tr><td>Kartu KK</td><td>:</td><td><a href="'+bdata[i][23] +'"id="kk" target="_blank">Download KK</a></td>'+
+                 '<tr><td>Kartu Akta</td><td>:</td><td><a href="'+bdata[i][22] +'"id="kk" target="_blank">Download Akta</a></td>'
+                  
+                     
+                       
+    i=bdata.length+1;
+     isidata.innerHTML="<table id='Mytable2'>"+mm+"</tr></table><br/><br/>"
+}
+}
+
+}
+
+
+ go()
+
+  </script>
+</body>
+</html>

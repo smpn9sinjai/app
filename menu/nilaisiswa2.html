@@ -1,0 +1,492 @@
+
+</html>
+<head>
+ <base target="_top">  
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<title>Data Nilai Siswa</title>
+<style id='page-skin-1' type='text/css'><!--
+
+--></style>
+<style>
+ 
+ * {font-size:14px}
+
+ #myTable {
+    border-collapse: collapse;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#myTable th {
+    position:sticky;
+     top: 0;
+    background-color: #455763;
+    color: white;
+    text-align: left;
+    padding: 4px;
+    white-space:nowrap;
+}
+
+#myTable td {
+    text-align: left;
+    padding: 4px;
+    white-space:nowrap;
+}
+
+#myTable tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#myTable tr:hover {
+    background-color: #fbfbfb;
+    cursor: pointer;
+}
+ 
+
+
+
+#loader {
+display:block;
+ 
+  margin-left:10px;
+  border: 8px solid white;//#f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid lightblue;
+  border-bottom: 8px solid orange;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  body{padding-left:30px;font-family:Arial;Tahoma;font-size:14px;}
+  input{font-family:Arial;Tahoma;font-size:14px;margin-left:10px; outline: none; /* Hilangkan border bawaan saat fokus */}
+  button{font-family:Arial;Tahoma;font-size:14px;color:white;background:#7464f9}
+  input{padding:8px;
+  margin-right:0px;
+   border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border:1px solid #8b84ff;}
+button{padding:8px;
+ margin:0px;
+ border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+border:1px solid #8b84ff;}
+
+
+  button:hover{background:orange}
+   input:focus {
+            border:3px solid #8b84ff;
+        }
+   body{margin:0px;padding:0px}
+
+img {
+    width: 3cm;
+    height: auto; /* Menjaga rasio gambar */
+    border-radius:5px;
+}
+
+@media screen and (max-width: 768px) {
+    img {
+        width: 2cm;
+        height: auto; /* Menjaga rasio gambar */
+    }
+}
+ span {
+  background:#455763;
+  color:white;
+  border: none;     /* garis tepi hitam */
+  border-radius: 5px;          /* sudut melengkung 5px */
+  padding: 4px;                /* supaya ada ruang di dalamnya */
+  margin:5px;
+}
+
+#thn {
+  background:none;
+  color:#808080;
+  border: none;     /* garis tepi hitam */
+  border-radius: 5px;          /* sudut melengkung 5px */
+  padding: 0px;                /* supaya ada ruang di dalamnya */
+  margin:0px;
+  font-size:12px;
+}
+
+
+
+
+
+
+
+
+
+#myTable2 {
+    border-collapse: collapse;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#myTable2 th {
+    background-color:#455763;
+    color: white;
+    text-align: left;
+    padding: 4px;
+    white-space:nowrap;
+}
+
+#myTable2 td {
+    text-align: left;
+    padding: 4px;
+    white-space:nowrap;
+}
+
+#myTable2 tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable2 tr:nth-child(even) {
+    background-color: #f9f9f9;
+}   
+
+#myTable2 tr:hover {
+    background-color: #fbfbfb;
+    cursor: pointer;
+}
+ 
+
+body{background:linear-gradient(to right, #e0e7ff, #f9fafb);margin:10px}
+
+#temp {
+    overflow: hidden;
+   
+  }
+
+  /* Saat layar ukuran HP (max-width 768px) */
+  @media (max-width: 768px) {
+    #temp {
+      overflow: auto; /* scroll otomatis kalau isi melebihi ukuran */
+      
+    }
+  }
+
+
+ 
+#kpas{background:white;color:black}
+
+
+</style>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+</head>
+<body>
+<div style='margin-top:10px;padding:0'>
+<div class='no-items section' id='contoh'></div>
+<center>
+<div id='mpas' style='border-radius:5px;border:none; padding:10px;background:white;box-shadow:0 8px 20px rgba(0,0,0,0.1)'>
+ <span id='kpas' style='display:none'></span>  
+<input id='dpas' maxlength='10' placeholder='Masukkan Password' type='password'/><button  onclick='go()'>OK</button></div>
+
+
+<div id='menu' style='display:none;border-radius:5px;border;background:white;padding:10px;box-shadow:0 8px 20px rgba(0,0,0,0.1)'>
+<input id='dnis' maxlength='20' style='width:200px;' placeholder='Masukkan NIS/NISN/NAMA' type='text'/><button id='cek' onclick='go2()'>Cari</button></div>
+<div id='temp' style='display:none;margin-top:10px;padding:10px;background:white;border-radius:5px;box-shadow:0 8px 20px rgba(0,0,0,0.1)'></div>
+</div>
+</center>
+<script>
+const google = {
+  script: {
+    run: {
+      _success: function () {},
+      _failure: function () {},
+
+      withSuccessHandler(fn) {
+        this._success = fn;
+        return this;
+      },
+
+      withFailureHandler(fn) {
+        this._failure = fn;
+        return this;
+      },
+
+      datasiswa2025(pass,cari) {
+        fetch("https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+            pass: pass,
+            cari: cari
+          }) // ⬅️ KUNCI
+        })
+        .then(res => res.text())          // ⬅️ sesuai GAS Anda
+        .then(text => this._success(text))
+        .catch(err => this._failure(err));
+      }
+	  
+	  
+    }
+  }
+};
+</script>
+<script>
+let cek=0;
+let hsl=document.getElementById('temp');
+let dnis=document.getElementById('dnis');
+let kpas=document.getElementById('kpas');
+let dpas=document.getElementById('dpas');
+let mpas=document.getElementById('mpas');
+let menu=document.getElementById('menu'); 
+let btn=document.getElementById('cek'); 
+let ddata=[];
+
+dnis.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+       go2();
+        // Add your custom logic here
+    }
+});
+
+function go(){ hsl.innerHTML="<div id='loader'></div>";dnis.select(); hsl.style.display='block'
+                google.script.run
+                .withSuccessHandler(fhasil)
+                .withFailureHandler(ferror)
+                .datasiswa2025(dpas.value,"datasiswa2025");					 
+                }
+
+function fhasil(data){
+      ddata=(JSON.parse(data))
+   
+    dpas.value='';
+  if(ddata.data=='sukses'){ cek=1;mpas.style.display='none'; menu.style.display='block';hsl.innerHTML='';hsl.style.display='none';return  }
+  if(ddata.data=='salah'){cek=0; mpas.style.display='block'; menu.style.display='none';hsl.innerHTML='';hsl.style.display='none';gotime();return;  }
+     hsl.style.display='block'
+	//	hsl.innerHTML= data;
+	//	urut2();
+}
+
+function ferror(data){
+
+ hsl.innerHTML="ERROR: Tidak ada jaringan internet";hsl.style.display='block'
+}
+function gotime(){
+kpas.innerHTML='Pasword Salah<p>';
+kpas.style.display='block'
+setTimeout(()=>{kpas.innerHTML='';kpas.style.display='none'},2000)
+
+}
+
+var ddnis='XXXX';
+function go2(){
+                  let dtbl2='Data siswa tidak ditemukan';
+                  let dtbl = 'Nilai siswa tidak ditemukan';
+                  let dtbl5='Nilai Transkrip siswa tidak ditemukan';
+                 
+                 if (!dnis.value) {return;}
+                   hsl.innerHTML="<div id='loader'></div>";dnis.select(); hsl.style.display='block'
+                  hsl.style.display='block'
+   if (/^[0-9]+$/.test(dnis.value)) {
+                  
+
+                  for (var i=0;i<ddata.siswa.length;i++){
+                    if(ddata.siswa[i][2]==dnis.value || ddata.siswa[i][4]==dnis.value)
+                    { 
+                              ddnis=ddata.siswa[i][2]
+                              var tanggalArray = ddata.siswa[i][6].split('-');
+                              var tahun = tanggalArray[0];
+                              var bulan = tanggalArray[1];
+                              var tanggal = tanggalArray[2];
+                              var tgllahir = tanggal + '-' + bulan + '-' + tahun;
+                              
+                              var gender = (ddata.siswa[i][3] === 'L') ? "Laki-Laki" : "Perempuan";
+                                var fot='<img onerror="this.style.display='+"'none'"+'" src="https://smpn9sinjai.github.io/fotosiswa/'+ddata.siswa[i][4]+'.jpg"/>';
+
+                                  dtbl2 = '<table id="myTable2" border="0"><tr>' +
+                              '<td>Nama</td><td>:</td><td>' + ddata.siswa[i][1] + '</td>' +
+                              '<td rowspan="23" style="vertical-align:top;padding-left:30px">' +fot+ '</td></tr>' +
+
+                              '<tr><td>NIS</td><td>:</td><td>' + ddata.siswa[i][2] + '</td></tr>' +
+                              '<tr><td>NISN</td><td>:</td><td>' + ddata.siswa[i][4] + '</td></tr>' +
+                              '<tr><td>Jenis Kelamin</td><td>:</td><td>' + gender + '</td></tr>' +
+                              
+                              '<tr><td>Tempat, Tgl.Lahir</td><td>:</td><td>' + ddata.siswa[i][5] + ', ' + tgllahir + '</td></tr>' +
+                              '<tr><td>Alamat</td><td>:</td><td>' + ddata.siswa[i][9] + " Desa " + ddata.siswa[i][13] + " " + ddata.siswa[i][14] + '</td></tr>' +
+                              '<tr><td>NIK</td><td>:</td><td>' + ddata.siswa[i][7] + '</td></tr>' +
+                              '<tr><td>Nama Ayah</td><td>:</td><td>' + ddata.siswa[i][24] + '</td></tr>' +
+                              '<tr><td>Nama Ibu</td><td>:</td><td>' + ddata.siswa[i][30] + '</td></tr>' +
+                              '<tr><td>Anak Ke</td><td>:</td><td>' + ddata.siswa[i][57] + '</td></tr>' +
+                              '<tr><td>JMLH Sadura</td><td>:</td><td>' + ddata.siswa[i][64] + '</td></tr>' +
+                              '<tr><td>No. HP</td><td>:</td><td>' + ddata.siswa[i][19] + '</td></tr>' +
+                               
+                              '<tr><td>Kesekolah Dengan</td><td>:</td><td>' + ddata.siswa[i][17] + '</td></tr>' +
+                              '<tr><td>Tinggi dan Berat badan</td><td>:</td><td>' + ddata.siswa[i][62] + " cm " + ddata.siswa[i][61] + ' Kg</td></tr>' +
+                              '<tr><td>Sekolah Asal</td><td>:</td><td>' + ddata.siswa[i][56] + '</td></tr>' +
+                              '<tr><td>Nomor Ijasah</td><td>:</td><td>' + ddata.siswa[i][44] + '</td></tr>' +
+                              '<tr><td>Tahun Masuk</td><td>:</td><td>' + ddata.siswa[i][66] + '</td></tr>' ;
+                              
+
+                              if(ddata.siswa[i][67].length>0){
+                                      // adaus=1; 
+                                        dtbl2+='<tr><td>Mutasi</td><td>:</td><td>'+ddata.siswa[i][67]+'</td></tr>'+
+                                      '<tr><td>Nomor Ujian</td><td>:</td><td>'+ddata.siswa[i][70]+'</td></tr>' +
+                                      '<tr><td>Tanggal Keluar</td><td>:</td><td>'+ddata.siswa[i][68]+'</td></tr>'+
+                                      '<tr><td>NO.Seri ijazah</td><td>:</td><td>'+ddata.siswa[i][71]+'</td></tr>'+
+                                      '<tr><td>Lanjut Ke</td><td>:</td><td>'+ddata.siswa[i][72]+'</td></tr>'
+                                } 
+
+                                dtbl2+='</table>';
+
+                              i=ddata.siswa.length+10;
+                      } else { ddnis='00'}
+                  }
+
+                      //ceknilai
+                        dtbl='<table id="myTable"><tr><th>SMS</th><th>PAI</th><th>PKN</th><th>BIN</th><th>MAT</th><th>IPA</th><th>IPS</th><th>BING</th><th>SBK</th><th>PJOK</th><th>PRA</th><th>TIK</th><th>BDB</th><th>Rata-rata</th><th>THN</th><th>KLS</th><th>Wali Kelas</th><th>Kepsek</th></tr>'
+                        let cek1=0;
+                        
+                        for (var i=0;i<ddata.nilai.length;i++){   
+                            if(ddata.nilai[i][1]==ddnis){   
+                            cek1=1;
+                            dtbl+='<tr><td>'+ddata.nilai[i][42]+'</td><td>'+ddata.nilai[i][3]+'</td><td>'+ddata.nilai[i][5]+'</td><td>'+ddata.nilai[i][7]+'</td><td>'+ddata.nilai[i][9]+'</td><td>'+ddata.nilai[i][11]+'</td><td>'+ddata.nilai[i][13]+'</td><td>'+ddata.nilai[i][15]+'</td><td>'+ddata.nilai[i][17]+'</td><td>'+ddata.nilai[i][19]+'</td><td> '+ddata.nilai[i][21]+'</td><td> '+ddata.nilai[i][23]+'</td><td> '+ddata.nilai[i][25]+'</td><td> '+ddata.nilai[i][27]+'</td><td> '+ddata.nilai[i][41]+'</td><td> '+ddata.nilai[i][43]+'</td><td>'+ddata.nilai[i][44]+'</td><td> '+ddata.nilai[i][45]+'</td></tr>'
+                            //i=ddata.nilai.length+10;
+                          }
+
+                        }
+                      if(cek1==0){dtbl = '<br>Nilai siswa tidak ditemukan'} else {dtbl+='</table>'}
+                    
+                        let cek2=0;
+                        //Nilai Transkrip
+                          dtbl5='<table border="1" id="myTable"><tr><th>PAI</th><th>PKN</th><th>BIN</th><th>MAT</th><th>IPA</th><th>IPS</th><th>BING</th><th>SBK</th><th>PJOK</th><th>TIK</th><th>BDB</th><th>Jumlah</th><th>Rata2</th></tr>'
+                        
+                          for (var i=0;i<ddata.us.length;i++){   
+                            if(ddata.us[i][2]==ddnis){   
+                            cek2=1;
+                            dtbl5+='<tr><td>'+ddata.us[i][8]+'</td><td>'+ddata.us[i][9]+'</td><td>'+ddata.us[i][10]+'</td><td>'+ddata.us[i][11]+'</td><td>'+ddata.us[i][12]+'</td><td>'+ddata.us[i][13]+'</td><td>'+ddata.us[i][14]+'</td><td>'+ddata.us[i][15]+'</td><td>'+ddata.us[i][16]+'</td><td>'+ddata.us[i][17]+'</td><td>'+ddata.us[i][18]+'</td><td>'+ddata.us[i][19]+'</td><td>'+ddata.us[i][20]+'</td></tr></table>' 
+                            i=ddata.us.length+10;
+                            }
+                          }
+                        if(cek2==0){dtbl5 = '<br>Nilai transkrip tidak ditemukan'}
+                    let gb2='<span style="background:#455763"><b>Data Peserta Didik</b></span><br><br>'+dtbl2+'</br><span style="background:#455763"><b>Nilai Semester</b></span>'+dtbl+'</br><span style="background:#455763"><b>Nilai Transkrip</b></span>'+dtbl5;
+                  hsl.innerHTML='';
+                  hsl.innerHTML=gb2
+                  urut2();
+           }
+           else {
+                 let cektb=0;
+                 dtbl2='<table id="myTable" border="0">';
+                for (var i=0;i<ddata.siswa.length;i++)
+                {
+                          if(ddata.siswa[i][1].toLowerCase().includes(dnis.value.toLowerCase())){
+                             cektb=1;
+                              var tanggalArray = ddata.siswa[i][6].split('-');
+                              var tahun = tanggalArray[0];
+                              var bulan = tanggalArray[1];
+                              var tanggal = tanggalArray[2];
+                              var tgllahir = tanggal + '-' + bulan + '-' + tahun;
+                              
+                             dtbl2+= '<tr><td>' + ddata.siswa[i][2] + '</td>' +
+                              '<td>'+ ddata.siswa[i][1] + '</td>' +
+                              '<td>' + ddata.siswa[i][5] + ', ' + tgllahir + '<br><span id="thn">Thn.Masuk: '+ddata.siswa[i][66]+'</span></br></td>'+
+                              '<td><button onclick="go3('+ddata.siswa[i][2]+')">Lihat</button></td></tr>' 
+                             
+                                     
+                          }
+                }
+               if (cektb>0){ dtbl2+='</table>'}else{dtbl2="Data tidak ditemukan"}
+                hsl.innerHTML=dtbl2;
+               // '<td><button onclick="go3(' + ddata.siswa[i][2] + ')">Lihat</button></td></tr>' 
+
+           }
+       }
+function go3(dd){
+    dnis.value=dd;btn.click()
+    
+
+}
+function urut2() {
+ 
+  let urtb=document.getElementById('myTable');
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table =urtb;
+   switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      if (Number(x.innerHTML) > Number(y.innerHTML)) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+ // mat();
+}		
+  
+  
+  
+ function mat(){
+ let urtb=document.getElementById('myTable');
+ let tb="<table id='myTable'><tr><th rowspan='2'>No</th><th rowspan='2'>Mata Pelajaran</th><th></th> <th colspan='2' style='text-align:center'>Kelas 7</th><th colspan='2' style='text-align:center'>Kelas 8</th><th colspan='2' style='text-align:center'>Kelas 9</th></tr><tr> <th></th> <th>SMS1</th><th>SMS2</th><th>SMS1</th><th>SMS2</th><th>SMS1</th><th>SMS2</th></tr>"
+ let tbb;
+ let tbc='';
+ let abm='';
+ let his=0;
+rows = urtb.rows;
+
+for (k=1;k<13;k++){
+ let nmp=rows[0].getElementsByTagName("TH")[k].innerHTML
+ if (nmp=="PAI"){nmp='Pendidikan Agama Islam dan Budi Pekerti'}
+ else if  (nmp=="PKN"){nmp='Pendidikan Pancasila dan Kewarganegaraan'}
+ if (nmp=="BIN"){nmp='Bahasa Indonesia'}
+  if (nmp=="MAT"){nmp='Matematika'}
+   if (nmp=="IPA"){nmp='Ilmu Pengetahuan Alam'}
+    if (nmp=="IPSA"){nmp='Ilmu Pengetahuan Sosial'}
+	 if (nmp=="BING"){nmp='Bahasa Inggris'}
+	  if (nmp=="SBK"){nmp='Seni Budaya'}
+	   if (nmp=="IPA"){nmp='Ilmu Pengetahuan Alam'}
+	    if (nmp=="PJOK"){nmp='Pendidikan Jasmani Olahraga dan Kesehatan'}
+		 if (nmp=="IPA"){nmp='Ilmu Pengetahuan Alam'}
+		  if (nmp=="PRA"){nmp='Prakarya'}
+       if (nmp=="TIK"){nmp='Informatika'}
+		  else  if (nmp=="BDB"){nmp='Bahasa Daerah'}
+  tbb="<tr><td style='text-align:right'>"+k+".</td><td>"+nmp+"</td><td>:</td>"; 
+  //alert(tbb)
+  his++;
+  for (i = 1; i < (rows.length); i++) {
+  
+  tbc+="<td style='text-align:center'>"+rows[i].getElementsByTagName("TD")[his].innerHTML+"</td>";
+   
+   
+}
+tbc=tbc+'</tr>'
+tbb=tbb+tbc;
+tbc='';
+abm=abm+tbb
+ //alert(abm)
+}
+tbb=tb+abm+"</table>";
+ //alert(tbb)
+hsl.innerHTML+='<p></p>'+tbb
+} 
+ </script>
+
+</body>
+</html>
