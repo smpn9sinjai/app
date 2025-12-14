@@ -74,20 +74,20 @@ let icon="";
         `;
 		let code=""
 		   
-		let blink="https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec?register="
+		let blink="https://app.smpn9sinjai.sch.id/menu/"
 		if(id=='Data Guru'){code='guru'}
 		if(id=='Data Siswa'){code='siswa'}
-		if(id=='Nilai Semester'){code='nilai'}
-		if(id=='Link Pengetikan Soal'){code='soal'}
-		if(id=='Cek Nilai SAS'){code='ceknilai'}
-		if(id=='Aktifkan Mapel ujian'){code='aktifmapel'}  
+		if(id=='Nilai Semester'){code='nilaisiswa2'}
+		if(id=='Link Pengetikan Soal'){code='linksoal'}
+		if(id=='Cek Nilai SAS'){code='ceknilaisas'}
+		if(id=='Aktifkan Mapel ujian'){code='aktifujian'}  
 		if(id=='Disdik US 2025'){code='us2025'}
-		if(id=='pengumuman'){code='info'}
+		if(id=='pengumuman'){code='pengumuman'}
 		if(id=='Dashboard'){code='nom'}
-	        if(id=='Terdaftar DTKS'){code='dtks'}
-	         if(id=='Tidak Terdaftar DTKS'){code='nondtks'}
-	          if(id=='chromebook'){code='chrome'}
-		    if(id=='Laporan'){code='';blink='https://app.smpn9sinjai.sch.id/laporan'}
+	        if(id=='Terdaftar DTKS'){code='spmbdtks'}
+	         if(id=='Tidak Terdaftar DTKS'){code='spmbnondtks'}
+	          if(id=='chromebook'){code='chromebook'}
+		    if(id=='Laporan'){code='laporan';blink='https://app.smpn9sinjai.sch.id/'}
 		    
 		 
 		if (code=='nom'){
