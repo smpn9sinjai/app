@@ -46,6 +46,18 @@ small{color:#666}
 
 <input type="file" id="file3" accept="image/*">
 <div class="progress-bar"><div id="prog3" class="progress-fill">0%</div></div>
+<input type="file" id="file4" accept="image/*">
+<div class="progress-bar"><div id="prog4" class="progress-fill">0%</div></div>
+<input type="file" id="file5" accept="image/*">
+<div class="progress-bar"><div id="prog5" class="progress-fill">0%</div></div>
+<input type="file" id="file6" accept="image/*">
+<div class="progress-bar"><div id="prog6" class="progress-fill">0%</div></div>
+<input type="file" id="file7" accept="image/*">
+<div class="progress-bar"><div id="prog7" class="progress-fill">0%</div></div>
+<input type="file" id="file8" accept="image/*">
+<div class="progress-bar"><div id="prog8" class="progress-fill">0%</div></div>
+<input type="file" id="file9" accept="image/*">
+<div class="progress-bar"><div id="prog9" class="progress-fill">0%</div></div>
 
 <label>Max Width (px)</label>
 <input id="maxWidth" type="number" value="1200">
@@ -187,7 +199,15 @@ async function simpanSurat(){
   const files=[
     {f:file1.files[0],bar:'prog1'},
     {f:file2.files[0],bar:'prog2'},
-    {f:file3.files[0],bar:'prog3'}
+    {f:file3.files[0],bar:'prog3'},
+	{f:file4.files[0],bar:'prog4'},
+	{f:file5.files[0],bar:'prog5'},
+	{f:file6.files[0],bar:'prog6'},
+	{f:file7.files[0],bar:'prog7'},
+	{f:file8.files[0],bar:'prog8'},
+	{f:file9.files[0],bar:'prog9'},
+ 
+	
   ];
 
   for(let i of files){
@@ -240,7 +260,7 @@ async function simpanSurat(){
 
   hasil.innerText="✅ Dokumentasi tersimpan";
   document.querySelector("form").reset();
-  ["prog1","prog2","prog3"].forEach(id=>{
+  ["prog1","prog2","prog3","prog4","prog5","prog6","prog7","prog8","prog9"].forEach(id=>{
     let b=document.getElementById(id);
     b.style.width="0%";b.innerText="0%";
   });
