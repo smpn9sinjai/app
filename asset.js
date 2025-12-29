@@ -88,6 +88,8 @@ let icon="";
 	         if(id=='Tidak Terdaftar DTKS'){code='spmbnondtks'}
 	          if(id=='chromebook'){code='chromebook'}
 		   if(id=='srtmasuk'){code='srtmasuk'}
+		  if(id=='Dokumentasi'){code='dokumentasi'}
+		 if(id=='Admin'){code='inputdokumentasi'} 
 		    if(id=='Laporan'){code='laporan';blink='https://app.smpn9sinjai.sch.id/'}
 		    
 		 
