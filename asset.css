@@ -11,7 +11,7 @@
     ::-webkit-scrollbar-thumb:hover {
       background-color: orange;
     }
-body { margin: 0; background-color: #18416b}
+body { margin: 0; background-color: #18416b;overflow:hidden}
     .sidebar-desktop {
       width: 250px;
       height: calc(100% - 67px);
@@ -20,7 +20,7 @@ body { margin: 0; background-color: #18416b}
       position: fixed;
       top: 56px;
       left: 0;
-     /* overflow-y: auto; */
+      overflow-y: auto; 
       transition: all 0.3s ease;
 	  
     }
