@@ -10,19 +10,40 @@ body{
   font-family:Arial, sans-serif;
   background:#f2f4f7;
   margin:0;
-  padding:20px;
+  padding:0px;
 }
+.lazy-img{
+  width:80px;
+  object-fit:cover;
+  background:#f2f2f2;
+}
+
 #img1{width:50px}
 #m_foto{width:150px}
 .box{
   max-width:900px;
   margin:auto;
   background:#fff;
+  padding:5px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  overflow-x:scroll;
+}
+
+ @media all and (min-width: 768px) {
+ .box{
+  max-width:900px;
+  margin:20px auto;
+  background:#fff;
   padding:20px;
   border-radius:10px;
   box-shadow:0 4px 10px rgba(0,0,0,.1);
   overflow-x:scroll;
 }
+ }
+
+
+
 h2{margin-top:0}
 select{
   width:100%;
@@ -370,7 +391,7 @@ input,button{padding:10px;}
 </style>
 </head>
 <body>
-<div id="cpass">
+<div id="cpass" style="margin-top:20px">
 <center>
  
 <input id="pass" type="password" style="width:200px" required placeholder="Mausskan Password"><button onclick="go()" style="width:60px">OK</button><br>
@@ -601,6 +622,15 @@ li.textContent = "⏳ Memuat data ."
 
   data1.forEach((item, index) => {
     const tr = document.createElement("tr");
+	const fotoCell = item.foto
+  ? `<td>
+       <img class="lazy-img"
+            data-src="${item.foto}"
+            src="placeholder.webp"
+            style="max-width:80px">
+     </td>`
+  : `<td></td>`;
+
     tr.innerHTML = `
       <td>${index + 1}</td>
 	   <td>${item.id}</td>
@@ -609,7 +639,8 @@ li.textContent = "⏳ Memuat data ."
 	  <td style='text-align:center' >${item.kjumlah}</td>
 	  <td>${item.kmerek}</td>
       <td style='text-align:center'>${item.tahun}</td>
-	   <td><img id='img1' src='${item.foto}'></img></td>
+	   ${fotoCell}
+	  
     `;
 	// 👇 SIMPAN DATA DI BARIS
     tr.dataset.id = item.id;
@@ -628,6 +659,10 @@ li.textContent = "⏳ Memuat data ."
 	}
 	);
     frag.appendChild(tr);
+	 
+		const img = tr.querySelector("img.lazy-img");
+		if (img) observer.observe(img);
+
   });
 
   tbody.appendChild(frag);
@@ -647,6 +682,29 @@ li.textContent='';
 }
 
 // load pertama
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const img = entry.target;
+
+    // 👀 MASUK viewport
+    if (entry.isIntersecting) {
+      if (!img.hasAttribute("src")) {
+        img.src = img.dataset.src;
+      }
+    } 
+    // 🚪 KELUAR viewport
+    else {
+      img.removeAttribute("src");
+    }
+  });
+}, {
+  rootMargin: "200px 0px"
+});
+
+
+
+
 
 </script>
 <script>
@@ -963,4 +1021,3 @@ function simpaset(kode1){
 </script>
 </body>
 </html>
-
