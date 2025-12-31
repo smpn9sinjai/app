@@ -89,8 +89,9 @@ let icon="";
 	          if(id=='chromebook'){code='chromebook'}
 		   if(id=='srtmasuk'){code='srtmasuk'}
 		  if(id=='Dokumentasi'){code='dokumentasi'}
-		 if(id=='Admin'){code='inputdokumentasi'} 
+		 if(id=='Admin1'){code='inputdokumentasi'} 
 		   if(id=='Admin2'){code='inputaset'} 
+		   if(id=='Admin3'){code='inputpip'} 
 		    if(id=='Laporan'){code='laporan';blink='https://app.smpn9sinjai.sch.id/'}
 		    
 		 
