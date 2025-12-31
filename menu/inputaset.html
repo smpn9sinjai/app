@@ -625,9 +625,11 @@ li.textContent = "⏳ Memuat data ."
 	const fotoCell = item.foto
   ? `<td>
        <img class="lazy-img"
-            data-src="${item.foto}"
-            src="placeholder.webp"
-            style="max-width:80px">
+     data-src="${item.foto}"
+     src="placeholder.webp"
+     data-loaded="0"
+     loading="lazy"
+     style="max-width:80px">
      </td>`
   : `<td></td>`;
 
@@ -660,12 +662,11 @@ li.textContent = "⏳ Memuat data ."
 	);
     frag.appendChild(tr);
 	 
-		const img = tr.querySelector("img.lazy-img");
-		if (img) observer.observe(img);
-
+	 
   });
 
   tbody.appendChild(frag);
+  initLazyLoad()
 })
 .catch(err => {
 
@@ -683,24 +684,28 @@ li.textContent='';
 
 // load pertama
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const img = entry.target;
+function initLazyLoad() {
+  const imgs = document.querySelectorAll(".lazy-img");
 
-    // 👀 MASUK viewport
-    if (entry.isIntersecting) {
-      if (!img.hasAttribute("src")) {
-        img.src = img.dataset.src;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const img = e.target;
+
+      // 👀 MASUK VIEWPORT
+      if (e.isIntersecting) {
+        if (img.dataset.loaded !== "1") {
+          img.src = img.dataset.src;
+          img.dataset.loaded = "1";
+		  observer.unobserve(img);
+        }
       }
-    } 
-    // 🚪 KELUAR viewport
-    else {
-      img.removeAttribute("src");
-    }
+    });
+  }, {
+    rootMargin: "300px"
   });
-}, {
-  rootMargin: "200px 0px"
-});
+
+  imgs.forEach(img => observer.observe(img));
+}
 
 
 
