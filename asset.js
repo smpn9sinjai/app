@@ -90,6 +90,7 @@ let icon="";
 		   if(id=='srtmasuk'){code='srtmasuk'}
 		  if(id=='Dokumentasi'){code='dokumentasi'}
 		 if(id=='Admin'){code='inputdokumentasi'} 
+		   if(id=='Admin2'){code='inputaset'} 
 		    if(id=='Laporan'){code='laporan';blink='https://app.smpn9sinjai.sch.id/'}
 		    
 		 
