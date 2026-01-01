@@ -93,7 +93,7 @@ let icon="";
 		   if(id=='Admin2'){code='inputaset'} 
 		   if(id=='Admin3'){code='inputpip'} 
 		    if(id=='Laporan'){code='laporan';blink='https://app.smpn9sinjai.sch.id/'}
-		    
+		    alert(id)
 		 
 		if (code=='nom'){
 		setTimeout(() => {
