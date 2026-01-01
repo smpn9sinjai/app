@@ -411,7 +411,7 @@ input,button{padding:10px;}
 	  <option value="X">Extra Atl</option>
   </select>
 
- <div id="info"></div>
+ <div id="info"></div><button style="padding:3px" onclick="loadAset()">Refresh</button>
 
 <table id="tabelAset" border="1" cellpadding="8" cellspacing="0" width="100%">
   <thead>
@@ -714,6 +714,9 @@ function initLazyLoad() {
 </script>
 <script>
 function bukaModal(tr){
+document.body.style.overflow="hidden";
+document.getElementById("status").innerText=""
+  document.getElementById("progress").value=0;
  kodeaset=tr.dataset.id
   document.getElementById("m_id").textContent = tr.dataset.id;
   document.getElementById("m_barang").textContent = tr.dataset.kode;
@@ -736,6 +739,7 @@ function bukaModal(tr){
 }
 
 function tutupModal(){
+document.body.style.overflow="scroll";
   document.getElementById("modal").style.display = "none";
    stop(0)
 }
@@ -814,6 +818,10 @@ function getValue() {
 myurl = URL.createObjectURL(blob)
       gambar=myurl;
       gocrop();
+	    const box = document.getElementById("modal");
+	  setTimeout(() => {
+  box.scrollTop = box.scrollHeight;
+}, 200);
    //   hsl.innerHTML="<img onclick='download2()' src='"+myurl+"' style='width:170px'/>";
 // a.download = namafile+'.jpg';
  //a.appendChild('yyyy')
@@ -822,7 +830,7 @@ myurl = URL.createObjectURL(blob)
 // a.click();
       
 
-      document.body.removeChild(a)
+     // document.body.removeChild(a)
       
      
  }
