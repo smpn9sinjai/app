@@ -399,16 +399,24 @@ input,button{padding:10px;}
 </center>
 </div>
 <div class="box" id="box">
-  <h2>Daftar Data</h2>
+  <h2>Daftar Data</h2><button style="padding:3px" onclick="loadAset()">Refresh</button>
 
   <select id="nkode">
    <option value="PIL">Silahkan Pilih</option>
-    <option value="P">Siswa SK Pembeian</option>
+    <option value="P">Siswa SK Pemberian</option>
     <option value="N">Siswa Nominasi</option>
     
   </select>
 
- <div id="info"></div>
+ <div id="info">
+ </div><input
+  type="text"
+  id="cariNama"
+  placeholder="Cari berdasarkan nama..."
+  
+  style="margin-bottom:10px; padding:5px; width:250px;"
+>
+
 
 <table id="tabelAset" border="1" cellpadding="8" cellspacing="0" width="100%">
   <thead>
@@ -499,7 +507,7 @@ input,button{padding:10px;}
 </div>
 </div>
 </div>
-<button onclick="simpket(kodeaset)">Update Ket</button>
+<button onclick="simpket(kodeaset)">Update Ket</button><br>
 <span id="status"></span>
 <progress id="progress" value="0" max="100"></progress>
    </div>
@@ -726,6 +734,9 @@ li.textContent='';
 </script>
 <script>
 function bukaModal(tr){
+document.getElementById("status").innerText=""
+  document.getElementById("progress").value=0;
+ document.body.style.overflow="hidden";
  kodeaset=tr.dataset.id
   document.getElementById("m_id").textContent = tr.dataset.id;
   
@@ -740,6 +751,7 @@ function bukaModal(tr){
 }
 
 function tutupModal(){
+document.body.style.overflow="scroll";
   document.getElementById("modal").style.display = "none";
    stop(0)
 }
@@ -818,6 +830,11 @@ function getValue() {
 myurl = URL.createObjectURL(blob)
       gambar=myurl;
       gocrop();
+	  const box = document.getElementById("modal");
+	  setTimeout(() => {
+  box.scrollTop = box.scrollHeight;
+}, 200);
+ 
    //   hsl.innerHTML="<img onclick='download2()' src='"+myurl+"' style='width:170px'/>";
 // a.download = namafile+'.jpg';
  //a.appendChild('yyyy')
@@ -826,7 +843,7 @@ myurl = URL.createObjectURL(blob)
 // a.click();
       
 
-      document.body.removeChild(a)
+    //  document.body.removeChild(a)
       
      
  }
@@ -1056,8 +1073,15 @@ function simpket(kode1){
   document.getElementById("status").innerText="❌ Error"
 });
 
-
 }
+
+document.getElementById("cariNama").addEventListener("input", function () {
+  const filter = this.value.toLowerCase();
+  document.querySelectorAll("#tabelAset tbody tr").forEach(tr => {
+    const nama = tr.children[2].innerText.toLowerCase();
+    tr.style.display = nama.includes(filter) ? "" : "none";
+  });
+});
 </script>
 </body>
 </html>
