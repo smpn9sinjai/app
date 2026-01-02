@@ -983,11 +983,11 @@ progress.value=0;
 
     xhr.onload = () => {
       if (xhr.status === 201) {
-        status.innerText = "✅ Upload berhasil!";
+        status.innerText = "✅ Upload GIT berhasil!";
 		simpaset(kodeaset)
       } else {
 	    document.getElementById("progress").value=50;
-        status.innerText = "❌ Gagal upload: "
+        status.innerText = "❌ Gagal upload GIT"
       }
     };
 
@@ -1027,11 +1027,12 @@ function simpaset(kode1){
 .then(res => res.text())
 .then(data => {
  if(data=="OK"){
-  document.getElementById("status").innerText="✅ Upload berhasil!"
+  document.getElementById("status").innerText="✅ Upload GS berhasil!"
+  PATH = "data/foto_" + Date.now() + ".jpg";
   document.getElementById("progress").value=100;
  }
  else{
- document.getElementById("status").innerText="❌ Gagal upload"
+ document.getElementById("status").innerText="❌ Gagal upload GS"
   document.getElementById("progress").value=50;
  }
   
@@ -1060,11 +1061,11 @@ function simpket(kode1){
 .then(res => res.text())
 .then(data => {
  if(data=="OK"){
-  document.getElementById("status").innerText="✅ Upload berhasil!"
+  document.getElementById("status").innerText="✅ Upload GS berhasil!"
   document.getElementById("progress").value=100;
  }
  else{
- document.getElementById("status").innerText="❌ Gagal upload"
+ document.getElementById("status").innerText="❌ Gagal upload GS"
   document.getElementById("progress").value=50;
  }
   
@@ -1085,3 +1086,4 @@ document.getElementById("cariNama").addEventListener("input", function () {
 </script>
 </body>
 </html>
+
