@@ -92,6 +92,7 @@ let icon="";
 		 if(id=='Update Dokumentasi'){code='inputdokumentasi'} 
 		   if(id=='Update Aset'){code='inputaset'} 
 		   if(id=='Update PIP'){code='inputpip'} 
+            if(id=='Update Data Murid'){code='inputberat'} 
 		    if(id=='Laporan'){code='laporan';blink='https://app.smpn9sinjai.sch.id/'}
 		   
 		 
