@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daftar PIP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  font-family:Arial, sans-serif;
+  background:#f2f4f7;
+  margin:0;
+  padding:0px;
+}
+.lazy-img{
+  width:80px;
+  object-fit:cover;
+  background:#f2f2f2;
+}
+#tabelAset tr td{border-bottom:1px solid #b5b5b5}
+#tabelAset tr th{border-bottom:2px solid #b5b5b5}
+
+#img1{width:50px}
+#m_foto{width:150px}
+.box{
+  max-width:900px;
+  margin:auto;
+  background:#fff;
+  padding:5px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  overflow-x:scroll;
+}
+
+ @media all and (min-width: 768px) {
+ .box{
+  max-width:900px;
+  margin:20px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  overflow-x:scroll;
+}
+ }
+
+
+
+h2{margin-top:0}
+select{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  font-size:16px;
+}
+.info{
+  font-size:14px;
+  color:#555;
+  margin-bottom:10px;
+}
+ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+li{
+  padding:10px;
+  border-bottom:1px solid #eee;
+}
+li:last-child{border-bottom:none}
+.loading{
+  text-align:center;
+  color:#777;
+}
+</style>
+<style>
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:999;
+  overflow:scroll;
+}
+.modal-content{
+  background:#fff;
+  max-width:400px;
+  margin:30px auto;
+  padding:20px;
+  border-radius:10px;
+  animation:fade .2s;
+  
+}
+.close{
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+}
+tr{
+  cursor:pointer;
+}
+@keyframes fade{
+  from{transform:scale(.9);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+</style>
+<style>
+   
+   /*video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}*/
+   
+#cs,#css{display:none;border:1px solid black;border-radius:5px;padding:5px}
+  
+#tdw{display:none;background:orange;color:white;border-radius:10px;}  
+    #lab{position:absolute;font-size:16px;top:10px;right:40px;color:white;background:rgba(0,0,0,0.1); 
+z-index:1}
+   
+    body{
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+    
+    
+  </style>
+<style>
+.icrop-wrap{
+    position:relative
+}
+.icrop-clip-canv,.icrop-preview-canv{
+    display:block
+}
+.icrop-clip-canv,.icrop-bg{
+    position:absolute;
+    top:0;
+    left:0
+}
+.icrop-bg{
+    background:#000;
+    opacity:.5;
+    filter:alpha(opacity=50)
+}
+.icrop-clip-wrap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden
+}
+.icrop-clip-canv{
+    position:absolute;
+    top:0;
+    left:0
+}
+.icrop-box{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    display:none;
+    cursor:move;
+    border:1px dashed #0cf;
+    touch-action:none
+}
+.icrop-transition{
+    transition:top .5s,left .5s,width .5s,height .5s
+}
+.notransition{
+    -webkit-transition:none!important;
+    -moz-transition:none!important;
+    -o-transition:none!important;
+    transition:none!important
+}
+.resize{
+    position:absolute;
+    z-index:3;
+    width:17px;
+    height:17px;
+    background:#ccc;
+    background:rgba(255,255,255,.6);
+    border:1px solid #333;
+    border-radius:2px
+}
+.N{
+    top:-10px;
+    left:-10px
+}
+.W{
+    top:-10px;
+    left:-10px
+}
+.S{
+    left:-10px;
+    bottom:-10px
+}
+.E{
+    right:-10px;
+    top:-10px
+}
+.N,.S{
+    cursor:ns-resize
+}
+.E,.W{
+    cursor:ew-resize
+}
+.NW,.SE{
+    cursor:nw-resize
+}
+.NE,.SW{
+    cursor:ne-resize
+}
+.NW,.NE{
+    top:-10px
+}
+.SE,.SW{
+    bottom:-10px
+}
+.NW,.SW{
+    left:-10px
+}
+.NE,.SE{
+    right:-10px
+}
+.wrapN,.wrapS{
+    position:absolute;
+    left:50%
+}
+.wrapE,.wrapW{
+    position:absolute;
+    top:50%
+}
+.wrapN{
+    top:0
+}
+.wrapS{
+    bottom:0
+}
+.wrapE{
+    right:0
+}
+.wrapW{
+    left:0
+}
+
+.file-input{
+    position:absolute;
+    right:0;
+    top:0;
+    font-family:helvetica,arial;
+    font-size:118px;
+    margin:0;
+    padding:0;
+    cursor:pointer;
+    opacity:0
+}
+.file-button{
+    position:relative;
+    overflow:hidden;
+    direction:ltr
+}
+.ibox{
+    background:#fff;
+    border:0px solid #ccc;
+    padding:19px;
+    border-radius:3px
+}
+.clearfix:after,.c-text:after{
+    visibility:hidden;
+    display:block;
+    content:"";
+    clear:both;
+    height:0
+}
+
+
+.but{
+    text-align:center;
+    height:32px;
+    font:16px/30px helvetica,arial;
+    display:inline-block;
+    cursor:pointer;
+    padding:0 10px;
+    text-decoration:none;
+    border-radius:3px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none
+}
+.but:hover{
+    text-decoration:none;
+    box-shadow:-1px 1px 1px rgba(0,0,0,.2);
+    z-index:2
+}
+.but:active{
+    box-shadow:none
+}
+
+.but.lrg{
+    height:36px;
+    line-height:34px;
+    border-radius:4px
+}
+.but.l{
+    color:#000000;
+    fill:#000000;
+    border:1px solid #ccc;
+    background:#fff
+}
+.but.l:hover{
+    border:1px solid #999
+}
+
+/* PAGE */
+
+#ic-cropper-wrap .icrop-wrap{
+  margin-top:20px
+}
+
+.ic-btns{
+  margin:-5px
+}
+
+.ic-btns .but,#ic-auto-crop-padding{
+  float:left;
+  margin:5px
+}
+
+#ic-auto-crop-btn{
+  margin-right:-11px;
+  border-radius:4px 0 0 4px;
+  position:relative;
+  z-index:1
+}
+
+#ic-auto-crop-padding{
+  width:75px;
+  height:36px;
+  border-radius:0 4px 4px 0;
+  padding-left:10px
+}
+
+#ic-rotate-btn svg{
+  width:28px;
+  height:28px;
+  float:left;
+  margin:3px 3px 3px -3px;
+  color: white;
+}
+
+#ic-crop-btn-wrap{
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+#ic-download-wrap{
+  margin-top:20px
+}
+
+#ic-download-btn{
+  vertical-align:middle;
+  margin-right:10px
+}
+
+#ic-download-wrap .select{
+  height:34px;
+  line-height:34px
+}
+
+#ic-download-wrap select{
+  line-height:34px
+}
+
+#ic-info{
+  vertical-align:middle;
+  margin-left:10px
+}
+
+.ic-hidden{
+  display:none
+}
+input,button{padding:10px;}
+#box{display:none}
+</style>
+</head>
+<body>
+<div id="cpass" style="margin-top:20px">
+<center>
+ 
+<input id="pass" type="password" style="width:200px" required placeholder="Mausskan Password"><button onclick="go()" style="width:60px">OK</button><br>
+<span id="hsl"></span>
+</center>
+</div>
+<div class="box" id="box">
+  <h2>Daftar Siswa</h2><button style="padding:3px" onclick="loadAset()">Refresh</button>
+
+  <select id="nkode">
+   <option value="PIL">Silahkan Pilih</option>
+    <option value="7A">7A</option>
+	<option value="7B">7B</option>
+	<option value="8A">8A</option>
+	<option value="8B">8B</option>
+	<option value="9A">8A</option>
+	<option value="9B">9B</option>
+	
+     
+    
+  </select>
+
+ <div id="info">
+ </div><input
+  type="text"
+  id="cariNama"
+  placeholder="Cari berdasarkan nama..."
+  
+  style="margin-bottom:10px; padding:5px; width:250px;"
+>
+
+
+<table id="tabelAset" border="0" cellpadding="8" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>ID</th>
+      <th>Nama</th>
+	  <th>NISN</th>
+	  <th>Berat</th>
+	  <th>Tinggi</th>
+	   <th>L. Kepala</th>
+		 <th>Ket</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+
+  <ul id="list">
+    <li class="loading"></li>
+  </ul>
+</div>
+ 
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="tutupModal()">×</span>
+    <h3>Detail Data</h3>
+    <p><b>ID:</b> <span id="m_id"></span></p>
+    
+    <p><b>Nama:</b> <span id="m_nama"></span></p>
+	<table border="0"><tr><td>
+ <label>Berat</label></td><td><input id="berat" type="text" style="width:80px"></input></td></tr>
+ </tr><td><label>Tinggi</label></td><td><input id="tinggi" type="text" style="width:80px"></input><td></tr>
+ </tr><td><label>Lingk. Kepala</label></td><td><input id="kepala" type="text" style="width:80px"></input><td></tr></table><br>
+  
+ <button onclick="simpaset()">💾 Simpan</button><br>
+ 
+<span id="status"></span>
+<progress id="progress" value="0" max="100"></progress>
+   </div>
+</div>
+<script>
+ 
+const google = {
+  script: {
+    run: {
+      _success: function () {},
+      _failure: function () {},
+
+      withSuccessHandler(fn) {
+        this._success = fn;
+        return this;
+      },
+
+      withFailureHandler(fn) {
+        this._failure = fn;
+        return this;
+      },
+
+      token(pass,cari) {
+        fetch("https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec", {
+          method: "POST",
+          body: new URLSearchParams({
+            pass: pass,
+            cari: cari
+          }) // ⬅️ KUNCI
+        })
+        .then(res => res.text())          // ⬅️ sesuai GAS Anda
+        .then(text => this._success(text))
+        .catch(err => this._failure(err));
+      }
+    }
+  }
+};
+
+
+function go(){
+                google.script.run
+                .withSuccessHandler(function(data){
+				if(data=="salah"){document.getElementById("hsl").innerText="Password Salah";
+				setTimeout(()=>{document.getElementById("hsl").innerText=''},2000)
+				return}
+				 
+				document.getElementById("box").style.display="block"
+				document.getElementById("cpass").style.display="none"
+				document.getElementById("pass").value='';
+				GITHUB_TOKEN=data;
+				return;
+				})
+                .withFailureHandler(function(data){
+				document.getElementById("hsl").innerText="Error Jaringan";
+				setTimeout(()=>{document.getElementById("hsl").innerText=''},2000)
+				document.getElementById("kont").style.display="none"
+				document.getElementById("cpass").style.display="block"
+				
+				})
+                .token(document.getElementById("pass").value,'token');	
+                 			
+                }
+</script>
+<script>
+ let apastart=0;
+ let kodeaset=''
+const BASE_URL = "https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec";
+
+document.getElementById("nkode").addEventListener("change", loadAset);
+//loadAset();
+function loadAset(){
+  const kode = document.getElementById("nkode").value;
+  const list = document.getElementById("list");
+  const info = document.getElementById("info");
+  const tbody = document.querySelector("#tabelAset tbody");
+  const li = document.querySelector(".loading");
+  tbody.innerHTML = "";
+li.textContent = "⏳ Memuat data ."
+  
+  info.textContent = "";
+  
+  let dots = 1;
+  
+  const loadingInterval = setInterval(() => {
+  
+  if (!li) return; // jaga-jaga kalau sudah dihapus
+
+  li.textContent = "⏳ Memuat data" + " . ".repeat(dots);
+  dots = dots >= 3 ? 1 : dots + 1;
+}, 500);
+
+  fetch(BASE_URL, {
+  method: "POST",
+  body: new URLSearchParams({
+    pass: '123',
+    cari: 'berat',
+    nkode: kode
+  })
+})
+.then(res => res.text())
+.then(data => {
+  clearInterval(loadingInterval)
+ // list.innerHTML = ``;
+  li.textContent='';
+  const data1 = JSON.parse(data);
+ 
+  if (!data1 || data1.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align:center">Data tidak ditemukan</td>
+      </tr>`;
+    return;
+  }
+
+  document.getElementById("info").textContent =
+    `Jumlah data: ${data1.length}`;
+
+  const frag = document.createDocumentFragment();
+
+  data1.forEach((item, index) => {
+    const tr = document.createElement("tr");
+	 
+  let akt= (item.ket==1) ? `<td>✅ </td>` : `<td> </td>`
+ 
+    tr.innerHTML = `
+      <td>${index + 1}</td>
+	   <td>${item.id}</td>
+      <td>${item.nama}</td>
+      <td>${item.nisn}</td>
+	  <td>${item.berat}</td>
+	    <td>${item.tinggi}</td>
+		  <td>${item.kepala}</td>
+		    ${akt}
+    `;
+	// 👇 SIMPAN DATA DI BARIS
+    tr.dataset.id = item.id;
+     
+    tr.dataset.nama = item.nama;
+	 tr.dataset.berat = item.berat;
+	  tr.dataset.tinggi = item.tinggi;
+	   tr.dataset.kepala = item.kepala;
+	 
+
+    // 👇 EVENT KLIK BARIS
+    tr.addEventListener("click", () => {bukaModal(tr);
+	 
+	
+	}
+	);
+    frag.appendChild(tr);
+	 
+		
+
+  });
+
+  tbody.appendChild(frag);
+   
+})
+.catch(err => {
+
+clearInterval(loadingInterval)
+li.textContent='';
+  document.querySelector("#tabelAset tbody").innerHTML = `
+    <tr>
+      <td colspan="5" style="text-align:center">❌ Gagal memuat data</td>
+    </tr>`;
+  console.error(err);
+});
+
+
+}
+
+// load pertama
+ 
+
+
+</script>
+<script>
+let nkode2=''
+function bukaModal(tr){
+nkode2=tr
+document.getElementById("status").innerText=""
+  document.getElementById("progress").value=0;
+ document.body.style.overflow="hidden";
+ kodeaset=tr.dataset.id
+  document.getElementById("m_id").textContent = tr.dataset.id;
+  
+  document.getElementById("m_nama").textContent = tr.dataset.nama;
+   document.getElementById("berat").value = tr.dataset.berat;
+   document.getElementById("tinggi").value = tr.dataset.tinggi;
+   document.getElementById("kepala").value = tr.dataset.kepala;
+
+  
+   
+
+  document.getElementById("modal").style.display = "block";
+}
+
+function tutupModal(){
+document.body.style.overflow="scroll";
+  document.getElementById("modal").style.display = "none";
+   stop(0)
+}
+</script>
+
+ 
+   
+<script>
+ 
+
+function simpaset(){
+  
+   
+   document.getElementById("status").innerText="Proses"
+  document.getElementById("progress").value=0;
+
+   
+
+  fetch(BASE_URL, {
+  method: "POST",
+  body: new URLSearchParams({
+    pass: JSON.stringify({berat:document.getElementById("berat").value,tinggi:document.getElementById("tinggi").value,kepala:document.getElementById("kepala").value}),
+    cari: 'simpberat',
+    nkode: nkode2.dataset.id
+  })
+})
+.then(res => res.text())
+.then(data => {
+ 
+ if(data=="OK"){
+  document.getElementById("status").innerText="✅ Upload berhasil!"
+  document.getElementById("progress").value=100;
+ 
+ }
+ else{
+ document.getElementById("status").innerText="❌ Gagal upload"
+  document.getElementById("progress").value=50;
+ }
+  
+})
+.catch(err => {
+  document.getElementById("status").innerText="❌ Error"
+});
+
+
+}
+
+ 
+document.getElementById("cariNama").addEventListener("input", function () {
+  const filter = this.value.toLowerCase();
+  document.querySelectorAll("#tabelAset tbody tr").forEach(tr => {
+    const nama = tr.children[2].innerText.toLowerCase();
+    tr.style.display = nama.includes(filter) ? "" : "none";
+  });
+});
+</script>
+</body>
+</html>
