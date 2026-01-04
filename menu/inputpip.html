@@ -675,12 +675,39 @@ let akt= (item.aktifasi==1) ? `<td>✅ </td>` : `<td> </td>`
 	 
 
     // 👇 EVENT KLIK BARIS
-    tr.addEventListener("click", () => {bukaModal(tr);
-	if (apastart==0){start();apastart=1}
-	else {stop(0)}
-	
-	}
-	);
+  tr.addEventListener("click", (e) => {
+  const td = e.target.closest("td");
+  if (!td) return;
+
+  /* ===== KLIK FOTO ===== */
+  if (td.cellIndex === 8 || td.cellIndex === 9) { // sesuaikan index foto
+   e.preventDefault();
+   e.stopPropagation();
+
+    const img = e.target.closest("img");
+	 
+   if (!img) return;
+
+ const url = img.dataset.src || img.src;
+    const nama = tr.children[2]?.innerText.trim() || "foto";
+
+    downloadGambar(url, nama + ".jpg");
+    return;
+  }
+
+  /* ===== KLIK NAMA ===== */
+  if (td.cellIndex === 2) {
+    bukaModal(tr);
+
+    if (apastart == 0) {
+      start();
+      apastart = 1;
+    } else {
+      stop(0);
+    }
+  }
+});
+
     frag.appendChild(tr);
 	 
 		
@@ -705,6 +732,24 @@ li.textContent='';
 }
 
 // load pertama
+ function downloadGambar(url,fnama) {
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error("Gagal fetch");
+      return res.blob();
+    })
+    .then(blob => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = fnama;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    })
+    .catch(err => console.error(err));
+}
+
 
   function initLazyLoad() {
   const imgs = document.querySelectorAll(".lazy-img");
@@ -906,7 +951,7 @@ namafile=b; return 1}}
  </script>
  <script src='https://smpn9.github.io/crop/events.js'></script>
 <script src='https://smpn9.github.io/crop/cropper.js'></script>
-<script src='/rendered3.js'></script>
+<script src='rendered3.js'></script>
 <script>
     var bb=document.getElementById("coba");
    function gocrop(){
@@ -1089,5 +1134,6 @@ document.getElementById("cariNama").addEventListener("input", function () {
 </script>
 </body>
 </html>
+
 
 
