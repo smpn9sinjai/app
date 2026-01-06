@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -92,6 +93,65 @@ li:last-child{border-bottom:none}
   animation:fade .2s;
   
 }
+
+
+.modal2{
+   
+  display:block;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:999;
+   overflow-y:scroll;
+  
+}
+.modal-content2{
+  background:#fff;
+  max-width:400px;
+  margin:20px auto;
+  padding:20px;
+  border-radius:10px;
+  animation:fade .2s;
+  
+}
+
+
+@media all and (min-width: 768px) {
+
+.modal-content2{
+  max-width:800px;
+  }
+}
+
+/* default (mobile) */
+.foto-wrapper {
+  display: block;
+}
+
+.foto-wrapper img {
+  width: 100%;
+  display: none;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+/* desktop */
+@media (min-width: 768px) {
+  .foto-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .foto-wrapper img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+
+
+
 .close{
   float:right;
   font-size:22px;
@@ -426,7 +486,8 @@ input,button{padding:10px;}
 	  <th>Jmlh</th>
 	  <th>Merek</th>
 	  <th>Tahun</th>
-	   <th>Foto</th>
+	   <th colspan="2">Foto</th>
+	    
     </tr>
   </thead>
   <tbody></tbody>
@@ -437,6 +498,25 @@ input,button{padding:10px;}
     <li class="loading"></li>
   </ul>
 </div>
+
+<div id="modal2" class="modal2">
+  <div class="modal-content2">
+    <span class="close" onclick="tutupModal2()">×</span>
+    <h3>Detail Aset</h3>
+    <p><b>ID:</b> <span id="m_id"></span></p>
+    <p><b>Kode Barang:</b> <span id="m_barang"></span></p>
+    <p><b>Nama:</b> <span id="m_nama"></span></p>
+	 <p><b>Jmlh:</b> <span id="m_jmlh"></span></p>
+	  <p><b>Merek:</b> <span id="m_merek"></span></p>
+    <p><b>Tahun:</b> <span id="m_tahun"></span></p>
+	<div class="foto-wrapper">
+   <img id="m_foto3" width="100%" style="display:none;border-radius:8px;margin-bottom:5px">
+	  <img id="m_foto4" width="100%" style="display:none;border-radius:8px">
+</div>
+	
+ </div>
+ </div>
+ 
  
 <div id="modal" class="modal">
   <div class="modal-content">
@@ -448,7 +528,7 @@ input,button{padding:10px;}
 	 <p><b>Jmlh:</b> <span id="m_jmlh"></span></p>
 	  <p><b>Merek:</b> <span id="m_merek"></span></p>
     <p><b>Tahun:</b> <span id="m_tahun"></span></p>
-    <img id="m_foto" width="100%" style="display:none;border-radius:8px">
+    
  
   <label id='lab'></label>
 <video id='video' style='display:none'></video>
@@ -636,6 +716,17 @@ li.textContent = "⏳ Memuat data ."
      </td>`
   : `<td></td>`;
 
+const fotoCell2 = item.foto2
+  ? `<td>
+       <img class="lazy-img"
+     data-src="${item.foto2}"
+     src="placeholder.webp"
+     data-loaded="0"
+     loading="lazy"
+     style="max-width:80px">
+     </td>`
+  : `<td></td>`;
+
     tr.innerHTML = `
       <td>${index + 1}</td>
 	   <td>${item.id}</td>
@@ -645,6 +736,7 @@ li.textContent = "⏳ Memuat data ."
 	  <td>${item.kmerek}</td>
       <td style='text-align:center'>${item.tahun}</td>
 	   ${fotoCell}
+	    ${fotoCell2}
 	  
     `;
 	// 👇 SIMPAN DATA DI BARIS
@@ -655,14 +747,49 @@ li.textContent = "⏳ Memuat data ."
 	  tr.dataset.merek = item.kmerek;
     tr.dataset.tahun = item.tahun;
     tr.dataset.foto = item.foto || "";
+	 tr.dataset.foto2 = item.foto2 || "";
 
     // 👇 EVENT KLIK BARIS
-    tr.addEventListener("click", () => {bukaModal(tr);
-	if (apastart==0){start();apastart=1}
-	else {stop(0)}
+    
+	 tr.addEventListener("click", (e) => {
+  const td = e.target.closest("td");
+  if (!td) return;
+
+  /* ===== KLIK FOTO ===== */
+  if (td.cellIndex === 7 || td.cellIndex === 8) { // sesuaikan index foto
+   e.preventDefault();
+   e.stopPropagation();
+
+    const img = e.target.closest("img");
+	 
+   if (!img) return;
+
+ const url = img.dataset.src || img.src;
+    const nama = tr.children[2]?.innerText.trim() || "foto";
+
+    downloadGambar(url, nama + ".jpg");
+    return;
+  }
+
+  /* ===== KLIK NAMA ===== */
+  if (td.cellIndex === 3) {
+    bukaModal(tr);
+
+    if (apastart == 0) {
+      start();
+      apastart = 1;
+    } else {
+      stop(0);
+    }
+  }
+  if (td.cellIndex === 1) {
+    bukaModal2(tr);
+  }
+  
+});
 	
-	}
-	);
+	
+	
     frag.appendChild(tr);
 	 
 	 
@@ -683,6 +810,25 @@ li.textContent='';
 });
 
 
+}
+
+
+ function downloadGambar(url,fnama) {
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error("Gagal fetch");
+      return res.blob();
+    })
+    .then(blob => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = fnama;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    })
+    .catch(err => console.error(err));
 }
 
 // load pertama
@@ -716,6 +862,36 @@ function initLazyLoad() {
 
 </script>
 <script>
+function bukaModal2(tr){
+document.body.style.overflow="hidden";
+document.getElementById("status").innerText=""
+  document.getElementById("progress").value=0;
+ kodeaset=tr.dataset.id
+  document.getElementById("m_id").textContent = tr.dataset.id;
+  document.getElementById("m_barang").textContent = tr.dataset.kode;
+  document.getElementById("m_nama").textContent = tr.dataset.nama;
+   document.getElementById("m_jmlh").textContent = tr.dataset.jmlh;
+    document.getElementById("m_merek").textContent = tr.dataset.merek;
+  document.getElementById("m_tahun").textContent = tr.dataset.tahun;
+   
+  const foto1 = document.getElementById("m_foto3");
+  if (tr.dataset.foto) {
+    foto1.src = tr.dataset.foto;
+    foto1.style.display = "block";
+  } else {
+    foto1.style.display = "none";
+  }
+ 
+  const foto2 = document.getElementById("m_foto4");
+  if (tr.dataset.foto2) {
+    foto2.src = tr.dataset.foto2;
+    foto2.style.display = "block";
+  } else {
+    foto2.style.display = "none";
+  }
+
+  document.getElementById("modal2").style.display = "block";
+}
 function bukaModal(tr){
 document.body.style.overflow="hidden";
 document.getElementById("status").innerText=""
@@ -728,19 +904,17 @@ document.getElementById("status").innerText=""
     document.getElementById("m_merek").textContent = tr.dataset.merek;
   document.getElementById("m_tahun").textContent = tr.dataset.tahun;
 
-  const foto = document.getElementById("m_foto");
-  if (tr.dataset.foto) {
-    foto.src = tr.dataset.foto;
-    foto.style.display = "block";
-  } else {
-    foto.style.display = "none";
-  }
-  PATH = "data/foto_" + Date.now() + ".jpg";
+   PATH = "data/foto_" + Date.now() + ".jpg";
  
 
   document.getElementById("modal").style.display = "block";
 }
 
+function tutupModal2(){
+document.body.style.overflow="scroll";
+  document.getElementById("modal2").style.display = "none";
+   
+}
 function tutupModal(){
 document.body.style.overflow="scroll";
   document.getElementById("modal").style.display = "none";
