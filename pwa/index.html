@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP 1</title>
+
+<!-- Manifest PWA -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Theme & mobile capabilities -->
+<meta name="theme-color" content="#0d47a1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SMP 1">
+
+<!-- Icon iOS -->
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+  body { font-family: Arial; text-align: center; padding: 50px; }
+  button { padding: 12px 24px; font-size: 18px; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>Selamat datang di SMP Negeri 1</h1>
+<p>Klik tombol di bawah untuk memasang aplikasi ke layar utama HP Anda.</p>
+
+<button id="installBtn" style="display:none">Pasang Aplikasi</button>
+
+<script>
+let deferredPrompt;
+
+// Tangkap event sebelum install banner muncul
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();           // cegah banner otomatis
+  deferredPrompt = e;           // simpan event
+  document.getElementById("installBtn").style.display = "inline-block"; // tampilkan tombol
+});
+
+// Klik tombol → munculkan banner
+document.getElementById("installBtn").addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const choice = await deferredPrompt.userChoice;
+  console.log("Install outcome: ", choice.outcome); // accepted / dismissed
+  deferredPrompt = null;
+  document.getElementById("installBtn").style.display = "none";
+});
+
+// Daftar Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+  .then(() => console.log('Service Worker registered'))
+  .catch(err => console.log('Service Worker failed', err));
+}
+</script>
+</body>
+</html>
