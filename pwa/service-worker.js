@@ -1,4 +1,4 @@
-const CACHE_NAME = "smp1-cache-v1";
+const CACHE_NAME = "smp9-cache-v1";
 const urlsToCache = ["/", "/index.html"];
 
 self.addEventListener("install", (event) => {
