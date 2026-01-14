@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -522,12 +523,12 @@ input,button{padding:10px;}
   <div class="modal-content">
     <span class="close" onclick="tutupModal()">×</span>
     <h3>Detail Aset</h3>
-    <p><b>ID:</b> <span id="m_id"></span></p>
-    <p><b>Kode Barang:</b> <span id="m_barang"></span></p>
-    <p><b>Nama:</b> <span id="m_nama"></span></p>
-	 <p><b>Jmlh:</b> <span id="m_jmlh"></span></p>
-	  <p><b>Merek:</b> <span id="m_merek"></span></p>
-    <p><b>Tahun:</b> <span id="m_tahun"></span></p>
+    <p><b>ID:</b> <span id="m_id1"></span></p>
+    <p><b>Kode Barang:</b> <span id="m_barang1"></span></p>
+    <p><b>Nama:</b> <span id="m_nama1"></span></p>
+	 <p><b>Jmlh:</b> <span id="m_jmlh1"></span></p>
+	  <p><b>Merek:</b> <span id="m_merek1"></span></p>
+    <p><b>Tahun:</b> <span id="m_tahun1"></span></p>
     
  
   <label id='lab'></label>
@@ -897,12 +898,12 @@ document.body.style.overflow="hidden";
 document.getElementById("status").innerText=""
   document.getElementById("progress").value=0;
  kodeaset=tr.dataset.id
-  document.getElementById("m_id").textContent = tr.dataset.id;
-  document.getElementById("m_barang").textContent = tr.dataset.kode;
-  document.getElementById("m_nama").textContent = tr.dataset.nama;
-   document.getElementById("m_jmlh").textContent = tr.dataset.jmlh;
-    document.getElementById("m_merek").textContent = tr.dataset.merek;
-  document.getElementById("m_tahun").textContent = tr.dataset.tahun;
+  document.getElementById("m_id1").textContent = tr.dataset.id;
+  document.getElementById("m_barang1").textContent = tr.dataset.kode;
+  document.getElementById("m_nama1").textContent = tr.dataset.nama;
+   document.getElementById("m_jmlh1").textContent = tr.dataset.jmlh;
+    document.getElementById("m_merek1").textContent = tr.dataset.merek;
+  document.getElementById("m_tahun1").textContent = tr.dataset.tahun;
 
    PATH = "data/foto_" + Date.now() + ".jpg";
  
