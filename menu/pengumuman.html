@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,6 +7,7 @@
   <title>Pengumuman Kelulusan</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       background: #f4f6f9;
@@ -352,6 +354,11 @@ const google = {
 <audio id="tepuk"   >
   <source src="https://smpn9sinjai.sch.id/tepuk.mp3" type="audio/mpeg">
 </audio>
+
+<div id="activityStatus" style="display:none"></div>
+<div class="info" style="display:none"></div>
+
+
   <script>
      
     let ddata ='';
@@ -378,9 +385,9 @@ const google = {
 
    
     function lihatPengumuman(d) {
-      startButton.click()
+     
       tampilkanMotivasi();
-      setTimeout(()=>{document.getElementById("tepuk").play(); },500)
+      setTimeout(()=>{document.getElementById("tepuk").play(); startButton.click() },500)
         
       document.getElementById('fotoModal').src = "https://smpn9sinjai.sch.id/fotosiswa/"+ddata[d][3]+'.jpg';
       document.getElementById('namaModal').textContent = ddata[d][6];
@@ -538,105 +545,146 @@ function ambilMotivasiAcak() {
 
 
 <script type="module">
-    const startButton = document.getElementById("startButton");
-    const $activityStatusEl = document.getElementById("activityStatus");
-   
-    let oldVisibility;
-    let confetti;
+const startButton = document.getElementById("startButton");
+const $activityStatusEl = document.getElementById("activityStatus");
 
-    const getWindowSize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      return { height, width };
-    };
+let oldVisibility = null;
+let confetti = null;
 
-    const placeConfetti = (x, y, angle = 90, particleCount = 100) => {
-      const { height, width } = getWindowSize();
-      console.log(height, width);
-      const origin = { x: x / width, y: y / height };
-      confetti({ origin, angle, particleCount, spread: 360 });
-    };
+const getWindowSize = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  return { height, width };
+};
 
-    const checkVisibilityState = () => {
-      const isActive = document.visibilityState === "visible";
+const placeConfetti = (x, y, angle = 90, particleCount = 100) => {
+  if (!confetti) return;
 
-      if (!oldVisibility) {
-        setTimeout(() => {
-          if (!oldVisibility) {
-            $activityStatusEl.textContent = isActive ? "active" : "inactive";
-            document.getElementsByClassName("info")[0].style.display = isActive ? "none" : "block";
-            if (!isActive) {
-              // inactive - reset confetti (optional but looks nicer)
-              confetti.reset();
-            }
-          }
-        }, 5000);
-      } else {
-        $activityStatusEl.textContent = isActive ? "active" : "inactive";
-        document.getElementsByClassName("info")[0].style.display = isActive ? "none" : "block";
-        if (!isActive) {
-          // inactive - reset confetti (optional but looks nicer)
-          confetti.reset();
-        }
+  const { height, width } = getWindowSize();
+  const origin = { x: x / width, y: y / height };
+
+  confetti({
+    origin,
+    angle,
+    particleCount,
+    spread: 360
+  });
+};
+
+const checkVisibilityState = () => {
+
+  const isActive = document.visibilityState === "visible";
+  const infoEl = document.getElementsByClassName("info")[0];
+
+  if (oldVisibility === null) {
+
+    setTimeout(() => {
+
+      $activityStatusEl.textContent = isActive ? "active" : "inactive";
+
+      if (infoEl) {
+        infoEl.style.display = isActive ? "none" : "block";
       }
 
-      oldVisibility = isActive;
-    };
+      if (!isActive && confetti) {
+        confetti.reset();
+      }
 
-    document.addEventListener("visibilitychange", () => {
-      checkVisibilityState();
-    });
+    }, 5000);
 
-    //document.addEventListener("click", ({ clientX, clientY }) => {
-      //if (confetti) {
-        //console.log(clientX, clientY);
-        //placeConfetti(clientX, clientY);
-     // }
-    //});
-    
-    startButton.addEventListener("click", async () => {
-       if (!confetti) {
-    const module = await import("https://cdn.skypack.dev/canvas-confetti@1.3.2");
+  } else {
 
-    // Buat canvas manual agar bisa kontrol z-index
-    let myConfettiCanvas = document.createElement('canvas');
-    myConfettiCanvas.className = 'confetti-canvas';
-    myConfettiCanvas.style.position = 'fixed';
-    myConfettiCanvas.style.top = '0';
-    myConfettiCanvas.style.left = '0';
-    myConfettiCanvas.style.width = '100%';
-    myConfettiCanvas.style.height = '100%';
-    myConfettiCanvas.style.pointerEvents = 'none';
-    myConfettiCanvas.style.zIndex = '99999';
-    document.body.appendChild(myConfettiCanvas);
+    $activityStatusEl.textContent = isActive ? "active" : "inactive";
 
-    confetti = module.create(myConfettiCanvas, { resize: true, useWorker: true });
+    if (infoEl) {
+      infoEl.style.display = isActive ? "none" : "block";
+    }
+
+    if (!isActive && confetti) {
+      confetti.reset();
+    }
   }
-      
-      // do this for 30 seconds
-      var duration = 1 * 1000;
-      var end = Date.now() + duration;
 
-      (function frame() {
+  oldVisibility = isActive;
+};
 
-        confetti({
-    particleCount: 5,
-    angle: 90,
-    spread: 120,
-    origin: { x: 0.5, y: 0 },
-    scalar: 1.8,
-    startVelocity: 30
+document.addEventListener("visibilitychange", checkVisibilityState);
+
+startButton.addEventListener("click", async () => {
+
+  try {
+
+    if (!confetti) {
+
+    //  const module = await import("https://cdn.skypack.dev/canvas-confetti@1.3.2");
+
+      let myConfettiCanvas = document.querySelector(".confetti-canvas");
+
+      if (!myConfettiCanvas) {
+        myConfettiCanvas = document.createElement("canvas");
+        myConfettiCanvas.className = "confetti-canvas";
+        myConfettiCanvas.style.position = "fixed";
+        myConfettiCanvas.style.top = "0";
+        myConfettiCanvas.style.left = "0";
+        myConfettiCanvas.style.width = "100%";
+        myConfettiCanvas.style.height = "100%";
+        myConfettiCanvas.style.pointerEvents = "none";
+        myConfettiCanvas.style.zIndex = "99999";
+
+        document.body.appendChild(myConfettiCanvas);
+      }
+
+      confetti = window.confetti.create(myConfettiCanvas, {
+  resize: true,
+  useWorker: true
+});
+    }
+
+    var duration = 700;
+var end = Date.now() + duration;
+
+(function frame() {
+
+  confetti({
+    particleCount: 10,
+    spread: 70,
+    startVelocity: 55,
+    scalar: 1.2,
+    origin: { x: 0.5, y: 0.1 }
   });
-        // keep going until we are out of time
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      })();
 
-      checkVisibilityState();
-    });
-	
-  </script>
+  confetti({
+    particleCount: 6,
+    angle: 60,
+    spread: 55,
+    startVelocity: 60,
+    scalar: 1.0,
+    origin: { x: 0, y: 0.8 }
+  });
+
+  confetti({
+    particleCount: 6,
+    angle: 120,
+    spread: 55,
+    startVelocity: 60,
+    scalar: 1.0,
+    origin: { x: 1, y: 0.8 }
+  });
+
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
+
+})();
+
+   // checkVisibilityState();
+
+  } catch (e) {
+    console.log("Confetti gagal:", e);
+  }
+
+});
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
