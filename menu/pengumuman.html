@@ -476,6 +476,9 @@ function go(){
                 }
 
 function fhasil(data){
+	  if(data=="hack"){
+	  alert("Pengumuman Belum Dibuka/Jangan Setting Tanggal Sendiri Ya ..."); mload.style.display="none";return;
+	  }
       document.getElementById("musik").play();
       document.getElementById("buka").style.display="block"
       mload.style.display="none"
