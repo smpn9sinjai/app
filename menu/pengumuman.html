@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -384,11 +382,11 @@ const google = {
       };
     }
 
-   
+    const audio = document.getElementById("tepuk");
     function lihatPengumuman(d) {
      
       tampilkanMotivasi();
-      setTimeout(()=>{document.getElementById("musik").pause();document.getElementById("tepuk").play(); startButton.click() },500)
+      setTimeout(()=>{document.getElementById("musik").pause();audio.play(); startButton.click() },500)
         
       document.getElementById('fotoModal').src = "https://smpn9sinjai.sch.id/fotosiswa/"+ddata[d][3]+'.jpg';
       document.getElementById('namaModal').textContent = ddata[d][6];
@@ -497,7 +495,7 @@ function ferror(data){
  alert("ERROR: Tidak ada jaringan internet")
 }
 function stopAudio() {
-  const audio = document.getElementById("tepuk");
+  
   audio.pause();
   document.getElementById("musik").play();
   audio.currentTime = 0;
@@ -697,7 +695,7 @@ const observer = new MutationObserver(() => {
     if (document.body.classList.contains('modal-open')) {
         
     } else {
-         const audio = document.getElementById("tepuk");
+         
 		  audio.pause();
 		  document.getElementById("musik").play();
 		  audio.currentTime = 0;
@@ -708,6 +706,11 @@ observer.observe(document.body, {
     attributes: true,
     attributeFilter: ['class']
 });
+
+
+audio.onended = () => {
+    document.getElementById("musik").play();
+};
 </script>
  
 </body>
