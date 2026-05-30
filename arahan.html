@@ -4,26 +4,25 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">    
     <title>Website Saya</title>
     <style>
-        /* Kontainer Utama untuk membatasi ukuran luar */
+        /* Kontainer Utama */
         .wrapper-shorts {
             max-width: 360px; 
             margin: 0 auto; 
             position: relative; 
             overflow: hidden; 
             border-radius: 8px;
-            height: 600px; /* Batasi tinggi kontainer luar agar bagian bawah iframe terpotong */
+            height: 600px; /* Memotong bagian bawah */
         }
 
-        /* Kontainer khusus untuk memotong (crop) bagian atas dan bawah iframe */
+        /* Kontainer khusus untuk memotong (crop) bagian atas iframe */
         .crop-container {
             position: absolute;
-            top: -40px;    /* Menggeser iframe ke atas sejauh 40px untuk menyembunyikan logo/judul YouTube */
+            top: -40px;    /* Menggeser ke atas untuk menyembunyikan judul */
             left: 0;
             width: 100%;
-            height: 680px; /* Memberikan tinggi ekstra agar bagian bawahnya juga terpotong */
+            height: 680px; 
         }
 
-        /* Mengatur iframe agar memenuhi kontainer crop */
         .crop-container iframe {
             width: 100%;
             height: 100%;
@@ -42,6 +41,7 @@
             align-items: center; 
             justify-content: center; 
             background: rgba(0,0,0,0.1);
+            transition: opacity 0.3s ease;
         }
 
         .play-btn {
@@ -59,7 +59,7 @@
 <body>
 
 <div class="wrapper-shorts">        
-    <div id="play-cover" onclick="putarVideo()">
+    <div id="play-cover" onclick="putarVideo(event)">
         <div class="play-btn">
             <svg viewBox="0 0 24 24" width="30" height="30" fill="#333"><path d="M8 5v14l11-7z"/></svg>
         </div>
@@ -68,7 +68,7 @@
     <div class="crop-container">
         <iframe         
             id="video-shorts"
-            src="https://www.youtube.com/embed/4pEpsNgHfJ0?controls=0&rel=0&enablejsapi=1&mute=1" 
+            src="https://www.youtube.com/embed/4pEpsNgHfJ0?controls=1&rel=0" 
             title="Arahan Kepala Sekolah"         
             frameborder="0"         
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
@@ -77,12 +77,23 @@
 </div>
 
 <script>
-function putarVideo() {    
-    var iframe = document.getElementById("video-shorts");    
-    // Mengaktifkan autoplay. Kebijakan browser mengharuskan autoplay dalam kondisi mute (suara mati) agar bisa langsung berputar.
-    iframe.src += "&autoplay=1";        
-    // Menghilangkan lapisan klik setelah video berputar    
-    document.getElementById("play-cover").style.display = "none";
+function putarVideo(event) {    
+    var cover = document.getElementById("play-cover");
+    
+    // 1. Sembunyikan cover buatan kita terlebih dahulu
+    cover.style.opacity = "0";
+    cover.style.pointerEvents = "none"; 
+    
+    // 2. Simulasikan klik ulang tepat di posisi yang sama agar mengenai tombol play asli YouTube
+    var elemenDiBawah = document.elementFromPoint(event.clientX, event.clientY);
+    if (elemenDiBawah) {
+        elemenDiBawah.click();
+    }
+    
+    // 3. Hapus total cover dari layar setelah animasi selesai
+    setTimeout(function() {
+        cover.style.display = "none";
+    }, 300);
 }
 </script>
 
