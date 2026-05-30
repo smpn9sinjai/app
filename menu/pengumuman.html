@@ -178,7 +178,27 @@ canvas.confetti-canvas {
     width:100vw;
     height:100vh;
 }
-	  
+
+#btnSkip{
+    position:absolute;
+    bottom:100px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#211d17;
+    color:white;
+    padding:10px 30px;
+    border-radius:20px;
+    cursor:pointer;
+    z-index:100;
+}
+
+/* Desktop */
+@media (min-width: 768px){
+    #btnSkip{
+        left:10px;
+        transform:none;
+    }
+}
 </style>
 
 </head>
@@ -190,21 +210,7 @@ canvas.confetti-canvas {
             <svg viewBox="0 0 24 24" width="30" height="30" fill="#333"><path d="M8 5v14l11-7z"/></svg>        
         </div>    
     </div>-->
-   <div onclick="gobuka()"
-     style="
-        position:absolute;
-        left:50%;
-        bottom:100px;
-        transform:translateX(-50%);
-        background:rgba(0,0,0,.7);
-        color:#fff;
-        padding:10px 30px;
-        border-radius:20px;
-        cursor:pointer;
-        z-index:100;
-     ">
-    SKIP
-</div>
+   <div id="btnSkip" onclick="gobuka()">SKIP</div>
 	
 	<iframe         
         id="video-shorts"        
