@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -224,10 +225,9 @@ function putarVideo() {
 function onPlayerStateChange(event) {
     // YT.PlayerState.ENDED artinya video telah selesai diputar
     if (event.data === YT.PlayerState.ENDED) {
-        alert("Video selesai diputar"); 
-        
-        // Opsional: Jika ingin memunculkan kembali tombol play setelah selesai, hapus komentar di bawah ini:
-        // document.getElementById("play-cover").style.display = "flex";
+	  document.getElementById("arahan").style.display="none";
+       // alert("Video selesai diputar"); 
+        gobuka()
     }
 }
 	function tampilkanVideo(){
@@ -819,6 +819,16 @@ tr = document.createElement('tr');
 
 
 let mload=document.getElementById("load")
+
+function govideo(){
+document.getElementById("time").style.display="none"
+tampilkanVideo();
+  
+
+
+
+}
+
 function gobuka(){
 document.getElementById("time").style.display="none"
 
