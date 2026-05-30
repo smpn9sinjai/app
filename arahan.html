@@ -1,99 +1,42 @@
-<!DOCTYPE html><html lang="id"><head>    
-    <meta charset="UTF-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <meta name="referrer" content="strict-origin-when-cross-origin">    
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Website Saya</title>
-    <style>
-        /* Kontainer Utama */
-        .wrapper-shorts {
-            max-width: 360px; 
-            margin: 0 auto; 
-            position: relative; 
-            overflow: hidden; 
-            border-radius: 8px;
-            height: 600px; /* Memotong bagian bawah */
-        }
-
-        /* Kontainer khusus untuk memotong (crop) bagian atas iframe */
-        .crop-container {
-            position: absolute;
-            top: -40px;    /* Menggeser ke atas untuk menyembunyikan judul */
-            left: 0;
-            width: 100%;
-            height: 680px; 
-        }
-
-        .crop-container iframe {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Lapisan cover klik buatan sendiri */
-        #play-cover {
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 10; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            background: rgba(0,0,0,0.1);
-            transition: opacity 0.3s ease;
-        }
-
-        .play-btn {
-            background: rgba(255, 255, 255, 0.8); 
-            border-radius: 50%; 
-            width: 60px; 
-            height: 60px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-    </style>
 </head>
 <body>
 
-<div class="wrapper-shorts">        
-    <div id="play-cover" onclick="putarVideo(event)">
-        <div class="play-btn">
+<div style="max-width: 360px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 8px;">
+    
+    <div id="play-cover" onclick="putarVideo()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">
+        <div style="background: rgba(255, 255, 255, 0.8); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
             <svg viewBox="0 0 24 24" width="30" height="30" fill="#333"><path d="M8 5v14l11-7z"/></svg>
         </div>
     </div>
-    
-    <div class="crop-container">
-        <iframe         
-            id="video-shorts"
-            src="https://www.youtube.com/embed/4pEpsNgHfJ0?controls=1&rel=0" 
-            title="Arahan Kepala Sekolah"         
-            frameborder="0"         
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-        </iframe>
-    </div>
+
+    <iframe 
+        id="video-shorts"
+        width="100%" 
+        height="640" 
+        src="https://www.youtube.com/embed/4pEpsNgHfJ0?controls=0&modestbranding=1&rel=0&enablejsapi=1" 
+        title="Arahan Kepala Sekolah" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        style="position: relative; z-index: 1;">
+    </iframe>
 </div>
 
 <script>
-function putarVideo(event) {    
-    var cover = document.getElementById("play-cover");
+function putarVideo() {
+    var iframe = document.getElementById("video-shorts");
+    // Mengubah link iframe secara instan dengan menambahkan perintah autoplay aktif (dan suara menyala)
+    iframe.src += "&autoplay=1";
     
-    // 1. Sembunyikan cover buatan kita terlebih dahulu
-    cover.style.opacity = "0";
-    cover.style.pointerEvents = "none"; 
-    
-    // 2. Simulasikan klik ulang tepat di posisi yang sama agar mengenai tombol play asli YouTube
-    var elemenDiBawah = document.elementFromPoint(event.clientX, event.clientY);
-    if (elemenDiBawah) {
-        elemenDiBawah.click();
-    }
-    
-    // 3. Hapus total cover dari layar setelah animasi selesai
-    setTimeout(function() {
-        cover.style.display = "none";
-    }, 300);
+    // Menghilangkan lapisan klik setelah video berputar
+    document.getElementById("play-cover").style.display = "none";
 }
 </script>
 
