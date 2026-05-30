@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+<head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="referrer" content="strict-origin-when-cross-origin">    
     <title>Website Saya</title>
 </head>
 <body>
 
-<div style="max-width: 360px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 8px;">
-
-    <div id="play-cover" onclick="putarVideo()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">
-        <div style="background: rgba(255, 255, 255, 0.8); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="#333">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-        </div>
+<div style="max-width: 360px; margin: 0 auto; position: relative; overflow: hidden; border-radius: 8px;">        
+    <div id="play-cover" onclick="putarVideo()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">        
+        <div style="background: rgba(255, 255, 255, 0.8); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">            
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="#333"><path d="M8 5v14l11-7z"/></svg>        
+        </div>    
     </div>
-
-    <div id="video-shorts"></div>
-
+    
+    <iframe         
+        id="video-shorts"        
+        width="100%"         
+        height="640"         
+        src="https://www.youtube.com/embed/ItXHI6V2jA4?controls=0&modestbranding=1&rel=0&enablejsapi=1"         
+        title="Arahan Kepala Sekolah"         
+        frameborder="0"         
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"        
+        style="position: relative; z-index: 1;">    
+    </iframe>
 </div>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
-let player;
+var player;
 
+// Fungsi ini otomatis berjalan saat YouTube API siap
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('video-shorts', {
-        width: '100%',
-        height: '640',
-        videoId: 'ItXHI6V2jA4',
-        playerVars: {
-            controls: 0,
-            modestbranding: 1,
-            rel: 0
-        },
         events: {
             'onStateChange': onPlayerStateChange
         }
     });
 }
 
-function putarVideo() {
+function putarVideo() {    
+    // Menjalankan video lewat API YouTube
+    if (player && typeof player.playVideo === 'function') {
+        player.playVideo();
+    }
+    
+    // Menghilangkan lapisan klik setelah video berputar
     document.getElementById("play-cover").style.display = "none";
-    player.playVideo();
 }
 
+// Fungsi untuk mendeteksi perubahan status video
 function onPlayerStateChange(event) {
+    // YT.PlayerState.ENDED artinya video telah selesai diputar
     if (event.data === YT.PlayerState.ENDED) {
-        alert("Video selesai diputar");
+        alert("Video selesai diputar"); 
+        
+        // Opsional: Jika ingin memunculkan kembali tombol play setelah selesai, hapus komentar di bawah ini:
+        // document.getElementById("play-cover").style.display = "flex";
     }
 }
 </script>
