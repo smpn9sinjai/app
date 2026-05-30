@@ -180,6 +180,7 @@ canvas.confetti-canvas {
 }
 
 #btnSkip{
+	display:none;
     position:absolute;
     bottom:100px;
     left:50%;
@@ -249,8 +250,22 @@ function putarVideo() {
 }
 
 // Fungsi untuk mendeteksi perubahan status video
+let skipSudahMuncul = false;
 function onPlayerStateChange(event) {
     // YT.PlayerState.ENDED artinya video telah selesai diputar
+
+     if (event.data === YT.PlayerState.PLAYING && !skipSudahMuncul) {
+
+        skipSudahMuncul = true;
+
+        // Munculkan tombol setelah 10 detik
+        setTimeout(() => {
+            document.getElementById("btnSkip").style.display = "block";
+        }, 10000);
+    }
+
+
+	
     if (event.data === YT.PlayerState.ENDED) {
 	  document.getElementById("arahan").style.display="none";
        // alert("Video selesai diputar"); 
