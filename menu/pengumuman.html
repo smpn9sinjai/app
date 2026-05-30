@@ -177,7 +177,7 @@ canvas.confetti-canvas {
 </head>
 <body>
 
-<div id="arahan" style="max-width: 360px;display:block; margin: 0 auto; position: relative; overflow: hidden; border-radius: 8px;">        
+<div id="arahan" style="max-width: 360px;display:none; margin: 0 auto; position: relative; overflow: hidden; border-radius: 8px;">        
     <div id="play-cover" onclick="putarVideo()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">        
         <div style="background: rgba(255, 255, 255, 0.8); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">            
             <svg viewBox="0 0 24 24" width="30" height="30" fill="#333"><path d="M8 5v14l11-7z"/></svg>        
@@ -229,6 +229,21 @@ function onPlayerStateChange(event) {
         // Opsional: Jika ingin memunculkan kembali tombol play setelah selesai, hapus komentar di bawah ini:
         // document.getElementById("play-cover").style.display = "flex";
     }
+}
+	function tampilkanVideo(){
+    document.getElementById("arahan").style.display="block";
+
+    if(!player){
+        player = new YT.Player('video-shorts', {
+            events:{
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    setTimeout(()=>{
+        player.playVideo();
+    },1000);
 }
 </script>
 
