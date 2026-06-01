@@ -889,15 +889,25 @@ function go(){
 
 function fhasil(data){
 	  if(data=="hack"){
-	   mload.innerHTML=`<center>
-	  <b><h5> 📢 Pengumuman Belum Tersedia<h5></b>
-    <p>
-       Sistem pengumuman akan terbuka secara otomatis sesuai jadwal yang telah ditetapkan oleh sekolah.
-<p>
-⏳ Harap bersabar menunggu waktu pengumuman.<br>
-⚠️ Jangan mengubah tanggal atau waktu pada perangkat Anda.</center>
-	   `
-	   return;
+	   mload.innerHTML = `
+<div style="text-align:center;padding:20px;">
+  <h4 style="margin-bottom:15px;">📢 Pengumuman Belum Tersedia</h4>
+
+  <p>
+    Sistem pengumuman akan terbuka secara otomatis sesuai jadwal
+    yang telah ditetapkan oleh sekolah.
+  </p>
+
+  <p>
+    ⏳ Harap bersabar menunggu waktu pengumuman.
+  </p>
+
+  <p style="color:#dc3545;font-weight:bold;">
+    ⚠️ Jangan mengubah tanggal atau waktu pada perangkat Anda.
+  </p>
+</div>
+`;
+return;
 	 // alert("Pengumuman Belum Dibuka/Jangan Setting Tanggal Sendiri Ya ..."); mload.style.display="none";return;
 	  }
       document.getElementById("musik").play();
