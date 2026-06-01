@@ -685,6 +685,9 @@ function cekKelulusan(){
                   <td><strong>Status</strong></td>
                   <td><span id="statusModal" class="fw-bold"></span></td>
                 </tr>
+				  <tr>
+					  <td id="ketr"></td>
+				  </tr>
               </tbody>
             </table>
           </div>
@@ -769,7 +772,22 @@ function cekKelulusan(){
       document.getElementById('kelasModal').textContent = ddata[d][4];
       document.getElementById('statusModal').textContent = ddata[d][22];
       document.getElementById('statusModal').className = ddata[d][21] === "LULUS" ? "text-success fw-bold" : "text-danger fw-bold";
-      document.getElementById('sklModalLink').href = ddata[d][23];
+	 document.getElementById('ketr').innerHTML =`
+				     🎓 <b>SELAMAT!</b>
+				<p>
+				Berdasarkan hasil penilaian dan rapat dewan guru,
+				<b>Anda dinyatakan ${ddata[d][21]}</b> dari UPTD SMPN 9 Sinjai
+				Tahun Pelajaran 2025/2026.
+				<p>
+				Terima kasih atas dedikasi dan usaha yang telah
+				diberikan selama menempuh pendidikan.
+				Semoga sukses di jenjang pendidikan berikutnya.
+				<p>
+				"Selamat atas kelulusanmu! Ini adalah awal dari
+				petualangan baru." 🌟
+				<p>
+					 `
+	document.getElementById('sklModalLink').href = ddata[d][23];
 
       const nilaiBody = document.getElementById('nilaiModalBody');
       nilaiBody.innerHTML = '';
