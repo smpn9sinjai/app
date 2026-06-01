@@ -724,9 +724,7 @@ function cekKelulusan(){
 
 
   <script>
-      var modal1 = new bootstrap.Modal(
-            document.getElementById('pengumumanModal')
-        ); 
+   
     let ddata ='';
        
     function renderTable() {
@@ -763,7 +761,9 @@ function cekKelulusan(){
 		setTimeout(()=>{ document.getElementById("hasil").innerHTML=""},3000)
 	 return;};
 	 
-	  
+	     var modal1 = new bootstrap.Modal(
+            document.getElementById('pengumumanModal')
+        ); 
 
         modal1.show();
       
