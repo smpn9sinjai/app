@@ -724,7 +724,7 @@ function cekKelulusan(){
 
 
   <script>
-   
+   var bmodal='';
     let ddata ='';
        
     function renderTable() {
@@ -765,6 +765,7 @@ function cekKelulusan(){
         var modal1 = new bootstrap.Modal(
             document.getElementById('pengumumanModal')
         ); 
+		bmodal=modal1;
         modal1.show();
       
       setTimeout(()=>{document.getElementById("musik").pause();audio.play(); startButton.click() },500)
@@ -856,10 +857,7 @@ document.getElementById("time").style.display="none"
 tampilkanVideo();
 }
 function tutup(){
-	var modal12 = new bootstrap.Modal(
-            document.getElementById('pengumumanModal')
-        ); 
-        modal12.hide();
+	 bmodal.hide();
 	    stopAudio();
 }
 	  
