@@ -748,10 +748,6 @@ function cekKelulusan(){
     }
 
     const audio = document.getElementById("tepuk");
-
-	   var modal1 = new bootstrap.Modal(
-            document.getElementById('pengumumanModal')
-        ); 
     function lihatPengumuman(d) {
 	var giu=0;
       for (var i=0;i<ddata.length;i++){
@@ -766,7 +762,9 @@ function cekKelulusan(){
 	 return;};
 	 
 	  
-
+        var modal1 = new bootstrap.Modal(
+            document.getElementById('pengumumanModal')
+        ); 
         modal1.show();
       
       setTimeout(()=>{document.getElementById("musik").pause();audio.play(); startButton.click() },500)
@@ -862,7 +860,11 @@ tampilkanVideo();
 
 }
 function tutup(){
-	  modal1.hide();
+	var modal12 = new bootstrap.Modal(
+            document.getElementById('pengumumanModal')
+        ); 
+        modal12.hide();
+	    stopAudio()
 }
 	  
 	  
