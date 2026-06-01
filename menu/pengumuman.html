@@ -686,7 +686,7 @@ function cekKelulusan(){
                   <td><span id="statusModal" class="fw-bold"></span></td>
                 </tr>
 				  <tr>
-					  <td id="ketr"></td>
+					  <td colspan="2" id="ketr"></td>
 				  </tr>
               </tbody>
             </table>
@@ -700,7 +700,7 @@ function cekKelulusan(){
             </table>
           </div>
           <br>
-           <div style="background:#fff7b3;color:#7a7228;border-radius:6px;border-left:4px solid #7a7228;padding:3px" id="motivasi">     </div>
+           <p></p>
           <a id="sklModalLink" class="btn btn-success mt-3" target="_blank">Download SKL</a>
         </div>
       </div>
@@ -762,7 +762,7 @@ function cekKelulusan(){
         );
 
         modal1.show();
-      tampilkanMotivasi();
+      
       setTimeout(()=>{document.getElementById("musik").pause();audio.play(); startButton.click() },500)
         
       document.getElementById('fotoModal').src = "https://smpn9sinjai.sch.id/fotosiswa/"+ddata[d][3]+'.jpg';
@@ -772,21 +772,27 @@ function cekKelulusan(){
       document.getElementById('kelasModal').textContent = ddata[d][4];
       document.getElementById('statusModal').textContent = ddata[d][22];
       document.getElementById('statusModal').className = ddata[d][21] === "LULUS" ? "text-success fw-bold" : "text-danger fw-bold";
-	 document.getElementById('ketr').innerHTML =`
+	 document.getElementById('ketr').innerHTML =`<p>
 				     🎓 <b>SELAMAT!</b>
 				<p>
 				Berdasarkan hasil penilaian dan rapat dewan guru,
-				<b>Anda dinyatakan ${ddata[d][21]}</b> dari UPTD SMPN 9 Sinjai
-				Tahun Pelajaran 2025/2026.
+				<b>Anda dinyatakan ${ddata[d][22]}</b> dari UPTD SMPN 9 Sinjai
+				Tahun Ajaran 2025/2026.
 				<p>
 				Terima kasih atas dedikasi dan usaha yang telah
 				diberikan selama menempuh pendidikan.
 				Semoga sukses di jenjang pendidikan berikutnya.
 				<p>
-				"Selamat atas kelulusanmu! Ini adalah awal dari
-				petualangan baru." 🌟
+				"
+				<div style="background:#fff7b3;color:#7a7228;border-radius:6px;border-left:4px solid #7a7228;padding:3px" id="motivasi">     </div>
+				
+				
+				" 🌟
 				<p>
 					 `
+
+
+	tampilkanMotivasi();	
 	document.getElementById('sklModalLink').href = ddata[d][23];
 
       const nilaiBody = document.getElementById('nilaiModalBody');
