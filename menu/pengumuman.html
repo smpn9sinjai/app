@@ -681,10 +681,10 @@ function cekKelulusan(){
                 <tr><td><strong>NIS</strong></td><td id="nisModal"></td></tr>
                 <tr><td><strong>NISN</strong></td><td id="nisnModal"></td></tr>
                 <tr><td><strong>Kelas</strong></td><td id="kelasModal"></td></tr>
-                <tr>
+              <!--  <tr>
                   <td><strong>Status</strong></td>
                   <td><span id="statusModal" class="fw-bold"></span></td>
-                </tr>
+                </tr>-->
 				  <tr>
 					  <td colspan="2" id="ketr"></td>
 				  </tr>
@@ -771,8 +771,8 @@ function cekKelulusan(){
       document.getElementById('nisModal').textContent = ddata[d][2];
       document.getElementById('nisnModal').textContent = ddata[d][3];
       document.getElementById('kelasModal').textContent = ddata[d][4];
-      document.getElementById('statusModal').textContent = ddata[d][22];
-      document.getElementById('statusModal').className = ddata[d][21] === "LULUS" ? "text-success fw-bold" : "text-danger fw-bold";
+      //document.getElementById('statusModal').textContent = ddata[d][22];
+      //document.getElementById('statusModal').className = ddata[d][21] === "LULUS" ? "text-success fw-bold" : "text-danger fw-bold";
 	 document.getElementById('ketr').innerHTML =`<p>
 				     🎓 <b>SELAMAT!</b>
 				<p>
