@@ -274,7 +274,7 @@ function cekKelulusan(){
    
    
    
-  <div style="position: sticky; top: 0; z-index: 2; padding: 5px 0;display:block">
+  <div id="sbuka" style="position: sticky; top: 0; z-index: 2; padding: 5px 0;display:none">
     <center><span style="font-size:20px;font-weight:bold"    class="text-center mb-4">Daftar Peserta TKA 2026</span></center>
     <div class="table-box" style="padding:5px;">
       <div class="table-responsive" style="max-height: 88vh; overflow-y: auto;border-radius:6px">
@@ -381,6 +381,7 @@ function fhasil(data){
      
       audio1.play();
       mload.style.display="none"
+	  document.getElementById("sbuka").style.display="block"
 	  audio1.onended = () => {
     audio1.play();
 };
