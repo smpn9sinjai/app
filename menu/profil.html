@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - UPTD SMP Negeri 9 Sinjai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f4f7fb;
+      color:#1f2937;
+      line-height:1.7;
+    }
+
+```
+.hero{
+  background:linear-gradient(135deg,#0f4c81,#1d4ed8);
+  color:white;
+  padding:70px 20px;
+  text-align:center;
+  
+}
+.hero h1{
+  font-size:42px;
+  font-weight:900;
+  margin-bottom:30px;
+   margin-top:20px;
+}
+.hero p{
+  font-size:18px;
+  opacity:.95;
+}
+
+.container{
+  max-width:1100px;
+  margin:-40px auto 50px;
+  padding:0 20px;
+}
+
+.card{
+  background:white;
+  border-radius:22px;
+  box-shadow:0 15px 40px rgba(15,76,129,.12);
+  padding:35px;
+  margin-bottom:30px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:28px;
+  font-weight:800;
+  color:#0f4c81;
+  margin-bottom:20px;
+}
+
+.section-title i{
+  color:#2563eb;
+}
+
+.headmaster{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+.headmaster img{
+  width:220px;
+  height:260px;
+  object-fit:cover;
+  border-radius:18px;
+  border:5px solid #e5eef8;
+}
+
+.headmaster h3{
+  font-size:26px;
+  color:#111827;
+  margin-bottom:8px;
+}
+
+.headmaster .position{
+  color:#2563eb;
+  font-weight:700;
+  margin-bottom:16px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.info-box{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:20px;
+}
+
+.info-box h4{
+  color:#0f4c81;
+  margin-bottom:10px;
+  font-size:16px;
+}
+
+.vision-mission{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.panel{
+  background:#f8fafc;
+  border-radius:18px;
+  padding:24px;
+  border:1px solid #e5e7eb;
+}
+
+.panel h3{
+  color:#0f4c81;
+  margin-bottom:14px;
+  font-size:22px;
+}
+
+.panel ul{
+  padding-left:20px;
+}
+
+.panel li{
+  margin-bottom:10px;
+}
+
+.facility-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+}
+
+.facility{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+  transition:.3s;
+}
+
+.facility:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 24px rgba(37,99,235,.12);
+}
+
+.facility i{
+  font-size:34px;
+  color:#2563eb;
+  margin-bottom:12px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+  margin-top:10px;
+}
+
+.stat{
+  background:linear-gradient(135deg,#eff6ff,#dbeafe);
+  border-radius:18px;
+  padding:24px;
+  text-align:center;
+}
+
+.stat h3{
+  font-size:34px;
+  color:#1d4ed8;
+  margin-bottom:6px;
+}
+
+.achievement-list{
+  display:grid;
+  gap:16px;
+}
+
+.achievement{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  padding:18px;
+  border-radius:16px;
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+}
+
+.achievement i{
+  color:#f59e0b;
+  font-size:22px;
+  margin-top:4px;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.contact-item{
+  display:flex;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.contact-item i{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#eff6ff;
+  color:#2563eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+footer{
+  background:#0f4c81;
+  color:white;
+  text-align:center;
+  padding:28px 20px;
+  margin-top:40px;
+}
+
+@media(max-width:768px){
+  .hero h1{font-size:30px}
+  .headmaster{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .headmaster img{
+    margin:auto;
+  }
+  .vision-mission,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+  .card{
+    padding:24px;
+  }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+   <center> <span><h1 style="color:#0f4c81;" >Profil UPTD SMP Negeri 9 Sinjai</h1></span><br></center>
+  </section>
+
+
+  <div class="container">
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-school"></i>
+    <span>Tentang Sekolah</span>
+  </div>
+  <p>
+    UPTD SMP Negeri 9 Sinjai merupakan salah satu sekolah menengah pertama negeri di Kabupaten Sinjai
+    yang berkomitmen memberikan layanan pendidikan berkualitas, membentuk karakter peserta didik,
+    serta mengembangkan potensi akademik dan nonakademik secara optimal.
+  </p>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>Nama Sekolah</h4>
+      <p>UPTD SMP Negeri 9 Sinjai</p>
+    </div>
+    <div class="info-box">
+      <h4>Status</h4>
+      <p>Sekolah Negeri</p>
+    </div>
+    <div class="info-box">
+      <h4>Jenjang</h4>
+      <p>Sekolah Menengah Pertama (SMP)</p>
+    </div>
+    <div class="info-box">
+      <h4>Lokasi</h4>
+      <p>Kabupaten Sinjai, Sulawesi Selatan</p>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-user-tie"></i>
+    <span>Sambutan Kepala Sekolah</span>
+  </div>
+
+  <div class="headmaster">
+    <img src="https://smpn9sinjai.sch.id//foto/A001.jpg" alt="Kepala Sekolah">
+    <div>
+      <h3>TASLIM M., S.Pd.</h3>
+      <div class="position">Kepala UPTD SMP Negeri 9 Sinjai</div>
+      <p>
+        Selamat datang di website resmi UPTD SMP Negeri 9 Sinjai.
+        Website ini menjadi media informasi, komunikasi, dan publikasi kegiatan sekolah
+        kepada peserta didik, orang tua, alumni, dan masyarakat.
+      </p>
+      <p style="margin-top:14px;">
+        Kami berkomitmen menciptakan lingkungan belajar yang aman, nyaman, inklusif,
+        serta mendorong peserta didik menjadi pribadi yang beriman, berakhlak mulia,
+        disiplin, kreatif, dan mampu menghadapi tantangan masa depan.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-bullseye"></i>
+    <span>Visi dan Misi</span>
+  </div>
+
+  <div class="vision-mission">
+    <div class="panel">
+      <h3>Visi</h3>
+      <p>
+        Mewujudkan Generasi BerAKSI yang Unggul dalam Ilmu Pengetahuan dan Teknologi, Berkarakter Profil Lulusan Indonesia, Berdaya Saing Global, Sehat, Inklusif, Peduli Lingkungan, serta Menjunjung Tinggi Nilai-Nilai Kearifan Lokal dan Keimanan
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>Misi</h3>
+      <ul>
+        <li>1. Menumbuhkan keimanan, ketakwaan, dan akhlak mulia melalui pembiasaan ibadah rutin, integrasi nilai spiritual di kelas, serta implementasi program 7 Kebiasaan Anak Indonesia Hebat.</li>
+		 <li>2. Menyelenggarakan pembelajaran mendalam (deep learning) berbasis IPTEK secara kreatif untuk meningkatkan kemampuan literasi digital, numerasi modern, dan penalaran kritis murid agar siap bersaing di kancah global. </li>
+		  <li>3.Mengembangkan kurikulum inklusif dan memfasilitasi Layanan Bimbingan Konseling (BK) yang responsif guna menciptakan ekosistem belajar yang sehat, aman, nyaman, serta bebas dari segala bentuk perundungan dan kekerasan.</li>
+		   <li>4. Mengintegrasikan Pendidikan Perubahan Iklim dan gerakan pelestarian lingkungan ke dalam aktivitas intrakurikuler dan kokurikuler berbasis potensi geografis lokal.</li>
+		    <li>5. Melestarikan budaya daerah melalui pembiasaan kearifan lokal "Sipakatau, Sipakalebbi, Sipakainge" serta membangun kemitraan sinergis bersama orang tua murid dan instansi lintas sektor.</li>
+			 <li>6. Mengaktifkan Komunitas Belajar (Kombel) internal secara berkala sebagai motor penggerak reformasi mengajar guru dalam meningkatkan kompetensi pedagogis dan profesional secara mandiri.</li>
+        
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-landmark"></i>
+    <span>Sejarah Singkat</span>
+  </div>
+  <p>
+    UPTD SMP Negeri 9 Sinjai didirikan untuk memenuhi kebutuhan layanan pendidikan
+    tingkat menengah pertama di wilayah Kabupaten Sinjai.
+    Seiring perkembangan zaman, sekolah terus berbenah dalam peningkatan mutu pendidikan,
+    sarana prasarana, pengembangan sumber daya manusia, dan transformasi digital.
+  </p>
+  <p style="margin-top:14px;">
+    Berbagai program unggulan dikembangkan untuk mendukung peningkatan kompetensi peserta didik,
+    termasuk kegiatan literasi, ekstrakurikuler, pembinaan karakter,
+    serta pemanfaatan teknologi dalam proses pembelajaran.
+  </p>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-building"></i>
+    <span>Fasilitas Sekolah</span>
+  </div>
+
+  <div class="facility-grid">
+    <div class="facility">
+      <i class="fas fa-door-open"></i>
+      <h4>Ruang Kelas</h4>
+      <p>Ruang belajar yang nyaman dan representatif.</p>
+    </div>
+
+    <div class="facility">
+      <i class="fas fa-laptop"></i>
+      <h4>Laboratorium</h4>
+      <p>Fasilitas komputer dan teknologi informasi.</p>
+    </div>
+
+    <div class="facility">
+      <i class="fas fa-book"></i>
+      <h4>Perpustakaan</h4>
+      <p>Koleksi buku dan sumber belajar yang memadai.</p>
+    </div>
+
+    <div class="facility">
+      <i class="fas fa-wifi"></i>
+      <h4>Internet</h4>
+      <p>Akses internet untuk mendukung pembelajaran digital.</p>
+    </div>
+
+    <div class="facility">
+      <i class="fas fa-futbol"></i>
+      <h4>Lapangan</h4>
+      <p>Sarana olahraga dan kegiatan ekstrakurikuler.</p>
+    </div>
+
+    <div class="facility">
+      <i class="fas fa-mosque"></i>
+      <h4>Ruang Ibadah</h4>
+      <p>Mendukung pembinaan karakter dan spiritual.</p>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-users"></i>
+    <span>Tenaga Pendidik dan Kependidikan</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <h3>16</h3>
+      <p>Guru dan Tenaga Kependidikan</p>
+    </div>
+
+    <div class="stat">
+      <h3>6</h3>
+      <p>Rombongan Belajar</p>
+    </div>
+
+    <div class="stat">
+      <h3>101</h3>
+      <p>Peserta Didik</p>
+    </div>
+
+    <div class="stat">
+      <h3>37</h3>
+      <p>Perangkat Chromebook Dan PC Dekstop</p>
+    </div>
+  </div>
+
+  <p style="margin-top:18px;">
+    Seluruh tenaga pendidik dan kependidikan bekerja secara profesional
+    untuk memberikan pelayanan pendidikan terbaik kepada peserta didik.
+  </p>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-trophy"></i>
+    <span>Prestasi Sekolah</span>
+  </div>
+
+  <div class="achievement-list">
+    <div class="achievement">
+      <i class="fas fa-award"></i>
+      <div>
+        <strong>Prestasi Akademik</strong>
+        <p>Partisipasi dan pencapaian peserta didik pada berbagai kompetisi akademik tingkat kabupaten dan provinsi.</p>
+      </div>
+    </div>
+
+    <div class="achievement">
+      <i class="fas fa-medal"></i>
+      <div>
+        <strong>Prestasi Nonakademik</strong>
+        <p>Kejuaraan olahraga, seni, pramuka, dan berbagai kegiatan ekstrakurikuler.</p>
+      </div>
+    </div>
+
+    <div class="achievement">
+      <i class="fas fa-star"></i>
+      <div>
+        <strong>Pengembangan Karakter</strong>
+        <p>Implementasi program pembiasaan positif, literasi, dan kegiatan sosial kemasyarakatan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-title">
+    <i class="fas fa-envelope"></i>
+    <span>Kontak Sekolah</span>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <div>
+          <strong>Alamat</strong>
+          <p>Jl. Bululohe No. 50 Bulupoddo Desa lammati Riattang Kec. Bulupoddo Kab. Sinjai Prov. Sulawesi Selatan</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <div>
+          <strong>Telepon</strong>
+          <p>-</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <div>
+          <strong>Email</strong>
+          <p>smpn9sinjai@gmail.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-item">
+        <i class="fas fa-globe"></i>
+        <div>
+          <strong>Website</strong>
+          <p>https://smpn9sinjai.sch.id</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <i class="fab fa-facebook"></i>
+        <div>
+          <strong>Facebook</strong>
+          <p>smpn9sinjai</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <i class="fab fa-instagram"></i>
+        <div>
+          <strong>Instagram</strong>
+          <p>@smpn9sinjai</p>
+        </div>
+      </div>
+	  <div class="contact-item">
+  <i class="fab fa-youtube"></i>
+  <div>
+    <strong>YouTube</strong>
+    <p>@smpn9sinjai</p>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+```
+
+  </div>
+
+  <footer>
+    
+    <p style="margin-top:8px;opacity:.9">© 2026 UPTD SMP Negeri 9 Sinjai </p>
+  </footer>
+
+</body>
+</html>
