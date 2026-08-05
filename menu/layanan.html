@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan Administrasi Sekolah - SMP Negeri 9 Sinjai</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#2563eb;
+  --secondary:#1e40af;
+  --success:#16a34a;
+  --warning:#f59e0b;
+  --danger:#dc2626;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+}
+
+body{
+  font-family:"Inter",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+.hero{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+  border-radius:24px;
+  padding:40px;
+  box-shadow:0 20px 40px rgba(37,99,235,.18);
+  margin-bottom:28px;
+}
+
+.hero h1{
+  font-size:2rem;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.hero p{
+  opacity:.95;
+  max-width:760px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:22px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 10px 24px rgba(15,23,42,.06);
+  transition:.25s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 34px rgba(15,23,42,.10);
+}
+
+.icon{
+  width:56px;
+  height:56px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:1.3rem;
+  margin-bottom:18px;
+}
+
+.blue{background:var(--primary);}
+.green{background:var(--success);}
+.orange{background:var(--warning);}
+.red{background:var(--danger);}
+.indigo{background:#4f46e5;}
+
+.card h2{
+  font-size:1.2rem;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:var(--muted);
+  margin-bottom:16px;
+}
+
+.section-title{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--text);
+  margin:16px 0 10px;
+}
+
+ul{
+  list-style:none;
+  padding-left:0;
+}
+
+ul li{
+  position:relative;
+  padding-left:24px;
+  margin-bottom:8px;
+}
+
+ul li::before{
+  content:"\f00c";
+  font-family:"Font Awesome 6 Free";
+  font-weight:900;
+  position:absolute;
+  left:0;
+  color:var(--success);
+}
+
+.info{
+  margin-top:32px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+}
+
+.info h2{
+  font-size:1.3rem;
+  margin-bottom:16px;
+}
+
+.hours{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.hour-card{
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  background:#f9fafb;
+}
+
+.hour-card h3{
+  font-size:1rem;
+  margin-bottom:6px;
+}
+
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:.95rem;
+  margin:30px 0 10px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#eff6ff;
+  color:var(--primary);
+  border:1px solid #dbeafe;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.9rem;
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+@media (max-width:768px){
+  .container{
+    margin:20px auto;
+    padding:0 14px;
+  }
+  .hero{
+    padding:28px 22px;
+  }
+  .hero h1{
+    font-size:1.6rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="badge"><i class="fas fa-shield-heart"></i> Layanan Administrasi Sekolah</div>
+    <h1>Legalisir & Mutasi Peserta Didik</h1>
+    <p>Informasi lengkap mengenai layanan legalisir ijazah, rapor, surat keterangan lulus (SKL), mutasi masuk, dan mutasi keluar di UPTD SMP Negeri 9 Sinjai.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon blue"><i class="fas fa-graduation-cap"></i></div>
+      <h2>Legalisir Ijazah</h2>
+      <p>Layanan legalisir ijazah bagi alumni untuk keperluan pendidikan, pekerjaan, dan administrasi lainnya.</p>
+
+      <div class="section-title">Persyaratan</div>
+      <ul>
+        <li>Fotokopi ijazah</li>
+        <li>Menunjukkan ijazah asli</li>
+        
+      </ul>
+
+      <div class="section-title">Estimasi waktu</div>
+      <p><strong>1–3 hari kerja</strong></p>
+    </div>
+
+    <div class="card">
+      <div class="icon green"><i class="fas fa-book-open"></i></div>
+      <h2>Legalisir Rapor</h2>
+      <p>Layanan pengesahan salinan rapor bagi peserta didik maupun alumni.</p>
+
+      <div class="section-title">Persyaratan</div>
+      <ul>
+        <li>Fotokopi rapor</li>
+        <li>Rapor asli</li>
+         
+      </ul>
+
+      <div class="section-title">Estimasi waktu</div>
+      <p><strong>1–2 hari kerja</strong></p>
+    </div>
+
+    <div class="card">
+      <div class="icon orange"><i class="fas fa-file-signature"></i></div>
+      <h2>Legalisir SKL</h2>
+      <p>Legalisir Surat Keterangan Lulus untuk keperluan pendaftaran sekolah, perguruan tinggi, atau administrasi lainnya.</p>
+
+      <div class="section-title">Persyaratan</div>
+      <ul>
+        <li>Fotokopi SKL</li>
+        <li>SKL asli</li>
+      
+      </ul>
+
+      <div class="section-title">Estimasi waktu</div>
+      <p><strong>1 hari kerja</strong></p>
+    </div>
+
+    <div class="card">
+      <div class="icon indigo"><i class="fas fa-right-to-bracket"></i></div>
+      <h2>Mutasi Masuk</h2>
+      <p>Layanan bagi peserta didik yang pindah dari sekolah lain ke UPTD SMP Negeri 9 Sinjai.</p>
+
+      <div class="section-title">Persyaratan</div>
+      <ul>
+        <li>Surat pindah dari sekolah asal</li>
+        <li>Rapor yang telah dilegalisir</li>
+        <li>Fotokopi KK dan Akta Kelahiran</li>
+        <li>Pas foto terbaru</li>
+      </ul>
+
+      <div class="section-title">Estimasi waktu</div>
+      <p><strong>2–5 hari kerja</strong></p>
+    </div>
+
+    <div class="card">
+      <div class="icon red"><i class="fas fa-right-from-bracket"></i></div>
+      <h2>Mutasi Keluar</h2>
+      <p>Layanan bagi peserta didik yang akan pindah ke sekolah lain.</p>
+
+      <div class="section-title">Persyaratan</div>
+      <ul>
+        <li>Surat permohonan orang tua/wali</li>
+        <li>Penyelesaian administrasi sekolah</li>
+        <li>Pengembalian buku perpustakaan</li>
+        <li>Formulir mutasi keluar</li>
+      </ul>
+
+      <div class="section-title">Estimasi waktu</div>
+      <p><strong>1–3 hari kerja</strong></p>
+    </div>
+
+  </div>
+
+  <div class="info">
+    <h2><i class="fas fa-clock" style="color:var(--primary);margin-right:10px;"></i>Jam Layanan</h2>
+    <div class="hours">
+      <div class="hour-card">
+        <h3>Senin – Kamis</h3>
+        <p>08.00 – 15.00 WITA</p>
+      </div>
+      <div class="hour-card">
+        <h3>Jumat</h3>
+        <p>08.00 – 11.00 WITA</p>
+      </div>
+      <div class="hour-card">
+        <h3>Sabtu, Minggu & Libur</h3>
+        <p>Tutup</p>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;padding:18px;border-radius:16px;background:#eff6ff;border:1px solid #dbeafe;">
+      <strong><i class="fas fa-circle-info" style="color:var(--primary);margin-right:8px;"></i>Informasi</strong>
+      <p style="margin-top:8px;color:#1e3a8a;">Untuk informasi lebih lanjut mengenai persyaratan, prosedur, atau status permohonan, silakan menghubungi <strong>Bagian Tata Usaha UPTD SMP Negeri 9 Sinjai</strong> pada jam layanan yang telah ditentukan.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 UPTD SMP Negeri 9 Sinjai  
+  </div>
+
+</div>
+
+</body>
+</html>
