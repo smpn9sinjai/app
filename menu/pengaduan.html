@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,11 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pengaduan Sekolah</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+
 <style>
+*{font-family:'Inter', sans-serif;}
 body{font-family:Arial,sans-serif;background:#f4f7fb;margin:0}
  header{
-  background:linear-gradient(135deg,#2563eb,#1e40af);
-  color:#fff;
+   
+  color:linear-gradient(135deg,#2563eb,#1e40af);
   padding:18px 24px;
   font-size:22px;
   font-weight:bold;
@@ -167,11 +174,28 @@ th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
 .btn-secondary{
   background:#64748b;
 }
+
+
+
+input,
+select,
+textarea{
+  width:90%;
+  padding:12px 14px;
+  }
+
+
+
+
+
+
+
+
 </style>
 </head>
 <body>
   <div id="toast" class="toast">
-  <i class="fa-solid fa-circle-check"></i>
+  <i class="fa-solid fa-circle-check" id="icontoast"></i>
   <span id="toastText">Pengaduan berhasil dikirim</span>
 </div>
 <header><i class="fa-solid fa-shield-heart"></i> Layanan Pengaduan Sekolah</header>
@@ -208,11 +232,11 @@ th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
           <option>Lainnya</option>
         </select>
       </div>
-    </div>
-    <label><input type="checkbox" id="anonim" onchange="toggleAnonim()"> Kirim sebagai anonim</label>
+    </div><br>
+    <label><input style="width:30px" type="checkbox" id="anonim" onchange="toggleAnonim()"> Kirim sebagai anonim( tanpa nama)</label>
     <div style="height:12px"></div>
     <label>Judul</label>
-    <input id="judul" placeholder="Judul pengaduan">
+    <input style="width:70%" id="judul" placeholder="Judul pengaduan">
     <div style="height:12px"></div>
     <label>Isi Pengaduan</label>
     <textarea id="isi" placeholder="Jelaskan pengaduan Anda"></textarea>
@@ -241,11 +265,13 @@ th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
       <div style="height:10px"></div>
       <input id="pass" type="password" placeholder="Password">
       <div style="height:12px"></div>
-      <button class="btn" onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
-      <p><small>Default: admin / admin123</small></p>
+      
+	       <button class="btn" id="btnKirim2" onclick="login()"> <i class="fa-solid fa-right-to-bracket" id="iconKirim2"></i>
+      <span id="textKirim2">Login</span></button>
+      
     </div>
     <div id="adminPanel" class="hidden">
-      <button class="btn" onclick="loadList()"><i class="fa-solid fa-rotate"></i> Muat Data</button>
+      <button class="btn" onclick="loadList2()" id="muatlagi" ><i id="iconmuat" class="fa-solid fa-rotate"></i>  <span id="textKirim4">Muat data</span></button>
       <div style="height:16px"></div>
       <table>
         <thead><tr><th>Kode</th><th>Nama</th><th>Judul</th><th>Status</th>  <th>Aksi</th></tr></thead>
@@ -271,7 +297,7 @@ th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
       <button class="close-btn" onclick="closeModal()">&times;</button>
     </div>
 
-    <input type="hidden" id="uKode">
+    <input style="width:50%" disabled="true" id="uKode"><br>
 
     <label>Status Pengaduan</label>
     <select id="uStatus">
@@ -322,7 +348,7 @@ function kirim(){
   text.textContent='Mengirim...';
 
   const xhr=new XMLHttpRequest();
-  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbwvuwQD2KplrDTfI9rWOowPSH4OTrxkSwsDhNoPRkF32IcZNGN-Cd9TyvEfsx8LaGnf/exec',true);
   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
   xhr.onload=function(){
@@ -366,7 +392,8 @@ function cek(){
   const icon1 = document.getElementById('iconKirim1');
   const text1 = document.getElementById('textKirim1');
   const kode = document.getElementById('kode').value.trim();
-
+   const d = document.getElementById('detail');
+      d.innerHTML=''
   if(kode === ''){
     alert('Masukkan kode tiket terlebih dahulu');
     return;
@@ -389,13 +416,14 @@ function cek(){
     icon1.className = 'fa-solid fa-magnifying-glass';
     text1.textContent = 'Cek';
 
-    const d = document.getElementById('detail');
-
+   
     try{
       const r = JSON.parse(xhr.responseText);
 
       if(!r.status){
-        d.innerHTML = '<p style="color:red">Data tidak ditemukan</p>';
+	      showToast('Data tidak ditemukan','fa-solid fa-magnifying-glass');
+        //d.innerHTML = '<p style="color:red">Data tidak ditemukan</p>';
+		setTimeout(()=>{d.innerHTML=""},2000)
         return;
       }
 
@@ -437,29 +465,69 @@ function cek(){
 
 
 
+const btn4= document.getElementById('muatlagi');
+const icon4= document.getElementById('iconmuat');
+const text4= document.getElementById('textKirim4');
 
 
 function login(){
+const btn2 = document.getElementById('btnKirim2');
+  const icon2 = document.getElementById('iconKirim2');
+  const text2 = document.getElementById('textKirim2');
+  
+   
+
+  btn2.disabled = true;
+  icon2.className = 'fa-solid fa-spinner fa-spin';
+  text2.textContent = 'Login...';
+
+
   const xhr=new XMLHttpRequest();
-  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbwvuwQD2KplrDTfI9rWOowPSH4OTrxkSwsDhNoPRkF32IcZNGN-Cd9TyvEfsx8LaGnf/exec',true);
   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
   xhr.onload=function(){
+      btn2.disabled = false;
+  icon2.className = 'fa-solid fa-right-to-bracket';
+  text2.textContent = 'Login';
+ 
+  showToast('Login berhasil');
+    
     const r=JSON.parse(xhr.responseText);
+	
     if(r.status){
       document.getElementById('loginBox').classList.add('hidden');
       document.getElementById('adminPanel').classList.remove('hidden');
-      loadList();
-    }else alert('Login gagal');
+      loadList(document.getElementById('user').value,document.getElementById('pass').value);
+	 
+    }else showToast('Login Gagal','fa-solid fa-circle-xmark');
+  };
+  xhr.onerror = function(){
+    btn2.disabled = false;
+    icon2.className = 'fa-solid fa-right-to-bracket';
+    text2.textContent = 'Login';
+    showToast('Tidak ada jaringan','fa-solid fa-wifi');
   };
   xhr.send('action=adminLogin&username='+encodeURIComponent(document.getElementById('user').value)+'&password='+encodeURIComponent(document.getElementById('pass').value));
 }
 
-function loadList(){
+function loadList(us,pas){
+  let gb = 'action=list&user=' + encodeURIComponent(us) +
+         '&pass=' + encodeURIComponent(pas);
+		 
+    btn4.disabled = true;
+    icon4.className = 'fa-solid fa-spinner fa-spin';
+	 text4.textContent = 'Memuat...';
+   
   const xhr=new XMLHttpRequest();
-  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbwvuwQD2KplrDTfI9rWOowPSH4OTrxkSwsDhNoPRkF32IcZNGN-Cd9TyvEfsx8LaGnf/exec',true);
   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
+
   xhr.onload=function(){
+  
+   btn4.disabled = false;
+    icon4.className = 'fa-solid fa-rotate';
+    text4.textContent = 'Muat data';
     const r=JSON.parse(xhr.responseText);
     const tb=document.getElementById('tbody');
     tb.innerHTML='';
@@ -480,14 +548,14 @@ function loadList(){
     });
   };
 
-  xhr.send('action=list');
+  xhr.send(gb);
 }
 
 
  
 
 function showUpdate(kode,status){
-  alert(kode)
+ 
   document.getElementById('uKode').value = kode;
   document.getElementById('uStatus').value = status;
   document.getElementById('uTanggapan').value = '';
@@ -508,7 +576,7 @@ function updatePengaduanClient(){
   text.textContent='Menyimpan...';
 
   const xhr=new XMLHttpRequest();
-  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbwvuwQD2KplrDTfI9rWOowPSH4OTrxkSwsDhNoPRkF32IcZNGN-Cd9TyvEfsx8LaGnf/exec',true);
   xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
   xhr.onload=function(){
@@ -521,7 +589,7 @@ function updatePengaduanClient(){
     if(r.status){
       closeModal();
       showToast('Pengaduan berhasil diperbarui');
-      loadList();
+       loadList(document.getElementById('user').value,document.getElementById('pass').value);
     }else{
       alert('Gagal memperbarui data');
     }
@@ -535,14 +603,28 @@ console.log(p);
   xhr.send(p);
 }
 
-function showToast(message){
+function showToast(message,iconm){
   const toast=document.getElementById('toast');
+  if(iconm){document.getElementById('icontoast').className=iconm}
+  else 
+     {document.getElementById('icontoast').className="fa-solid fa-circle-check"}
   document.getElementById('toastText').textContent=message;
   toast.classList.add('show');
   setTimeout(()=>{
     toast.classList.remove('show');
   },3000);
 }
+
+function loadList2(){
+
+   btn4.disabled = true;
+    icon4.className = 'fa-solid fa-spinner fa-spin';
+    text4.textContent = 'Memuat...';
+
+ 
+  
+ loadList(document.getElementById('user').value,document.getElementById('pass').value);
+}
 </script>
-</body>
+ </body>
 </html>
