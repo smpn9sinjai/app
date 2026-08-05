@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengaduan Sekolah</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+body{font-family:Arial,sans-serif;background:#f4f7fb;margin:0}
+ header{
+  background:linear-gradient(135deg,#2563eb,#1e40af);
+  color:#fff;
+  padding:18px 24px;
+  font-size:22px;
+  font-weight:bold;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+
+nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  padding:16px;
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+nav button{
+  border:none;
+  background:#eef2ff;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+nav button.active{
+  background:#2563eb;
+  color:#fff;
+}
+ nav button.active{background:#2563eb;color:#fff}
+.container{max-width:900px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #dbe2ea;border-radius:10px}
+textarea{min-height:120px}
+.btn{background:#2563eb;color:#fff;border:none;padding:12px 18px;border-radius:10px;cursor:pointer}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#f59e0b;color:#fff;font-size:12px}
+.hidden{display:none}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
+
+
+.btn{
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.25s;
+}
+.btn:hover{background:#1d4ed8}
+.btn:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+.toast{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#16a34a;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  transform:translateX(120%);
+  opacity:0;
+  transition:all .4s ease;
+  z-index:9999;
+}
+.toast.show{
+  transform:translateX(0);
+  opacity:1;
+}
+.toast i{
+  font-size:20px;
+}
+
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  background:#fff;
+  width:90%;
+  max-width:520px;
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+  animation:zoomIn .25s ease;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(.9);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.modal-header h3{
+  margin:0;
+  color:#1e3a8a;
+}
+
+.close-btn{
+  background:none;
+  border:none;
+  font-size:24px;
+  cursor:pointer;
+  color:#64748b;
+}
+
+.close-btn:hover{
+  color:#ef4444;
+}
+
+.modal-footer{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+.btn-secondary{
+  background:#64748b;
+}
+</style>
+</head>
+<body>
+  <div id="toast" class="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastText">Pengaduan berhasil dikirim</span>
+</div>
+<header><i class="fa-solid fa-shield-heart"></i> Layanan Pengaduan Sekolah</header>
+<nav>
+  <button id="m-input" class="active" onclick="showTab('input')"><i class="fa-solid fa-pen-to-square"></i> Input</button>
+  <button id="m-cek" onclick="showTab('cek')"><i class="fa-solid fa-magnifying-glass"></i> Pengecekan</button>
+  <button id="m-admin" onclick="showTab('admin')"><i class="fa-solid fa-user-shield"></i> Admin</button>
+</nav>
+<div class="container">
+  <div id="tab-input" class="card">
+    <h2>Form Pengaduan</h2>
+    <div class="row">
+      <div>
+        <label>Nama</label>
+        <input id="nama" placeholder="Nama pelapor">
+      </div>
+      <div>
+        <label>Kelas</label>
+        <input id="kelas" placeholder="VII A">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Nomor HP</label>
+        <input id="hp" placeholder="08xxxxxxxxxx">
+      </div>
+      <div>
+        <label>Jenis Pengaduan</label>
+        <select id="jenis">
+          <option>Perundungan</option>
+          <option>Sarana &amp; Prasarana</option>
+          <option>Akademik</option>
+          <option>Administrasi</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+    </div>
+    <label><input type="checkbox" id="anonim" onchange="toggleAnonim()"> Kirim sebagai anonim</label>
+    <div style="height:12px"></div>
+    <label>Judul</label>
+    <input id="judul" placeholder="Judul pengaduan">
+    <div style="height:12px"></div>
+    <label>Isi Pengaduan</label>
+    <textarea id="isi" placeholder="Jelaskan pengaduan Anda"></textarea>
+    <div style="height:16px"></div>
+  <button class="btn" id="btnKirim" onclick="kirim()">
+  <i class="fa-solid fa-paper-plane" id="iconKirim"></i>
+  <span id="textKirim">Kirim Pengaduan</span>
+</button>
+    <p id="hasil"></p>
+  </div>
+
+  <div id="tab-cek" class="card hidden">
+    <h2>Cek Status Pengaduan</h2>
+    <input id="kode" placeholder="Masukkan kode tiket">
+    <div style="height:12px"></div>
+    
+     <button class="btn" id="btnKirim1" onclick="cek()"> <i class="fa-solid fa-paper-plane" id="iconKirim1"></i>
+      <span id="textKirim1">Cek</span></button>
+    <div id="detail" style="margin-top:18px"></div>
+  </div>
+
+  <div id="tab-admin" class="card hidden">
+    <h2>Login Admin</h2>
+    <div id="loginBox">
+      <input id="user" placeholder="Username">
+      <div style="height:10px"></div>
+      <input id="pass" type="password" placeholder="Password">
+      <div style="height:12px"></div>
+      <button class="btn" onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      <p><small>Default: admin / admin123</small></p>
+    </div>
+    <div id="adminPanel" class="hidden">
+      <button class="btn" onclick="loadList()"><i class="fa-solid fa-rotate"></i> Muat Data</button>
+      <div style="height:16px"></div>
+      <table>
+        <thead><tr><th>Kode</th><th>Nama</th><th>Judul</th><th>Status</th>  <th>Aksi</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+
+
+      
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+<div id="modalUpdate" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-pen-to-square"></i> Update Pengaduan</h3>
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+    </div>
+
+    <input type="hidden" id="uKode">
+
+    <label>Status Pengaduan</label>
+    <select id="uStatus">
+      <option value="Menunggu">Menunggu</option>
+      <option value="Diproses">Diproses</option>
+      <option value="Selesai">Selesai</option>
+    </select>
+
+    <div style="height:15px"></div>
+
+    <label>Tanggapan Admin</label>
+    <textarea id="uTanggapan" placeholder="Tulis tanggapan untuk pelapor..."></textarea>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()">
+        <i class="fa-solid fa-xmark"></i> Batal
+      </button>
+      <button class="btn" id="btnUpdate" onclick="updatePengaduanClient()">
+        <i class="fa-solid fa-floppy-disk" id="iconUpdate"></i>
+        <span id="textUpdate">Simpan Update</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function showTab(tab){
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('[id^="tab-"]').forEach(t=>t.classList.add('hidden'));
+  document.getElementById('tab-'+tab).classList.remove('hidden');
+  document.getElementById('m-'+tab).classList.add('active');
+}
+
+function toggleAnonim(){
+  const a=document.getElementById('anonim').checked;
+  document.getElementById('nama').disabled=a;
+  if(a) document.getElementById('nama').value='';
+}
+
+function kirim(){
+  const btn=document.getElementById('btnKirim');
+  const icon=document.getElementById('iconKirim');
+  const text=document.getElementById('textKirim');
+
+  btn.disabled=true;
+  icon.className='fa-solid fa-spinner fa-spin';
+  text.textContent='Mengirim...';
+
+  const xhr=new XMLHttpRequest();
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+  xhr.onload=function(){
+    btn.disabled=false;
+    icon.className='fa-solid fa-paper-plane';
+    text.textContent='Kirim Pengaduan';
+
+    const r=JSON.parse(xhr.responseText);
+
+    if(r.status){
+      document.getElementById('hasil').innerHTML=
+        '<b>Berhasil!</b> Kode tiket: <code>'+r.kode+'</code>';
+      showToast('Pengaduan berhasil dikirim');
+    }else{
+      document.getElementById('hasil').innerHTML='Gagal mengirim';
+    }
+  };
+
+  xhr.onerror=function(){
+    btn.disabled=false;
+    icon.className='fa-solid fa-paper-plane';
+    text.textContent='Kirim Pengaduan';
+    document.getElementById('hasil').innerHTML='Terjadi kesalahan jaringan';
+  };
+
+  const p='action=buat'
+    +'&anonim='+(document.getElementById('anonim').checked?'Ya':'Tidak')
+    +'&nama='+encodeURIComponent(document.getElementById('nama').value)
+    +'&kelas='+encodeURIComponent(document.getElementById('kelas').value)
+    +'&hp='+encodeURIComponent(document.getElementById('hp').value)
+    +'&jenis='+encodeURIComponent(document.getElementById('jenis').value)
+    +'&judul='+encodeURIComponent(document.getElementById('judul').value)
+    +'&isi='+encodeURIComponent(document.getElementById('isi').value);
+
+  xhr.send(p);
+}
+
+
+function cek(){
+  const btn1 = document.getElementById('btnKirim1');
+  const icon1 = document.getElementById('iconKirim1');
+  const text1 = document.getElementById('textKirim1');
+  const kode = document.getElementById('kode').value.trim();
+
+  if(kode === ''){
+    alert('Masukkan kode tiket terlebih dahulu');
+    return;
+  }
+
+  btn1.disabled = true;
+  icon1.className = 'fa-solid fa-spinner fa-spin';
+  text1.textContent = 'Mengecek...';
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open(
+    'GET',
+    'https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec?action=cek&kode=' + encodeURIComponent(kode),
+    true
+  );
+
+  xhr.onload = function(){
+    btn1.disabled = false;
+    icon1.className = 'fa-solid fa-magnifying-glass';
+    text1.textContent = 'Cek';
+
+    const d = document.getElementById('detail');
+
+    try{
+      const r = JSON.parse(xhr.responseText);
+
+      if(!r.status){
+        d.innerHTML = '<p style="color:red">Data tidak ditemukan</p>';
+        return;
+      }
+
+      const x = r.data;
+
+      d.innerHTML =
+        '<div class="card">' +
+          '<p><b>Nama:</b> ' + x.nama + '</p>' +
+          '<p><b>Judul:</b> ' + x.judul + '</p>' +
+          '<p><b>Status:</b> <span class="badge">' + x.status + '</span></p>' +
+          '<p><b>Tanggapan:</b></p>' +
+          '<div style="background:#f8fafc;padding:12px;border-radius:10px;border:1px solid #e5e7eb;">' +
+            (x.tanggapan || '-') +
+          '</div>' +
+        '</div>';
+
+    }catch(err){
+      console.error(xhr.responseText);
+      d.innerHTML = '<p style="color:red">Server mengembalikan data yang tidak valid.</p>';
+    }
+  };
+
+  xhr.onerror = function(){
+    btn1.disabled = false;
+    icon1.className = 'fa-solid fa-magnifying-glass';
+    text1.textContent = 'Cek';
+    document.getElementById('detail').innerHTML =
+      '<p style="color:red">Tidak dapat terhubung ke server.</p>';
+  };
+
+  xhr.send();
+}
+
+
+
+
+
+
+
+
+
+
+
+function login(){
+  const xhr=new XMLHttpRequest();
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+  xhr.onload=function(){
+    const r=JSON.parse(xhr.responseText);
+    if(r.status){
+      document.getElementById('loginBox').classList.add('hidden');
+      document.getElementById('adminPanel').classList.remove('hidden');
+      loadList();
+    }else alert('Login gagal');
+  };
+  xhr.send('action=adminLogin&username='+encodeURIComponent(document.getElementById('user').value)+'&password='+encodeURIComponent(document.getElementById('pass').value));
+}
+
+function loadList(){
+  const xhr=new XMLHttpRequest();
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+  xhr.onload=function(){
+    const r=JSON.parse(xhr.responseText);
+    const tb=document.getElementById('tbody');
+    tb.innerHTML='';
+
+    r.data.forEach(v=>{
+       tb.innerHTML += `
+<tr>
+  <td>${v.kode}</td>
+  <td>${v.nama}</td>
+  <td>${v.judul}</td>
+  <td>${v.status}</td>
+  <td>
+    <button class="btn" onclick="showUpdate('${v.kode}','${v.status}')">
+      <i class="fa-solid fa-pen"></i> Update
+    </button>
+  </td>
+</tr>`;
+    });
+  };
+
+  xhr.send('action=list');
+}
+
+
+ 
+
+function showUpdate(kode,status){
+  alert(kode)
+  document.getElementById('uKode').value = kode;
+  document.getElementById('uStatus').value = status;
+  document.getElementById('uTanggapan').value = '';
+  document.getElementById('modalUpdate').classList.add('show');
+}
+
+function closeModal(){
+  document.getElementById('modalUpdate').classList.remove('show');
+}
+
+function updatePengaduanClient(){
+  const btn=document.getElementById('btnUpdate');
+  const icon=document.getElementById('iconUpdate');
+  const text=document.getElementById('textUpdate');
+
+  btn.disabled=true;
+  icon.className='fa-solid fa-spinner fa-spin';
+  text.textContent='Menyimpan...';
+
+  const xhr=new XMLHttpRequest();
+  xhr.open('POST','https://script.google.com/macros/s/AKfycbzW0RbvGU-LCpnaHh7oBs3_JusVh_M7GQLtrkb8P3drUQFbex_caSfF5-jwLrPGhA93-g/exec',true);
+  xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+  xhr.onload=function(){
+    btn.disabled=false;
+    icon.className='fa-solid fa-floppy-disk';
+    text.textContent='Simpan Update';
+
+    const r=JSON.parse(xhr.responseText);
+
+    if(r.status){
+      closeModal();
+      showToast('Pengaduan berhasil diperbarui');
+      loadList();
+    }else{
+      alert('Gagal memperbarui data');
+    }
+  };
+
+  const p='action=update'
+    +'&kode='+encodeURIComponent(document.getElementById('uKode').value)
+    +'&status='+encodeURIComponent(document.getElementById('uStatus').value)
+    +'&tanggapan='+encodeURIComponent(document.getElementById('uTanggapan').value);
+console.log(p);
+  xhr.send(p);
+}
+
+function showToast(message){
+  const toast=document.getElementById('toast');
+  document.getElementById('toastText').textContent=message;
+  toast.classList.add('show');
+  setTimeout(()=>{
+    toast.classList.remove('show');
+  },3000);
+}
+</script>
+</body>
+</html>
