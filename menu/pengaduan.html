@@ -77,6 +77,7 @@ th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
   border-radius:10px;
   cursor:pointer;
   transition:.25s;
+  
 }
 .btn:hover{background:#1d4ed8}
 .btn:disabled{
@@ -85,18 +86,19 @@ th,td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left}
 }
 
 .toast{
+  
   position:fixed;
   top:20px;
   right:20px;
-  background:#16a34a;
+  background:#777b83;
   color:#fff;
   padding:14px 18px;
-  border-radius:12px;
+  border-radius:8px;
   box-shadow:0 10px 30px rgba(0,0,0,.2);
   display:flex;
   align-items:center;
   gap:10px;
-  font-weight:600;
+  font-weight:300;
   transform:translateX(120%);
   opacity:0;
   transition:all .4s ease;
@@ -182,6 +184,7 @@ select,
 textarea{
   width:90%;
   padding:12px 14px;
+  margin:5px;
   }
 
 
@@ -194,19 +197,34 @@ textarea{
 </style>
 </head>
 <body>
+
+   
+ 
+
   <div id="toast" class="toast">
   <i class="fa-solid fa-circle-check" id="icontoast"></i>
   <span id="toastText">Pengaduan berhasil dikirim</span>
 </div>
-<header><i class="fa-solid fa-shield-heart"></i> Layanan Pengaduan Sekolah</header>
+ 
+
+ <div style="padding:17px;margin-bottom:2px;">
+    <h3 style="margin:0 0 10px;color:#2563eb">
+      <i class="fa-solid fa-circle-info"></i> Selamat Datang di <span style="color:#ff5722">Layanan Pengaduan Sekolah</span>
+    </h3>
+    <p style="margin:0 0 12px;color:#334155;line-height:1.6;">
+      Layanan ini digunakan untuk menyampaikan pengaduan, masukan, atau laporan terkait kegiatan di lingkungan sekolah.
+      Setiap pengaduan akan diproses oleh admin sekolah dan dapat dipantau menggunakan <b>kode tiket</b> yang diberikan setelah pengaduan berhasil dikirim.
+    
+  </div>
+ 
 <nav>
-  <button id="m-input" class="active" onclick="showTab('input')"><i class="fa-solid fa-pen-to-square"></i> Input</button>
-  <button id="m-cek" onclick="showTab('cek')"><i class="fa-solid fa-magnifying-glass"></i> Pengecekan</button>
-  <button id="m-admin" onclick="showTab('admin')"><i class="fa-solid fa-user-shield"></i> Admin</button>
+  <button id="m-input" class="active" onclick="showTab('input')"><i class="fa-solid fa-pen-to-square"></i> Buat Pengaduan</button>
+  <button id="m-cek" onclick="showTab('cek')"><i class="fa-solid fa-magnifying-glass"></i> Cek Status</button>
+  <button id="m-admin" onclick="showTab('admin')"><i class="fa-solid fa-user-shield"></i> Login Admin</button>
 </nav>
 <div class="container">
   <div id="tab-input" class="card">
-    <h2>Form Pengaduan</h2>
+    <h2><span style="color:#2563eb">Form</span> <span style="color:#ff5722">Pengaduan</span></h2> 
     <div class="row">
       <div>
         <label>Nama</label>
@@ -214,7 +232,7 @@ textarea{
       </div>
       <div>
         <label>Kelas</label>
-        <input id="kelas" placeholder="VII A">
+        <input  id="kelas" placeholder="VII A">
       </div>
     </div>
     <div class="row">
@@ -249,7 +267,8 @@ textarea{
   </div>
 
   <div id="tab-cek" class="card hidden">
-    <h2>Cek Status Pengaduan</h2>
+     <h2><span style="color:#2563eb">Cek Status </span> <span style="color:#ff5722">Pengaduan</span></h2> 
+  
     <input id="kode" placeholder="Masukkan kode tiket">
     <div style="height:12px"></div>
     
@@ -259,7 +278,7 @@ textarea{
   </div>
 
   <div id="tab-admin" class="card hidden">
-    <h2>Login Admin</h2>
+    <h2><span style="color:#2563eb">Login </span> <span style="color:#ff5722">Admin</span></h2> 
     <div id="loginBox">
       <input id="user" placeholder="Username">
       <div style="height:10px"></div>
@@ -395,7 +414,8 @@ function cek(){
    const d = document.getElementById('detail');
       d.innerHTML=''
   if(kode === ''){
-    alert('Masukkan kode tiket terlebih dahulu');
+   // alert('Masukkan kode tiket terlebih dahulu');
+	showToast("Masukkan kode tiket terlebih dahulu","fa-solid fa-pen-to-square")
     return;
   }
 
@@ -591,7 +611,9 @@ function updatePengaduanClient(){
       showToast('Pengaduan berhasil diperbarui');
        loadList(document.getElementById('user').value,document.getElementById('pass').value);
     }else{
-      alert('Gagal memperbarui data');
+     // alert('Gagal memperbarui data');
+	  showToast('Gagal memperbarui data','fa-solid fa-circle-xmark')
+	  
     }
   };
 
