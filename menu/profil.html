@@ -261,15 +261,22 @@ footer{
 <body>
 
   <section class="hero">
-   <center> <span><h1 style="color:#0f4c81;" >Profil UPTD SMP Negeri 9 Sinjai</h1></span><br></center>
+   <center> <span><h1 style="color:#0f4c81;" ></h1></span><br></center>
   </section>
 
 
   <div class="container">
 
 <section class="card">
+    <div class="section-title">
+    
+	 
+	 <h4><span style="color:#2563eb">Profil UPTD SMP</span> <span style="color:#ff5722">Negeri 9 Sinjai</span></h4> 
+    
+  </div>
   <div class="section-title">
     <i class="fas fa-school"></i>
+	 
     <span>Tentang Sekolah</span>
   </div>
   <p>
@@ -278,24 +285,95 @@ footer{
     serta mengembangkan potensi akademik dan nonakademik secara optimal.
   </p>
 
-  <div class="info-grid">
-    <div class="info-box">
-      <h4>Nama Sekolah</h4>
-      <p>UPTD SMP Negeri 9 Sinjai</p>
+ <div class="info-grid">
+  <div class="info-box">
+    <div class="info-icon">
+      <i class="fa-solid fa-school"></i>
     </div>
-    <div class="info-box">
-      <h4>Status</h4>
-      <p>Sekolah Negeri</p>
-    </div>
-    <div class="info-box">
-      <h4>Jenjang</h4>
-      <p>Sekolah Menengah Pertama (SMP)</p>
-    </div>
-    <div class="info-box">
-      <h4>Lokasi</h4>
-      <p>Kabupaten Sinjai, Sulawesi Selatan</p>
-    </div>
+    <h4>Nama Sekolah</h4>
+    <p>UPTD SMP Negeri 9 Sinjai</p>
   </div>
+
+  <div class="info-box">
+    <div class="info-icon">
+      <i class="fa-solid fa-landmark"></i>
+    </div>
+    <h4>Status</h4>
+    <p>Sekolah Negeri</p>
+  </div>
+
+  <div class="info-box">
+    <div class="info-icon">
+      <i class="fa-solid fa-graduation-cap"></i>
+    </div>
+    <h4>Jenjang</h4>
+    <p>Sekolah Menengah Pertama (SMP)</p>
+  </div>
+
+ 
+
+  <div class="info-box">
+    <div class="info-icon akreditasi">
+      <i class="fa-solid fa-medal"></i>
+    </div>
+    <h4>Akreditasi</h4>
+    <p><strong>B</strong></p>
+  </div>
+</div>
+
+<style>
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.info-box{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.info-box:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 30px rgba(37,99,235,.15);
+}
+
+.info-icon{
+  width:60px;
+  height:60px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:#eff6ff;
+  color:#2563eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+}
+
+.info-icon.akreditasi{
+  background:#fff7ed;
+  color:#f97316;
+}
+
+.info-box h4{
+  margin:0 0 8px;
+  color:#1e3a8a;
+  font-size:18px;
+}
+
+.info-box p{
+  margin:0;
+  color:#475569;
+  line-height:1.6;
+  font-size:15px;
+}
+</style>
 </section>
 
 <section class="card">
@@ -305,20 +383,35 @@ footer{
   </div>
 
   <div class="headmaster">
-    <img src="https://smpn9sinjai.sch.id//foto/A001.jpg" alt="Kepala Sekolah">
+    <img src="https://smpn9sinjai.sch.id/foto/A001.jpg" alt="Kepala Sekolah">
+
     <div>
-      <h3>TASLIM M., S.Pd.</h3>
-      <div class="position">Kepala UPTD SMP Negeri 9 Sinjai</div>
+      
+
+      <h3 style="margin:0;">TASLIM M., S.Pd.</h3>
+      <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#eff6ff;color:#2563eb;font-size:13px;font-weight:600;margin-bottom:12px;">
+        <i class="fa-solid fa-school"></i>
+         Kepala UPTD SMP Negeri 9 Sinjai
+      </div>
+
       <p>
-        Selamat datang di website resmi UPTD SMP Negeri 9 Sinjai.
-        Website ini menjadi media informasi, komunikasi, dan publikasi kegiatan sekolah
-        kepada peserta didik, orang tua, alumni, dan masyarakat.
+        Selamat datang di website resmi <strong>UPTD SMP Negeri 9 Sinjai</strong>.
+        Website ini menjadi media informasi, komunikasi, dan publikasi berbagai program,
+        prestasi, serta kegiatan sekolah kepada peserta didik, orang tua, alumni, dan masyarakat.
       </p>
+
       <p style="margin-top:14px;">
-        Kami berkomitmen menciptakan lingkungan belajar yang aman, nyaman, inklusif,
-        serta mendorong peserta didik menjadi pribadi yang beriman, berakhlak mulia,
-        disiplin, kreatif, dan mampu menghadapi tantangan masa depan.
+        Kami berkomitmen menghadirkan lingkungan belajar yang <strong>aman, nyaman, inklusif, dan inovatif</strong>,
+        serta membentuk peserta didik yang beriman, berakhlak mulia, disiplin, kreatif,
+        berprestasi, dan siap menghadapi tantangan masa depan.
       </p>
+
+      <div style="margin-top:18px;padding-top:14px;border-top:1px solid #e5e7eb;color:#475569;">
+        <i class="fa-solid fa-quote-left" style="color:#2563eb;"></i>
+        <em>
+          "Bersama membangun generasi yang unggul, berkarakter, dan berdaya saing."
+        </em>
+      </div>
     </div>
   </div>
 </section>
@@ -339,15 +432,15 @@ footer{
 
     <div class="panel">
       <h3>Misi</h3>
-      <ul>
-        <li>1. Menumbuhkan keimanan, ketakwaan, dan akhlak mulia melalui pembiasaan ibadah rutin, integrasi nilai spiritual di kelas, serta implementasi program 7 Kebiasaan Anak Indonesia Hebat.</li>
-		 <li>2. Menyelenggarakan pembelajaran mendalam (deep learning) berbasis IPTEK secara kreatif untuk meningkatkan kemampuan literasi digital, numerasi modern, dan penalaran kritis murid agar siap bersaing di kancah global. </li>
-		  <li>3.Mengembangkan kurikulum inklusif dan memfasilitasi Layanan Bimbingan Konseling (BK) yang responsif guna menciptakan ekosistem belajar yang sehat, aman, nyaman, serta bebas dari segala bentuk perundungan dan kekerasan.</li>
-		   <li>4. Mengintegrasikan Pendidikan Perubahan Iklim dan gerakan pelestarian lingkungan ke dalam aktivitas intrakurikuler dan kokurikuler berbasis potensi geografis lokal.</li>
-		    <li>5. Melestarikan budaya daerah melalui pembiasaan kearifan lokal "Sipakatau, Sipakalebbi, Sipakainge" serta membangun kemitraan sinergis bersama orang tua murid dan instansi lintas sektor.</li>
-			 <li>6. Mengaktifkan Komunitas Belajar (Kombel) internal secara berkala sebagai motor penggerak reformasi mengajar guru dalam meningkatkan kompetensi pedagogis dan profesional secara mandiri.</li>
+      <ol style="padding:15px">
+       <li>Menumbuhkan keimanan, ketakwaan, dan akhlak mulia melalui pembiasaan ibadah rutin, integrasi nilai spiritual di kelas, serta implementasi program 7 Kebiasaan Anak Indonesia Hebat.</li>
+		 <li>Menyelenggarakan pembelajaran mendalam (deep learning) berbasis IPTEK secara kreatif untuk meningkatkan kemampuan literasi digital, numerasi modern, dan penalaran kritis murid agar siap bersaing di kancah global. </li>
+		  <li>Mengembangkan kurikulum inklusif dan memfasilitasi Layanan Bimbingan Konseling (BK) yang responsif guna menciptakan ekosistem belajar yang sehat, aman, nyaman, serta bebas dari segala bentuk perundungan dan kekerasan.</li>
+		   <li>Mengintegrasikan Pendidikan Perubahan Iklim dan gerakan pelestarian lingkungan ke dalam aktivitas intrakurikuler dan kokurikuler berbasis potensi geografis lokal.</li>
+		    <li>Melestarikan budaya daerah melalui pembiasaan kearifan lokal "Sipakatau, Sipakalebbi, Sipakainge" serta membangun kemitraan sinergis bersama orang tua murid dan instansi lintas sektor.</li>
+			 <li>Mengaktifkan Komunitas Belajar (Kombel) internal secara berkala sebagai motor penggerak reformasi mengajar guru dalam meningkatkan kompetensi pedagogis dan profesional secara mandiri.</li>
         
-      </ul>
+     <ol>
     </div>
   </div>
 </section>
@@ -421,34 +514,48 @@ footer{
     <span>Tenaga Pendidik dan Kependidikan</span>
   </div>
 
+  <p style="margin:0 0 22px;color:#64748b;line-height:1.7;">
+    UPTD SMP Negeri 9 Sinjai didukung oleh tenaga pendidik dan kependidikan yang profesional,
+    berkompeten, dan berdedikasi dalam mewujudkan layanan pendidikan yang berkualitas.
+  </p>
+
   <div class="stats">
     <div class="stat">
+      <i class="fa-solid fa-chalkboard-user" style="font-size:28px;color:#2563eb;margin-bottom:10px;"></i>
       <h3>16</h3>
       <p>Guru dan Tenaga Kependidikan</p>
     </div>
 
     <div class="stat">
+      <i class="fa-solid fa-building-columns" style="font-size:28px;color:#2563eb;margin-bottom:10px;"></i>
       <h3>6</h3>
       <p>Rombongan Belajar</p>
     </div>
 
     <div class="stat">
+      <i class="fa-solid fa-user-graduate" style="font-size:28px;color:#2563eb;margin-bottom:10px;"></i>
       <h3>101</h3>
       <p>Peserta Didik</p>
     </div>
 
     <div class="stat">
+      <i class="fa-solid fa-laptop" style="font-size:28px;color:#2563eb;margin-bottom:10px;"></i>
       <h3>37</h3>
-      <p>Perangkat Chromebook Dan PC Dekstop</p>
+      <p>Unit Chromebook dan PC Desktop</p>
     </div>
   </div>
 
-  <p style="margin-top:18px;">
-    Seluruh tenaga pendidik dan kependidikan bekerja secara profesional
-    untuk memberikan pelayanan pendidikan terbaik kepada peserta didik.
-  </p>
+  <div style="margin-top:24px;padding:18px;border-radius:14px;background:#f8fafc;border:1px solid #e5e7eb;">
+    <strong style="color:#1e3a8a;">
+      <i class="fa-solid fa-circle-check" style="color:#16a34a;"></i>
+      Komitmen Sekolah
+    </strong>
+    <p style="margin:10px 0 0;color:#475569;line-height:1.8;">
+      Seluruh tenaga pendidik dan kependidikan berkomitmen memberikan pelayanan pendidikan
+      yang aman, inklusif, inovatif, dan berorientasi pada pengembangan karakter serta prestasi peserta didik.
+    </p>
+  </div>
 </section>
-
 <section class="card">
   <div class="section-title">
     <i class="fas fa-trophy"></i>
@@ -460,7 +567,7 @@ footer{
       <i class="fas fa-award"></i>
       <div>
         <strong>Prestasi Akademik</strong>
-        <p>Partisipasi dan pencapaian peserta didik pada berbagai kompetisi akademik tingkat kabupaten dan provinsi.</p>
+        <p>Partisipasi dan pencapaian peserta didik pada berbagai kompetisi akademik.</p>
       </div>
     </div>
 
