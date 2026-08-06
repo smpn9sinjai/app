@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beranda - SMP Negeri 9 Sinjai</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body{
+  zoom:85%;
+   }
+body{
+font-family:"Inter",sans-serif;
+background:#f5f7fb;
+color:#1f2937;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+
+.hero{
+background:linear-gradient(135deg,#0f4c81,#2563eb);
+color:#fff;
+border-radius:24px;
+padding:45px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.hero-text{
+flex:1;
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:17px;
+line-height:1.8;
+opacity:.95;
+}
+
+.hero img{
+width:230px;
+max-width:100%;
+}
+
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:14px 28px;
+background:#fff;
+color:#0f4c81;
+font-weight:600;
+border-radius:12px;
+text-decoration:none;
+}
+
+.section{
+margin-top:40px;
+}
+
+.section-title{
+font-size:26px;
+color:#0f4c81;
+margin-bottom:20px;
+font-weight:700;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.stat-card{
+background:#fff;
+padding:24px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 25px rgba(15,76,129,.08);
+}
+
+.stat-card i{
+font-size:34px;
+color:#2563eb;
+margin-bottom:12px;
+}
+
+.stat-card h3{
+font-size:30px;
+color:#0f4c81;
+margin-bottom:5px;
+}
+
+.quick-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.quick-card{
+background:#fff;
+padding:24px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 10px 25px rgba(15,76,129,.08);
+transition:.3s;
+cursor:pointer;
+}
+
+.quick-card:hover{
+transform:translateY(-5px);
+}
+
+.quick-card i{
+font-size:40px;
+color:#0f4c81;
+margin-bottom:15px;
+}
+
+.quick-card h4{
+margin-bottom:10px;
+}
+
+.quick-card p{
+font-size:14px;
+color:#6b7280;
+line-height:1.6;
+}
+
+.content-grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+}
+
+.card{
+background:#fff;
+border-radius:20px;
+padding:25px;
+box-shadow:0 10px 25px rgba(15,76,129,.08);
+}
+
+.news-item{
+padding:18px 0;
+border-bottom:1px solid #e5e7eb;
+}
+
+.news-item:last-child{
+border-bottom:none;
+}
+
+.news-item h4{
+color:#111827;
+margin-bottom:8px;
+}
+
+.news-item p{
+color:#6b7280;
+line-height:1.6;
+}
+
+.news-item small{
+display:block;
+margin-top:10px;
+color:#9ca3af;
+}
+
+.agenda-item{
+display:flex;
+gap:15px;
+padding:16px 0;
+border-bottom:1px solid #e5e7eb;
+}
+
+.agenda-item:last-child{
+border-bottom:none;
+}
+
+.date-box{
+width:60px;
+height:60px;
+background:#dbeafe;
+color:#2563eb;
+border-radius:14px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-weight:700;
+flex-shrink:0;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+height:140px;
+object-fit:cover;
+border-radius:16px;
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+padding:30px;
+color:#6b7280;
+font-size:14px;
+}
+
+@media(max-width:768px){
+
+.container{
+padding:20px;
+}
+
+.hero{
+padding:30px;
+}
+
+.hero h1{
+font-size:30px;
+}
+
+.content-grid{
+grid-template-columns:1fr;
+}
+
+.gallery{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+</style>
+
+</head>
+<body>
+ 
+
+<div class="container">
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Selamat Datang di SMP Negeri 9 Sinjai</h1>
+
+<p>
+Portal resmi UPTD SMP Negeri 9 Sinjai sebagai pusat layanan informasi akademik,
+administrasi sekolah, pengumuman resmi, kegiatan siswa, dan berbagai layanan digital
+yang mendukung pembelajaran berkualitas.
+</p>
+
+<!--<a href="#" class="btn">
+Jelajahi Portal
+</a>-->
+
+</div>
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Sekolah">
+
+</section>
+
+
+
+<section class="section">
+
+<h2 class="section-title">Layanan Cepat</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+<i class="fas fa-book-open"></i>
+<h4>e-Rapor</h4>
+<p>Akses hasil belajar dan rapor peserta didik secara digital.</p>
+</div>
+
+<div class="quick-card">
+<i class="fas fa-calendar-alt"></i>
+<h4>Jadwal Pelajaran</h4>
+<p>Informasi jadwal pelajaran setiap kelas dan guru.</p>
+</div>
+
+<div class="quick-card">
+<i class="fas fa-bullhorn"></i>
+<h4>Pengumuman</h4>
+<p>Informasi resmi sekolah dan pemberitahuan penting.</p>
+</div>
+
+<div class="quick-card">
+<i class="fas fa-image"></i>
+<h4>Galeri Kegiatan</h4>
+<p>Dokumentasi kegiatan akademik dan nonakademik sekolah.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="content-grid">
+
+<div class="card">
+
+<h2 class="section-title">Berita Terbaru</h2>
+
+<div class="news-item">
+
+<h4>Pembukaan Tahun Pelajaran 2026/2027</h4>
+
+<p>
+Kegiatan pembukaan tahun pelajaran baru berlangsung dengan lancar dan diikuti oleh
+seluruh peserta didik, guru, dan tenaga kependidikan SMP Negeri 9 Sinjai.
+</p>
+
+<small>3 Agustus 2026</small>
+
+</div>
+
+<div class="news-item">
+
+<h4>Pelaksanaan Asesmen Diagnostik</h4>
+
+<p>
+Sekolah melaksanakan asesmen diagnostik awal untuk memetakan kemampuan peserta didik
+sebagai dasar penyusunan strategi pembelajaran.
+</p>
+
+<small>31 Juli 2026</small>
+
+</div>
+
+<div class="news-item">
+
+<h4>Program Literasi Sekolah</h4>
+
+<p>
+Program literasi pagi kembali dilaksanakan secara rutin guna meningkatkan minat baca
+dan kemampuan literasi peserta didik.
+</p>
+
+<small>28 Juli 2026</small>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">Agenda Sekolah</h2>
+
+<div class="agenda-item">
+
+<div class="date-box">
+<span>05</span>
+<small>AGS</small>
+</div>
+
+<div>
+<h4>Rapat Guru</h4>
+<p>Pukul 13.00 WITA di ruang guru.</p>
+</div>
+
+</div>
+
+<div class="agenda-item">
+
+<div class="date-box">
+<span>10</span>
+<small>AGS</small>
+</div>
+
+<div>
+<h4>Penilaian Harian</h4>
+<p>Seluruh kelas VII, VIII, dan IX.</p>
+</div>
+
+</div>
+
+<div class="agenda-item">
+
+<div class="date-box">
+<span>17</span>
+<small>AGS</small>
+</div>
+
+<div>
+<h4>Upacara HUT RI</h4>
+<p>Peringatan Hari Kemerdekaan Republik Indonesia.</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">Galeri Sekolah</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600" alt="Galeri">
+
+<img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=600" alt="Galeri">
+
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600" alt="Galeri">
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 UPTD SMP Negeri 9 Sinjai 
+
+</footer>
+
+</div>
+
+</body>
+</html>
