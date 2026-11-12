@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arsip Soal - UPTD SMP Negeri 9 Sinjai</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #eaf2ff, #f7f9ff, #e8f5ff);
+    color: #1e293b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, .08);
+    animation: float 12s infinite ease-in-out;
+}
+
+.circle:nth-child(1) {
+    width: 220px;
+    height: 220px;
+    top: -70px;
+    left: -50px;
+}
+
+.circle:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    bottom: -130px;
+    right: -80px;
+    animation-delay: 2s;
+}
+
+.circle:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    top: 55%;
+    left: 12%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+.main-container {
+    width: 100%;
+    max-width: 460px;
+}
+
+.login-card {
+    background: rgba(255,255,255,.95);
+    border-radius: 24px;
+    padding: 38px 32px;
+    box-shadow: 0 20px 60px rgba(30,64,175,.12);
+    border: 1px solid rgba(255,255,255,.9);
+    text-align: center;
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 22px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg,#2563eb,#0ea5e9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    box-shadow: 0 10px 25px rgba(37,99,235,.25);
+}
+
+h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: #172554;
+}
+
+.subtitle {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 28px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.input-group input {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 0 48px;
+    border: 1px solid #dbe4f0;
+    border-radius: 13px;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    background: #f8fafc;
+    transition: .25s;
+}
+
+.input-group input:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59,130,246,.1);
+}
+
+/* Ikon gembok di sebelah kiri */
+.input-group .fa-lock {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ikon mata di ujung kanan */
+.input-group .toggle-password {
+    position: absolute;
+    right: 16px;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    cursor: pointer;
+    z-index: 3;
+}
+button {
+    width: 100%;
+    border: none;
+    border-radius: 13px;
+    padding: 16px;
+    background: linear-gradient(110deg,#2563eb,#0284c7);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 8px 18px rgba(37,99,235,.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37,99,235,.3);
+}
+
+button:disabled {
+    opacity: .7;
+    cursor: wait;
+    transform: none;
+}
+
+.message {
+    min-height: 22px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.error {
+    color: #dc2626;
+}
+
+.success {
+    color: #16a34a;
+}
+
+.footer {
+    text-align: center;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 22px;
+    line-height: 1.8;
+}
+
+.footer strong {
+    color: #64748b;
+}
+
+/* Area folder */
+#folder-area {
+    display: none;
+    width: 100%;
+    min-height: 85vh;
+}
+
+.folder-header {
+    background: white;
+    padding: 18px 22px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 5px 20px rgba(30,64,175,.07);
+}
+
+.folder-header h3 {
+    margin: 0;
+    font-size: 17px;
+    color: #1e3a8a;
+}
+
+.folder-header p {
+    margin: 6px 0 0;
+    font-size: 12px;
+    color: #64748b;
+}
+
+#folder-content {
+    width: 100%;
+    min-height: 75vh;
+    background: white;
+	border-left: 7px solid #2563eb;
+    border-radius: 16px;
+    overflow: hidden;
+	padding:5px 20px;
+    box-shadow: 0 5px 25px rgba(30,64,175,.08);
+}
+
+#folder-content iframe {
+    width: 100%;
+    height: 78vh;
+    border: 0;
+}
+
+@media(max-width:480px) {
+    body {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 32px 22px;
+        border-radius: 20px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+}
+a {
+    position: relative;
+    text-decoration: none;
+    color: #1769e0;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width .3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+ul {
+    list-style-type: decimal;
+    padding-left: 25px;
+}
+ul, ol {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 12px;
+    line-height: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</div>
+
+<div class="main-container">
+
+    <div id="login-area">
+        <div class="login-card">
+
+            <div class="logo">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+
+            <h2>PENGETIKAN SOAL ONLINE</h2>
+
+            <div class="subtitle">
+                UPTD SMP Negeri 9 Sinjai<br>
+                Silakan masukkan password untuk mengakses soal.
+            </div>
+
+            <div class="message" id="pesan"></div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    id="pass"
+                    type="password"
+                    placeholder="Masukkan password"
+                    autocomplete="current-password"
+                    required
+                >
+                <i class="fa-solid fa-eye toggle-password"
+                   id="togglePass"
+                   onclick="togglePassword()"></i>
+            </div>
+
+            <button id="ok" onclick="go()">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                &nbsp; MASUK KE SOAL
+            </button>
+
+            <div class="footer">
+                <strong>UPTD SMP NEGERI 9 SINJAI</strong><br>
+                Sistem Pengetikan Soal Online
+            </div>
+
+        </div>
+    </div>
+
+    <div id="folder-area">
+       
+        <div id="folder-content"></div>
+    </div>
+
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbwjuXY-0KMjFE03QnMUFwkK3eCRQEA_VuQPkPtirKR2XHQs2vTiYER7yj5Ur6CErGcs/exec";
+
+const mp = document.getElementById("pass");
+const ps = document.getElementById("pesan");
+const bt = document.getElementById("ok");
+
+function togglePassword() {
+    const icon = document.getElementById("togglePass");
+
+    if (mp.type === "password") {
+        mp.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+    } else {
+        mp.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+    }
+}
+
+function go() {
+    const password = mp.value.trim();
+
+    if (!password) {
+        showMessage("Silakan masukkan password!", "error");
+        mp.focus();
+        return;
+    }
+
+    bt.disabled = true;
+    bt.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memeriksa password...';
+
+    fetch(API_URL, {
+        method: "POST",
+        body: new URLSearchParams({
+            pass: password,
+            cari: "linksoal"
+        })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Koneksi gagal");
+        return response.text();
+    })
+    .then(data => {
+        data = data.trim();
+
+        if (data === "salah") {
+            showMessage("Password yang Anda masukkan salah!", "error");
+            mp.value = "";
+            mp.focus();
+            resetButton();
+            return;
+        }
+
+        if (!data) {
+            throw new Error("Data arsip kosong");
+        }
+
+        document.getElementById("login-area").style.display = "none";
+
+        const folder = document.getElementById("folder-area");
+        folder.style.display = "block";
+
+        document.getElementById("folder-content").innerHTML = data;
+        
+        window.scrollTo({top: 0, behavior: "smooth"});
+    })
+    .catch(error => {
+        showMessage("Gagal terhubung. Periksa jaringan internet!", "error");
+        resetButton();
+    });
+}
+
+function showMessage(message, type) {
+    ps.textContent = message;
+    ps.className = "message " + type;
+}
+
+function resetButton() {
+    bt.disabled = false;
+    bt.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> &nbsp; MASUK KE ARSIP';
+}
+
+mp.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") go();
+});
+</script>
+
+</body>
+</html>
