@@ -13,99 +13,108 @@
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'/>
  
 <style>
-  body{background:white}
- @media only screen and (min-width: 600px){
-  #us1 { width:700px}
-   #us2 { width:700px}
- } 
-  
- 
-  
-   #us1 { width:300px} 
-  #us2 { width:300px}
-  
-  
-  
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 10px; /* Location of the box */
-  left: 0;
-  top:0;
-  width: 100%; /* Full width */
-  height: 400%; /* Full height */
-  overflow: scroll; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
- 
+
+:root{
+  --primary:#155eef;--primary-dark:#1248c5;--ink:#172b4d;
+  --muted:#667085;--line:#e4e7ec;--surface:#ffffff;--soft:#f4f7fb;
+  --shadow:0 12px 32px rgba(16,24,40,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0!important;padding:28px 16px 48px!important;
+  font-family:'Poppins',Arial,sans-serif!important;color:var(--ink);
+  background:linear-gradient(180deg,#eef4ff 0,#f8faff 280px,#f5f7fb 100%)!important;
+  min-height:100vh;
+}
+body>center{display:block;width:100%;max-width:1000px;margin:0 auto}
+#tabel,#jwb2{
+  width:100%;max-width:900px;margin:18px auto;padding:24px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:20px;box-shadow:var(--shadow);text-align:left;
+}
+#tabel:empty,#jwb2:empty{display:none}
+#tabel input#cari,#cari{
+  display:block;width:100%!important;max-width:100%!important;
+  margin:0 0 18px;padding:13px 16px!important;
+  border:1px solid #d0d5dd;border-radius:12px;
+  outline:none;font:15px 'Poppins',sans-serif!important;
+  background:#fff;transition:.2s;
+}
+#cari:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(21,94,239,.12)}
+button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:42px;padding:10px 18px!important;margin:5px!important;
+  border:1px solid var(--primary)!important;border-radius:11px!important;
+  background:var(--primary)!important;color:#fff!important;
+  font:600 14px 'Poppins',sans-serif!important;cursor:pointer;
+  box-shadow:0 3px 8px rgba(21,94,239,.16);transition:.2s;
+}
+button:hover{background:var(--primary-dark)!important;transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+#ss{background:#078647!important;border-color:#078647!important}
+#btt{background:#475467!important;border-color:#475467!important}
+#myTable{
+  width:100%;border-collapse:separate!important;border-spacing:0;
+  overflow:hidden;border:1px solid var(--line);border-radius:13px;
+  font:14px Arial,sans-serif!important;background:#fff;
+}
+#myTable th{
+  padding:13px 14px!important;text-align:left;
+  color:#fff!important;background:#174ea6!important;
+  font-weight:700;white-space:nowrap;
+}
+#myTable td{padding:12px 14px!important;text-align:left;border-bottom:1px solid #eaecf0}
+#myTable tr:nth-child(even){background:#f8faff}
+#myTable tr:hover{background:#edf4ff!important;cursor:pointer}
+#myTable tr:last-child td{border-bottom:0}
+#qr{
+  width:min(600px,100%)!important;height:auto!important;min-height:0;
+  margin:22px auto!important;padding:22px!important;
+  border:1px solid #dbe4f0!important;border-radius:20px!important;
+  background:#fff;box-shadow:var(--shadow);overflow:hidden;
+}
+#qr img{max-width:100%;height:auto}
+#qr center{overflow-wrap:anywhere}
+#jwb2{line-height:1.7;overflow-x:auto}
+#jwb2 table{width:100%;border-collapse:collapse}
+#jwb2 table th{background:#174ea6;color:#fff}
+#jwb2 table td,#jwb2 table th{padding:11px;border:1px solid var(--line)}
+#frame{width:100%;height:100%;border:0;display:none}
+.modal{
+  display:none;position:fixed;z-index:1000;inset:0;width:100%;height:100%;
+  padding:22px 12px;overflow:auto;background:rgba(16,24,40,.62);
+  backdrop-filter:blur(3px);
+}
+.modal-content{
+  position:relative;width:min(850px,100%)!important;margin:30px auto!important;
+  padding:22px!important;border:0!important;border-radius:18px!important;
+  background:#fff!important;box-shadow:0 24px 60px rgba(0,0,0,.22);
+}
+#essay{
+  padding:20px 16px!important;border-radius:12px;
+  background:#f8faff!important;color:#1d2939;
+  font:14px/1.75 'Poppins',sans-serif!important;
+  white-space:pre-line;overflow-wrap:anywhere;
+}
+.close{
+  position:sticky!important;float:right;top:0;z-index:1002;
+  width:40px;height:40px;padding:0!important;margin:-12px -10px 8px 8px!important;
+  border:0!important;border-radius:50%!important;
+  background:#344054!important;color:#fff!important;font-size:25px!important;
+}
+@media(max-width:640px){
+  body{padding:14px 10px 30px!important}
+  #tabel,#jwb2{padding:14px;margin:12px auto;border-radius:15px}
+  #myTable{font-size:12px!important}
+  #myTable th,#myTable td{padding:9px 8px!important}
+  #qr{padding:12px!important}
+  .modal-content{padding:14px!important;margin:12px auto!important}
+}
+@media print{
+  body{background:#fff!important;padding:0!important}
 }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 5px;
-  border: 1px solid #888;
-  width: 95%;
-   border-radius:5px;
-   
-  
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-  
-  #essay{font-family: 'Poppins';font-size: 14px;} 
-  
-  button{padding:3px;border:2px solid green;background:green;color:white;border-radius:5px;margin:3px}
-  button:hover{cursor:pinter;border:2px solid orange}
- button:active{background:orange}
- #jwb{background:green;color:white}
-  
- #myTable th{background-color:#808080;color:white}
-#myTable {
-  border-collapse: collapse;
-  
-  
-  font-size: 15px;
- 
-  font-family: Arial, Helvetica, sans-serif;
-}
-#myTable th  {
-  text-align: left;
-  padding:4px;
-}
-  #myTable td {
-  text-align: left;
-  padding:4px;
-}
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header, #myTable tr:hover {
-  background-color: #ddd;cursor:pointer;
-}
-  
-  
- #myTable tr:nth-child(even){background-color: #f2f2f2;} 
- #jjs{padding:5px;margin-bottom:10px;border-radius:5px;overflow:auto;border-bottom:3px solid green}*/
-  
-  body{margin:10px}
 </style>
 <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
 <meta name='google-adsense-platform-domain' content='blogspot.com'/>
@@ -119,9 +128,9 @@
 <button id='btt' onclick='gopi()' style='display:none;width:300px;padding:10px'><i class='fa fa-mail-reply-all' style='font-size:17px;color:white'></i> Kembali</button>
 <button id='ss' onclick='capture()' style='padding:5px 40px;display:none;font-size:17px;background:green;color:white'>Cetak</button>
 <p></p><p></p>
-<div id='qr' style='display:block;border:20px solid #607d8b;border-radius:15px;width:600px;heght:300px;padding:30px;display:none'></div><p></p>
+<div id='qr' style='display:block;border:20px solid #607d8b;border-radius:15px;width:600px;height:auto;padding:30px;display:none'></div><p></p>
 <div id='jwb2' style='display:block;border:0px solid #607d8b;border-radius:15px;'></div><p></p>
-<button id='btt' onclick='gopi()' style='display:none;width:300px;padding:10px'><i class='fa fa-mail-reply-all' style='font-size:17px;color:white'></i> Kembali</button>
+<button class='btn-kembali' onclick='gopi()' style='display:none;width:300px;padding:10px'><i class='fa fa-mail-reply-all' style='font-size:17px;color:white'></i> Kembali</button>
 <iframe id='frame' style='width:100%;height:100%;border:none;display:none'></iframe>
 </center>
 <!-- The Modal -->
@@ -203,7 +212,7 @@
     let gbr=qrcode._oDrawing._elCanvas.toDataURL("image/png")
     	  qq.innerHTML="<center><img src='"+logo+"' style='width:200px'/><br/><span style='font-weight:bold;font-size:35px;'>"+gab+"</span><img src='"+gbr+"'/><br/>"+sms+'</center>'
     
-	//	ff.innerHTML="<div id='qr' style='display:block;border:20px solid #607d8b;border-radius:15px;width:600px;heght:300px;padding:30px'><center><span style='position:relative;top:40px;font-weight:bold;font-size:35px;'>"+gab+"</span><br/><img height='100' id='img1' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVgfgrqlmC-mG1Id43H-Cg0MU6Ws28ZeQENEh63HiQR9TJd_bcv8aTriq_RcEQamhIiFS2OZc1xkvVi6Abh5Gp1c2eCMkcCx7w_7Hfryb7_nijdSimr-BVLIAdXpN0Z8xp05rYc7lwm6xEv8bOUxUUccuw1oxj-4qp5_9gah5cWSO7vYibDwP_Xgo3/s1600/smp.jpg' style='position:relative;top:300px;border-radius:50px'/><br/>"+gg+"<br/>"+sms+"</center></div>"
+	//	ff.innerHTML="<div id='qr' style='display:block;border:20px solid #607d8b;border-radius:15px;width:600px;height:auto;padding:30px'><center><span style='position:relative;top:40px;font-weight:bold;font-size:35px;'>"+gab+"</span><br/><img height='100' id='img1' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVgfgrqlmC-mG1Id43H-Cg0MU6Ws28ZeQENEh63HiQR9TJd_bcv8aTriq_RcEQamhIiFS2OZc1xkvVi6Abh5Gp1c2eCMkcCx7w_7Hfryb7_nijdSimr-BVLIAdXpN0Z8xp05rYc7lwm6xEv8bOUxUUccuw1oxj-4qp5_9gah5cWSO7vYibDwP_Xgo3/s1600/smp.jpg' style='position:relative;top:300px;border-radius:50px'/><br/>"+gg+"<br/>"+sms+"</center></div>"
 		 
 		},200)
 		
@@ -235,7 +244,7 @@ let gab="UPTD SMP NEGERI 9 SINJAI"+"<hr style='border:2px solid black'/>KELAS : 
 			setTimeout(()=>{
 		 var gg=qq.innerHTML;
          // qq.innerHTML='<center><span style='position:relative;top:40px;font-weight:bold;font-size:35px;'>'+gab+'</span><br/><img height='100' id='img1' src='smp.jpg' style='position:relative;top:300px;border-radius:50px'/><br/>'+gg+'<br/>'+sms+'</center>'
-		ff.innerHTML="<div id='qr' style='margin-left:30px;margin-top:30px;display:block;border:20px solid #607d8b;border-radius:15px;width:600px;heght:300px;padding:30px'><center><span style='position:relative;top:40px;font-weight:bold;font-size:35px;'>"+gab+"</span><br/><img height='100' id='img1' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVgfgrqlmC-mG1Id43H-Cg0MU6Ws28ZeQENEh63HiQR9TJd_bcv8aTriq_RcEQamhIiFS2OZc1xkvVi6Abh5Gp1c2eCMkcCx7w_7Hfryb7_nijdSimr-BVLIAdXpN0Z8xp05rYc7lwm6xEv8bOUxUUccuw1oxj-4qp5_9gah5cWSO7vYibDwP_Xgo3/s1600/smp.jpg' style='position:relative;top:300px;border-radius:50px'/><br/>"+gg+"<br/>"+sms+"</center></div>"
+		ff.innerHTML="<div id='qr' style='margin-left:30px;margin-top:30px;display:block;border:20px solid #607d8b;border-radius:15px;width:600px;height:auto;padding:30px'><center><span style='position:relative;top:40px;font-weight:bold;font-size:35px;'>"+gab+"</span><br/><img height='100' id='img1' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVgfgrqlmC-mG1Id43H-Cg0MU6Ws28ZeQENEh63HiQR9TJd_bcv8aTriq_RcEQamhIiFS2OZc1xkvVi6Abh5Gp1c2eCMkcCx7w_7Hfryb7_nijdSimr-BVLIAdXpN0Z8xp05rYc7lwm6xEv8bOUxUUccuw1oxj-4qp5_9gah5cWSO7vYibDwP_Xgo3/s1600/smp.jpg' style='position:relative;top:300px;border-radius:50px'/><br/>"+gg+"<br/>"+sms+"</center></div>"
 				 
 		 setTimeout(()=>{let bb=document.getElementById('frame').contentWindow
        bb.print();},500)
