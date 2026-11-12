@@ -24,7 +24,7 @@ body {
 }
 #contoh { display: none; }
 body > center {
-  width: 100%; max-width: 980px; margin: 0 auto; padding: 30px 22px;
+  width: 100%; max-width: 580px; margin: 0 auto; padding: 30px 22px;
   background: #fff; border: 1px solid var(--border); border-radius: 18px;
   box-shadow: 0 12px 32px rgba(28,55,90,.09);
 }
@@ -33,7 +33,7 @@ body > center::before {
   color: #183b5c; font-size: 25px; font-weight: 800; letter-spacing: .3px;
 }
 body > center::after {
-  content: "";
+   
   display: block; margin: 0 0 22px; color: var(--muted); font-size: 14px;
 }
 #cari2, #cari {
@@ -63,13 +63,16 @@ button:hover { background: var(--primary-dark); color: #fff; box-shadow: 0 5px 1
   padding: 14px 13px; background: #eaf2fb; color: #23496d; text-align: left;
   font-size: 13px; font-weight: 800; border-bottom: 1px solid #dce7f2; white-space: nowrap;
 }
-#myTable td { padding: 12px 13px; color: #35465a; text-align: left; border-bottom: 1px solid #edf1f6; vertical-align: middle; }
+#myTable td {padding:10px 1px; color: #35465a; text-align: left; border-bottom: 1px solid #edf1f6; vertical-align: middle; }
 #myTable tr:nth-child(even) { background: #fafcff; }
 #myTable tr:hover { background: #eef6ff; }
 #myTable tr:last-child td { border-bottom: none; }
 #myTable button { min-height: 34px; padding: 8px 13px; border-radius: 7px; font-size: 12px; white-space: nowrap; }
 #myTable .fa-check-square-o { color: #16a085 !important; font-size: 20px !important; }
 #tabel > span { display: block; padding: 22px; color: var(--muted); text-align: center; }
+
+ 
+
 .modal {
   display: none; position: fixed; z-index: 9999; inset: 0; overflow-y: auto;
   padding: 25px 14px; background: rgba(14,29,48,.55); backdrop-filter: blur(3px);
@@ -85,17 +88,7 @@ button:hover { background: var(--primary-dark); color: #fff; box-shadow: 0 5px 1
 #mbt:hover { background: #b93232; }
 #mbt2 { background: #e9eef4; color: #42536a; }
 #mbt2:hover { background: #dce5ef; color: #26384d; }
-@media (max-width: 600px) {
-  body { padding: 18px 10px; }
-  body > center { padding: 23px 12px; border-radius: 14px; }
-  body > center::before { font-size: 20px; }
-  body > center::after { font-size: 12px; }
-  #cari2 { width: calc(100% - 75px); font-size: 14px !important; }
-  #btnok { padding: 10px 13px; font-size: 14px !important; }
-  #myTable { font-size: 13px; }
-  #myTable th, #myTable td { padding: 10px 9px; }
-  .modal-content { margin-top: 18vh; padding: 25px 18px; }
-}
+
 </style>
 <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
 <meta name='google-adsense-platform-domain' content='blogspot.com'/>
