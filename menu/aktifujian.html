@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta charset='UTF-8'/>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<title>Aktifkan Mapel</title>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'/>
+<style id='page-skin-1' type='text/css'><!--
+--></style>
+<style>
+:root {
+  --primary: #1769aa;
+  --primary-dark: #10558d;
+  --background: #f3f6fb;
+  --text: #243247;
+  --muted: #718096;
+  --border: #e3eaf2;
+}
+* { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+body {
+  margin: 0; min-height: 100vh; padding: 35px 15px;
+  background: radial-gradient(circle at top left, #e5f1ff, transparent 40%), var(--background);
+  color: var(--text);
+}
+#contoh { display: none; }
+body > center {
+  width: 100%; max-width: 980px; margin: 0 auto; padding: 30px 22px;
+  background: #fff; border: 1px solid var(--border); border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(28,55,90,.09);
+}
+body > center::before {
+  content: "AKTIFKAN MATA PELAJARAN"; display: block; margin: 0 0 10px;
+  color: #183b5c; font-size: 25px; font-weight: 800; letter-spacing: .3px;
+}
+body > center::after {
+  content: "Masukkan password untuk mengelola status mata pelajaran.";
+  display: block; margin: 0 0 22px; color: var(--muted); font-size: 14px;
+}
+#cari2, #cari {
+  width: min(100%, 430px); min-height: 48px; padding: 11px 15px !important;
+  border: 1px solid #cbd8e6 !important; border-radius: 10px !important;
+  outline: none; background: #fbfdff; color: var(--text); font-size: 16px !important;
+  transition: .2s;
+}
+#cari2:focus, #cari:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(23,105,170,.12); background: #fff;
+}
+#cari { display: none; width: 100%; max-width: 100%; margin: 18px 0; }
+button {
+  padding: 11px 20px; border: none; border-radius: 9px;
+  background: var(--primary); color: #fff; font-size: 14px; font-weight: bold;
+  cursor: pointer; transition: .2s;
+}
+button:hover { background: var(--primary-dark); color: #fff; box-shadow: 0 5px 13px rgba(23,105,170,.18); }
+#btnok { min-height: 48px; margin-left: 5px; font-size: 15px !important; }
+#tabel {
+  width: 100%; margin-top: 20px; overflow-x: auto;
+  border: 1px solid var(--border); border-radius: 12px; background: #fff;
+}
+#myTable { width: 100%; min-width: 620px; border-collapse: separate; border-spacing: 0; font-size: 14px; color: var(--text); }
+#myTable th {
+  padding: 14px 13px; background: #eaf2fb; color: #23496d; text-align: left;
+  font-size: 13px; font-weight: 800; border-bottom: 1px solid #dce7f2; white-space: nowrap;
+}
+#myTable td { padding: 12px 13px; color: #35465a; text-align: left; border-bottom: 1px solid #edf1f6; vertical-align: middle; }
+#myTable tr:nth-child(even) { background: #fafcff; }
+#myTable tr:hover { background: #eef6ff; }
+#myTable tr:last-child td { border-bottom: none; }
+#myTable button { min-height: 34px; padding: 8px 13px; border-radius: 7px; font-size: 12px; white-space: nowrap; }
+#myTable .fa-check-square-o { color: #16a085 !important; font-size: 20px !important; }
+#tabel > span { display: block; padding: 22px; color: var(--muted); text-align: center; }
+.modal {
+  display: none; position: fixed; z-index: 9999; inset: 0; overflow-y: auto;
+  padding: 25px 14px; background: rgba(14,29,48,.55); backdrop-filter: blur(3px);
+}
+.modal-content {
+  position: relative; width: 100%; max-width: 430px; margin: 100px auto 0;
+  padding: 28px 24px; border: none; border-radius: 17px; background: #fff;
+  box-shadow: 0 20px 60px rgba(0,0,0,.22); color: var(--text); font-size: 15px; line-height: 1.6;
+}
+.close { position: absolute; top: 10px; right: 16px; color: #8794a3; font-size: 29px; font-weight: bold; cursor: pointer; }
+.close:hover { color: #d94848; }
+#mbt { margin-right: 8px !important; background: #d94848; }
+#mbt:hover { background: #b93232; }
+#mbt2 { background: #e9eef4; color: #42536a; }
+#mbt2:hover { background: #dce5ef; color: #26384d; }
+@media (max-width: 600px) {
+  body { padding: 18px 10px; }
+  body > center { padding: 23px 12px; border-radius: 14px; }
+  body > center::before { font-size: 20px; }
+  body > center::after { font-size: 12px; }
+  #cari2 { width: calc(100% - 75px); font-size: 14px !important; }
+  #btnok { padding: 10px 13px; font-size: 14px !important; }
+  #myTable { font-size: 13px; }
+  #myTable th, #myTable td { padding: 10px 9px; }
+  .modal-content { margin-top: 18vh; padding: 25px 18px; }
+}
+</style>
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+</head>
+<body onload='bload()'>
+<div class='no-items section' id='contoh'></div>
+
+<center>
+  <br/>
+  <br/>
+  <input id='cari2' type='password' placeholder='Masukkan Password' title='Masukkan password' autocomplete='current-password'/>
+  <button id='btnok' onclick='cek()'><i class='fa fa-unlock-alt'></i> OK</button>
+  <input id='cari' onkeyup='cari()' placeholder='Cari nama mata pelajaran...' title='Cari nama mata pelajaran' type='text'/>
+  <div id='tabel'></div>
+  <p></p>
+</center>
+
+<div class='modal' id='myModal'>
+  <div class='modal-content' id='isimodal'>
+    <span class='close' onclick='gotp()'>&times;</span>
+    <p><span id='apa'>Yakin mau di Reset ?,</span></p>
+    <p>
+      <button id='mbt' onclick='go()' style='margin-right:30px;margin-top:15px;padding:10px 30px'>Ya</button>
+      <button id='mbt2' onclick='gotp()' style='padding:10px 20px'>Tidak</button>
+    </p>
+  </div>
+</div>
+
+<script>
+var data;
+var idetel=0;
+
+function bload() {
+  let namateleg1='nama';
+  let namateleg2='ss';
+  let gabnama='';
+  gabnama=namateleg1;
+}
+
+let tbl=document.getElementById('tabel');
+let modal=document.getElementById('myModal');
+let cbtn=document.getElementById('mbt');
+let cbtn2=document.getElementById('mbt2');
+let napa=document.getElementById('apa');
+let cek2=document.getElementById('cari2');
+
+function gotp() {
+  modal.style.display='none';
+}
+
+document.getElementById("cari2").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") cek();
+});
+
+function cek() {
+  if (cek2.value != "") {
+    gokelas(1, 0, '0');
+  }
+}
+
+function gokelas(cek,nom,tok,kemb) {
+  idetel=cek2.value;
+  var xhr = new XMLHttpRequest();
+  let ab='';
+
+  if (cek==1) {
+    tbl.innerHTML="<span><i class='fa fa-spinner fa-spin' style='font-size:20px;color:black'></i> Mohon Tunggu ...</span>";
+    ab='https://script.google.com/macros/s/AKfycbwsuhq8sg-H4UNGgi1cgLptOvzxP4mAjQ89NfMRcG2xrtRq3MVo_eDUXARvYNoHf1xx/exec?cek='+cek+'&nores='+nom+'&token='+tok+'&idetel='+idetel;
+  }
+  if (cek==2) {
+    sukses(3,nom,tok,kemb);
+    return;
+  }
+  if (cek==3) {
+    modal.style.display='none';
+    sukses(1,nom,'0',10);
+    ab='https://script.google.com/macros/s/AKfycbwsuhq8sg-H4UNGgi1cgLptOvzxP4mAjQ89NfMRcG2xrtRq3MVo_eDUXARvYNoHf1xx/exec?cek='+cek+'&nores='+nom+'&token='+tok+'&idetel='+idetel;
+  }
+
+  xhr.open('POST', ab, true);
+  xhr.onerror = function() {
+    tbl.innerHTML="<span><i class='fa fa-exclamation-circle'></i> Koneksi bermasalah. Silakan coba kembali.</span>";
+  };
+  xhr.onload = function() {
+    var hh=xhr.responseText;
+    let mm=(JSON.parse(hh));
+
+    if(mm.kode==20) {
+      document.getElementById('cari').style.display="none";
+      tbl.innerHTML=mm.data;
+    }
+    if(mm.kode==7) {
+      tbl.innerHTML=mm.data;
+      document.getElementById('cari').style.display="block";
+      cek2.style.display="none";
+      document.getElementById('btnok').style.display="none";
+    }
+    if(mm.kode==1) sukses(2,mm.nor,'0',mm.bkod);
+  };
+  xhr.onprogress = function(evt) {};
+  xhr.send();
+}
+
+function urut() {
+  var table2, rows, switching, i, x, y, shouldSwitch;
+  table2 =document.getElementById('myTable');
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table2.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[2];
+      y = rows[i + 1].getElementsByTagName("TD")[2];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+function klik() {
+  let table = document.getElementById("myTable");
+  var rows = table.getElementsByTagName("tr");
+  for (var i=0; i<rows.length; i++) {
+    rows[i].onclick=function(e) {
+      let ntb=this.rowIndex;
+      let link=this.cells[3].innerHTML;
+      this.cells[3].innerHTML="<i class='fa fa-spinner fa-spin' style='font-size:15px;color:black'></i>";
+    };
+  }
+}
+
+function sukses(gb,res,tok,kem) {
+  let table = document.getElementById('myTable');
+  for(var i = 1; i < table.rows.length; i++) {
+    if(res== table.rows[i].cells[0].innerHTML) {
+      if(gb==3) {
+        let bc='Aktifkan';
+        if(tok==0) bc='Non Aktifkan';
+        let tbn="<table><tr><td style='vertical-align:top'><b>Mapel</b></td><td style='vertical-align:top'><b>:</b></td><td>"+table.rows[i].cells[2].innerHTML+"</td></tr></table>";
+        napa.innerHTML='<b>Yakin akan di '+bc+' ...?</b>'+'<br/><br/>'+tbn+'<br/><br/>';
+        cbtn.setAttribute("onclick","gokelas(3,'"+res+"',"+tok+")");
+        modal.style.display='block';
+      }
+
+      if(gb==1) {
+        table.rows[i].cells[3].innerHTML="<i class='fa fa-spinner fa-spin' style='font-size:20px;color:black'></i>";
+      }
+      if(gb==2) {
+        let bc='Aktifkan';
+        if(kem==0) bc='Non Aktifkan';
+        var bbk=table.rows[i].cells[4];
+
+        if(kem==0) {
+          table.rows[i].cells[3].innerHTML="<span><i class='fa fa-check-square-o' style='font-size:20px;color:black'></i></span>";
+          bbk.childNodes[0].setAttribute("onclick","gokelas(2,'"+res+"',"+kem+",10)");
+          bbk.childNodes[0].innerHTML=bc;
+        } else {
+          table.rows[i].cells[3].innerHTML='';
+          bbk.childNodes[0].setAttribute("onclick","gokelas(2,'"+res+"',"+kem+",10)");
+          bbk.childNodes[0].innerHTML=bc;
+        }
+      }
+    }
+  }
+}
+
+function cari() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("cari");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      tr[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ? "" : "none";
+    }
+  }
+}
+</script>
+</body>
+</html>
